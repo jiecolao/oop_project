@@ -11,7 +11,7 @@ public class ConnectDB {
         Connection conn = null;
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "HR", "HR");
+            conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "plm", "plm");
             System.out.println("Connection Successful");
         } catch (Exception e) {
             System.out.println("Error");

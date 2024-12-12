@@ -1,14 +1,16 @@
 package projectoop;
 
-import java.awt.*;
-import javax.swing.*;
+import java.sql.*;
+import net.proteanit.sql.DbUtils;
 
 
 public class MainScreen extends javax.swing.JFrame {
-
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    
     public MainScreen() {
         initComponents();
-
         
         // FOR MAINSCREEN STARTING VIEW
         pnlViews.setVisible(true);
@@ -97,7 +99,11 @@ public class MainScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1080, 720));
-        setPreferredSize(new java.awt.Dimension(1080, 720));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlFramebg.setBackground(new java.awt.Color(204, 204, 255));
@@ -550,6 +556,22 @@ public class MainScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void refresh(){
+        try {
+            conn = ConnectDB.Connect();
+            ps = conn.prepareStatement("SELECT * FROM plm.subj_sched");
+            rs = ps.executeQuery();
+            tblSubSChedView.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            conn = ConnectDB.Connect();
+            ps = conn.prepareStatement("SELECT * FROM plm.stud_grade");
+            rs = ps.executeQuery();
+            tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    
     private void btnViewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewsActionPerformed
         // TODO add your handling code here:
         pnlViews.setVisible(true);
@@ -570,6 +592,10 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSubSched.setVisible(false);
         pnlStudGrades.setVisible(true);
     }//GEN-LAST:event_btnStudGradesActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        refresh();
+    }//GEN-LAST:event_formWindowActivated
 
     
 
