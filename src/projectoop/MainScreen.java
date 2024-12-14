@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import javax.swing.JTabbedPane;
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 
