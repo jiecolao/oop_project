@@ -7,9 +7,7 @@ import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import javax.swing.JTabbedPane;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import net.proteanit.sql.DbUtils;
@@ -20,7 +18,7 @@ public class MainScreen extends javax.swing.JFrame {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
-    private Timer  timer = null;
+    private Timer timer = null;
     
     public MainScreen() {
         initComponents();
@@ -52,7 +50,7 @@ public class MainScreen extends javax.swing.JFrame {
                 c.setBackground(new Color(0, 0, 0, 0));  
             } else {
                 c.setBackground(new Color(153, 51, 51));
-                c.setForeground(Color.WHITE);  
+                c.setForeground(Color.BLACK);  
             }
             return c;
             }
@@ -76,7 +74,7 @@ public class MainScreen extends javax.swing.JFrame {
                 c.setBackground(new Color(0, 0, 0, 0));  
             } else {
                 c.setBackground(new Color(153, 51, 51));
-                c.setForeground(Color.WHITE);  
+                c.setForeground(Color.BLACK);  
             }
             return c;
         }
@@ -194,8 +192,7 @@ public class MainScreen extends javax.swing.JFrame {
             btnStudGradesDelete.setForeground(Color.WHITE);  
             btnStudGradesDelete.setFocusPainted(false);  
             btnStudGradesDelete.setBorderPainted(false);  
-            btnStudGradesDelete.setOpaque(true);            
-            
+            btnStudGradesDelete.setOpaque(true);
             
     }
 
@@ -425,8 +422,8 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSubSchedSearch.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblSubSchedSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblSubSchedSearch.setText("Search ID  :");
-        pnlSubSchedSearch.add(lblSubSchedSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 70, 20));
+        lblSubSchedSearch.setText("Search Subject Code  :");
+        pnlSubSchedSearch.add(lblSubSchedSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 130, 20));
 
         txtSubSchedSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         txtSubSchedSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -473,8 +470,8 @@ public class MainScreen extends javax.swing.JFrame {
         pnlStudGradesSearch.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblStudGradesSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblStudGradesSearch.setText("Search ID  :");
-        pnlStudGradesSearch.add(lblStudGradesSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 70, 20));
+        lblStudGradesSearch.setText("Search Student No  :");
+        pnlStudGradesSearch.add(lblStudGradesSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 120, 20));
 
         txtStudGradesSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         txtStudGradesSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -485,6 +482,11 @@ public class MainScreen extends javax.swing.JFrame {
         btnStudGradesSearch.setMaximumSize(new java.awt.Dimension(72, 20));
         btnStudGradesSearch.setMinimumSize(new java.awt.Dimension(72, 20));
         btnStudGradesSearch.setPreferredSize(new java.awt.Dimension(72, 20));
+        btnStudGradesSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudGradesSearchActionPerformed(evt);
+            }
+        });
         pnlStudGradesSearch.add(btnStudGradesSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 80, 20));
 
         pnlStudGradesViews.add(pnlStudGradesSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 60));
@@ -624,11 +626,13 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSubSchedInfo.add(cmbssSubjectCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 155, 140, 20));
 
         cmbssDay.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        cmbssDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "T", "W", "TH", "F", "S" }));
         cmbssDay.setMinimumSize(new java.awt.Dimension(140, 20));
         cmbssDay.setPreferredSize(new java.awt.Dimension(140, 20));
         pnlSubSchedInfo.add(cmbssDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 35, 140, 20));
 
         cmbssType.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        cmbssType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F2F", "OL" }));
         cmbssType.setMinimumSize(new java.awt.Dimension(140, 20));
         cmbssType.setPreferredSize(new java.awt.Dimension(140, 20));
         pnlSubSchedInfo.add(cmbssType, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 115, 140, 20));
@@ -678,6 +682,11 @@ public class MainScreen extends javax.swing.JFrame {
         ));
         tblSubSched.setMinimumSize(new java.awt.Dimension(300, 80));
         tblSubSched.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblSubSched.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSubSchedMouseClicked(evt);
+            }
+        });
         scrllSubSched.setViewportView(tblSubSched);
 
         pnlSubSched.add(scrllSubSched, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 830, 380));
@@ -782,6 +791,11 @@ public class MainScreen extends javax.swing.JFrame {
         ));
         tblStudGrades.setMinimumSize(new java.awt.Dimension(300, 80));
         tblStudGrades.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblStudGrades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblStudGradesMouseClicked(evt);
+            }
+        });
         scrllStudGrades.setViewportView(tblStudGrades);
 
         pnlStudGrades.add(scrllStudGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 830, 380));
@@ -920,32 +934,31 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }
     
- 
-      
-       
-    
     public void refresh(){
         try {
             // sched view
             conn = ConnectDB.Connect();
-            ps = conn.prepareStatement("SELECT * FROM plm.subject");
+            ps = conn.prepareStatement("SELECT * FROM plm.subj_sched");
             rs = ps.executeQuery();
             tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
             
             // grade view
-            ps = conn.prepareStatement("SELECT * FROM plm.grades");
+            ps = conn.prepareStatement("SELECT * FROM plm.stud_grade");
             rs = ps.executeQuery();
             tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
         
             // schedule crud view
-            ps = conn.prepareStatement("SELECT * FROM plm.subj_sched");
+            ps = conn.prepareStatement("SELECT * FROM plm.subject_schedule");
             rs = ps.executeQuery();
             tblSubSched.setModel(DbUtils.resultSetToTableModel(rs));
 
             // grade crud view
-            ps = conn.prepareStatement("SELECT * FROM plm.stud_grade");
+            ps = conn.prepareStatement("SELECT * FROM plm.grades");
             rs = ps.executeQuery();
             tblStudGrades.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            getCMBSubSched();
+            getCMBStudGrade();
             
         } catch (Exception e){
             System.out.println(e);
@@ -988,13 +1001,13 @@ public class MainScreen extends javax.swing.JFrame {
        if (!(txtSubSchedSearch.getText().trim().isBlank())){
             try {
                 conn = ConnectDB.Connect();
-                ps = conn.prepareStatement("SELECT * FROM plm.subject WHERE subject_code LIKE ?");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE subject_code LIKE ?");
                 ps.setString(1, txtSubSchedSearch.getText().trim());
                 rs = ps.executeQuery();
                 if (!rs.isBeforeFirst())
                     JOptionPane.showMessageDialog(null, "No Subject Code with \"" + txtSubSchedSearch.getText().trim() + "\" found.");
                 else
-                    tblSubSChedView.setModel(DbUtils.resultSetToTableModel(rs));
+                    tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -1002,6 +1015,98 @@ public class MainScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please enter a Student ID");
         
     }//GEN-LAST:event_btnSubSchedSearchActionPerformed
+
+    private void btnStudGradesSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudGradesSearchActionPerformed
+        // TODO add your handling code here:
+        if (!(txtStudGradesSearch.getText().trim().isBlank())){
+            try {
+                conn = ConnectDB.Connect();
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE student_number LIKE ?");
+                ps.setString(1, txtStudGradesSearch.getText().trim());
+                rs = ps.executeQuery();
+                if (!rs.isBeforeFirst())
+                    JOptionPane.showMessageDialog(null, "No Student No with \"" + txtStudGradesSearch.getText().trim() + "\" found.");
+                else
+                    tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else 
+            JOptionPane.showMessageDialog(null, "Please enter a Student ID");
+    }//GEN-LAST:event_btnStudGradesSearchActionPerformed
+
+    private void tblSubSchedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSubSchedMouseClicked
+        int row = tblSubSched.getSelectedRow();
+        // s.y cmb box
+        cmbssSemester.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 1)));
+        cmbssCollegeCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 2)));
+        cmbssSubjectCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 4)));
+        // insert block no.
+        cmbssDay.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 5)));
+        txtssTime.setText(getValueOrDefault(tblSubSched.getValueAt(row, 6)));
+        cmbssType.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 8)));
+        txtssRoom.setText(getValueOrDefault(tblSubSched.getValueAt(row, 7)));
+        cmbssSequenceNo.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 9))); // fix, it acts as a dupli daw
+        cmbssEmployeeID.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 10)));
+        
+//        txtssTime.setText(String.valueOf(tblSubSched.getValueAt(row, 7)).isBlank() ? " " : String.valueOf(tblSubSched.getValueAt(row, 7)));
+    }//GEN-LAST:event_tblSubSchedMouseClicked
+
+    public void getCMBSubSched(){ 
+        try {
+            cmbssSemester.removeAllItems();
+            ps = conn.prepareStatement("SELECT semester FROM plm.semester");
+            rs = ps.executeQuery();
+            while(rs.next())
+                cmbssSemester.addItem(rs.getString("semester"));
+            
+            cmbssCollegeCode.removeAllItems();
+            ps = conn.prepareStatement("SELECT college_code FROM plm.college");
+            rs = ps.executeQuery();
+            while(rs.next())
+                cmbssCollegeCode.addItem(rs.getString("college_code"));
+            
+            cmbssSubjectCode.removeAllItems();
+            ps = conn.prepareStatement("SELECT subject_code FROM plm.subject");
+            rs = ps.executeQuery();
+            while(rs.next())
+                cmbssSubjectCode.addItem(rs.getString("subject_code"));
+            
+            cmbssEmployeeID.removeAllItems();
+            ps = conn.prepareStatement("SELECT employee_id FROM plm.employee");
+            rs = ps.executeQuery();
+            while(rs.next())
+                cmbssEmployeeID.addItem(rs.getString("employee_id"));
+            
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    private void tblStudGradesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudGradesMouseClicked
+        int row = tblStudGrades.getSelectedRow();
+        // s.y combo box
+        cmbsgSemester.setSelectedItem(getValueOrDefault(tblStudGrades.getValueAt(row, 1)));
+        cmbssCollegeCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 2)));
+        
+    }//GEN-LAST:event_tblStudGradesMouseClicked
+
+    public void getCMBStudGrade(){ 
+        try {
+            cmbsgSemester.removeAllItems();
+            ps = conn.prepareStatement("SELECT semester FROM plm.semester");
+            rs = ps.executeQuery();
+            while(rs.next())
+                cmbsgSemester.addItem(rs.getString("semester"));
+            
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    private String getValueOrDefault(Object value) {
+        return value == null ? "" : value.toString();
+    }
     
     
     /**
