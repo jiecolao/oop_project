@@ -998,41 +998,41 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_tabbViewsNavMouseClicked
 
     private void btnSubSchedSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubSchedSearchActionPerformed
-       if (!(txtSubSchedSearch.getText().trim().isBlank())){
-            try {
-                conn = ConnectDB.Connect();
-                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE subject_code LIKE ?");
-                ps.setString(1, txtSubSchedSearch.getText().trim());
-                rs = ps.executeQuery();
-                if (!rs.isBeforeFirst())
-                    JOptionPane.showMessageDialog(null, "No Subject Code with \"" + txtSubSchedSearch.getText().trim() + "\" found.");
-                else
-                    tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-        } else 
-            JOptionPane.showMessageDialog(null, "Please enter a Student ID");
-        
+//       if (!(txtSubSchedSearch.getText().trim().isBlank())){
+//            try {
+//                conn = ConnectDB.Connect();
+//                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE subject_code LIKE ?");
+//                ps.setString(1, txtSubSchedSearch.getText().trim());
+//                rs = ps.executeQuery();
+//                if (!rs.isBeforeFirst())
+//                    JOptionPane.showMessageDialog(null, "No Subject Code with \"" + txtSubSchedSearch.getText().trim() + "\" found.");
+//                else
+//                    tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+//            } catch (Exception e){
+//                e.printStackTrace();
+//            }
+//        } else 
+//            JOptionPane.showMessageDialog(null, "Please enter a Student ID");
+//        
     }//GEN-LAST:event_btnSubSchedSearchActionPerformed
 
     private void btnStudGradesSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudGradesSearchActionPerformed
         // TODO add your handling code here:
-        if (!(txtStudGradesSearch.getText().trim().isBlank())){
-            try {
-                conn = ConnectDB.Connect();
-                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE student_number LIKE ?");
-                ps.setString(1, txtStudGradesSearch.getText().trim());
-                rs = ps.executeQuery();
-                if (!rs.isBeforeFirst())
-                    JOptionPane.showMessageDialog(null, "No Student No with \"" + txtStudGradesSearch.getText().trim() + "\" found.");
-                else
-                    tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-        } else 
-            JOptionPane.showMessageDialog(null, "Please enter a Student ID");
+//        if (!(txtStudGradesSearch.getText().trim().isBlank())){
+//            try {
+//                conn = ConnectDB.Connect();
+//                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE student_number LIKE ?");
+//                ps.setString(1, txtStudGradesSearch.getText().trim());
+//                rs = ps.executeQuery();
+//                if (!rs.isBeforeFirst())
+//                    JOptionPane.showMessageDialog(null, "No Student No with \"" + txtStudGradesSearch.getText().trim() + "\" found.");
+//                else
+//                    tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+//            } catch (Exception e){
+//                e.printStackTrace();
+//            }
+//        } else 
+//            JOptionPane.showMessageDialog(null, "Please enter a Student ID");
     }//GEN-LAST:event_btnStudGradesSearchActionPerformed
 
     private void tblSubSchedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSubSchedMouseClicked
