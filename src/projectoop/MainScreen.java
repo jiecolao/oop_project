@@ -1,6 +1,13 @@
 package projectoop;
 
 import java.sql.*;
+import java.awt.event.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import javax.swing.JTabbedPane;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -99,7 +106,6 @@ public class MainScreen extends javax.swing.JFrame {
         tblStudGrades = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("System Project");
         setMinimumSize(new java.awt.Dimension(1080, 720));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
