@@ -4,14 +4,14 @@ import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
 import java.awt.event.*;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import net.proteanit.sql.DbUtils;
-
 
 public class MainScreen extends javax.swing.JFrame {
     Connection conn = null;
@@ -22,7 +22,10 @@ public class MainScreen extends javax.swing.JFrame {
     
     public MainScreen() {
         initComponents();
+        
         buttonEffects();
+        tablesLook();
+        buttonsLook();
         
         setDate();
         startClock();
@@ -31,169 +34,14 @@ public class MainScreen extends javax.swing.JFrame {
             pnlViews.setVisible(true);
             pnlSubSched.setVisible(false);
             pnlStudGrades.setVisible(false);
-
-        // FOR STUDENT GRADES VIEWS - TABLE
-            scrllStudGradesView.setOpaque(false);
-            scrllStudGradesView.getViewport().setOpaque(false);  
-            tblStudGradesView.setOpaque(false);
-            tblStudGradesView.setShowGrid(false);  
-            tblStudGradesView.setBackground(new Color(0, 0, 0, 0));  
-
-            tblStudGradesView.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
-
-            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-            if (!isSelected) {
-                c.setBackground(new Color(0, 0, 0, 0));  
-            } else {
-                c.setBackground(new Color(153, 51, 51));
-                c.setForeground(Color.BLACK);  
-            }
-            return c;
-            }
-            });
             
-        // FOR SUB SCHED VIEWS - TABLE
-            scrllSubSchedView.setOpaque(false);
-            scrllSubSchedView.getViewport().setOpaque(false);  
-            tblSubSchedView.setOpaque(false);
-            tblSubSchedView.setShowGrid(false);  
-            tblSubSchedView.setBackground(new Color(0, 0, 0, 0));  
-
-            tblSubSchedView.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
-
-            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-            if (!isSelected) {
-                c.setBackground(new Color(0, 0, 0, 0));  
-            } else {
-                c.setBackground(new Color(153, 51, 51));
-                c.setForeground(Color.BLACK);  
-            }
-            return c;
-        }
-        });
-
-        // FOR STUDENT GRADES - TABLE
-            scrllStudGrades.setOpaque(false);
-            scrllStudGrades.getViewport().setOpaque(false);  
-            tblStudGrades.setOpaque(false);
-            tblStudGrades.setShowGrid(false);  
-            tblStudGrades.setBackground(new Color(0, 0, 0, 0));
-
-            tblStudGrades.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
-
-            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-            if (!isSelected) {
-                c.setBackground(new Color(0, 0, 0, 0));  
-            } else {
-                c.setBackground(new Color(153, 51, 51));
-                c.setForeground(Color.WHITE);  
-            }
-            return c;
-        }
-        });
-        
-        // FOR SUBJECT SCHEDULE - TABLE
-            scrllSubSched.setOpaque(false);
-            scrllSubSched.getViewport().setOpaque(false);  
-            tblSubSched.setOpaque(false);
-            tblSubSched.setShowGrid(false);  
-            tblSubSched.setBackground(new Color(0, 0, 0, 0));  
-
-            tblSubSched.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
-
-            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-
-            if (!isSelected) {
-                c.setBackground(new Color(0, 0, 0, 0));  
-            } else {
-                c.setBackground(new Color(153, 51, 51));
-                c.setForeground(Color.WHITE);
-            }
-            return c;
-        }
-        });
-            
-        // FOR BUTTONS
-            // SEARCH 
-            btnSubSchedSearch.setBackground(new Color(112, 128, 144));  
-            btnSubSchedSearch.setForeground(Color.WHITE);  
-            btnSubSchedSearch.setFocusPainted(false);  
-            btnSubSchedSearch.setBorderPainted(false);  
-            btnSubSchedSearch.setOpaque(true);
-            
-            btnStudGradesSearch.setBackground(new Color(112, 128, 144));  
-            btnStudGradesSearch.setForeground(Color.WHITE);  
-            btnStudGradesSearch.setFocusPainted(false);  
-            btnStudGradesSearch.setBorderPainted(false);  
-            btnStudGradesSearch.setOpaque(true);
-            
-            // CLEAR
-            btnSubSchedClear.setBackground(new Color(112, 128, 144));  
-            btnSubSchedClear.setForeground(Color.WHITE);  
-            btnSubSchedClear.setFocusPainted(false);  
-            btnSubSchedClear.setBorderPainted(false);  
-            btnSubSchedClear.setOpaque(true);
-            
-            btnStudGradesClear.setBackground(new Color(112, 128, 144));  
-            btnStudGradesClear.setForeground(Color.WHITE);  
-            btnStudGradesClear.setFocusPainted(false);  
-            btnStudGradesClear.setBorderPainted(false);  
-            btnStudGradesClear.setOpaque(true);
-            
-            // ADD
-            btnSubSchedAdd.setBackground(new Color(34, 139, 34));   
-            btnSubSchedAdd.setForeground(Color.WHITE);  
-            btnSubSchedAdd.setFocusPainted(false);  
-            btnSubSchedAdd.setBorderPainted(false);  
-            btnSubSchedAdd.setOpaque(true);
-            
-            btnStudGradesAdd.setBackground(new Color(34, 139, 34));   
-            btnStudGradesAdd.setForeground(Color.WHITE);  
-            btnStudGradesAdd.setFocusPainted(false);  
-            btnStudGradesAdd.setBorderPainted(false);  
-            btnStudGradesAdd.setOpaque(true);  
-            
-            // UPDATE
-            btnSubSchedUpdate.setBackground(new Color(204, 153, 0));  
-            btnSubSchedUpdate.setForeground(Color.WHITE);  
-            btnSubSchedUpdate.setFocusPainted(false);  
-            btnSubSchedUpdate.setBorderPainted(false);  
-            btnSubSchedUpdate.setOpaque(true);  
-            
-            btnStudGradesUpdate.setBackground(new Color(204, 153, 0));  
-            btnStudGradesUpdate.setForeground(Color.WHITE);  
-            btnStudGradesUpdate.setFocusPainted(false);  
-            btnStudGradesUpdate.setBorderPainted(false);  
-            btnStudGradesUpdate.setOpaque(true);  
-            
-            // DELETE 
-            btnSubSchedDelete.setBackground(new Color(204, 0, 0));  
-            btnSubSchedDelete.setForeground(Color.WHITE);  
-            btnSubSchedDelete.setFocusPainted(false);  
-            btnSubSchedDelete.setBorderPainted(false);  
-            btnSubSchedDelete.setOpaque(true);
-
-            btnStudGradesDelete.setBackground(new Color(204, 0, 0));  
-            btnStudGradesDelete.setForeground(Color.WHITE);  
-            btnStudGradesDelete.setFocusPainted(false);  
-            btnStudGradesDelete.setBorderPainted(false);  
-            btnStudGradesDelete.setOpaque(true);
-            
+            ImageIcon imgStudent = new ImageIcon(getClass().getResource("/resources/StudentIcon.png"));
+          int newWidth = imgStudent.getIconWidth() * 2; // Scale up by 2x
+        int newHeight = imgStudent.getIconHeight() * 2; // Scale up by 2x
+        Image image = imgStudent.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+         ImageIcon scaledIcon = new ImageIcon(image);
+              lblStudentIcon.setIcon(scaledIcon);
+       lblStudentIcon.setPreferredSize(new Dimension(newWidth, newHeight));
     }
 
     @SuppressWarnings("unchecked")
@@ -215,23 +63,41 @@ public class MainScreen extends javax.swing.JFrame {
         pnlContStudentCount = new javax.swing.JPanel();
         lblTitleStudentCount = new javax.swing.JLabel();
         lblStudentCount = new javax.swing.JLabel();
-        pnlBGEmployeeCount = new javax.swing.JPanel();
+        lblStudentIcon = new javax.swing.JLabel();
+        pnlBgEmployeeCount = new javax.swing.JPanel();
         pnlContEmployeeCount = new javax.swing.JPanel();
         lblTitleEmployeeCount = new javax.swing.JLabel();
         lblEmployeeCount = new javax.swing.JLabel();
+        lblEmployeeIcon = new javax.swing.JLabel();
         tabbViewsNav = new javax.swing.JTabbedPane();
         pnlSubSchedView = new javax.swing.JPanel();
         pnlSubSchedSearch = new javax.swing.JPanel();
-        lblSubSchedSearch = new javax.swing.JLabel();
-        txtSubSchedSearch = new javax.swing.JTextField();
-        btnSubSchedSearch = new javax.swing.JButton();
+        lblssFilterTitle = new javax.swing.JLabel();
+        lblssSchoolYearFilter = new javax.swing.JLabel();
+        lblssSemesterFilter = new javax.swing.JLabel();
+        lblssCollegeFilter = new javax.swing.JLabel();
+        lblssSubjectCodeFilter = new javax.swing.JLabel();
+        cmbssSchoolYearFilter = new javax.swing.JComboBox<>();
+        cmbssSemesterFilter = new javax.swing.JComboBox<>();
+        cmbssCollegeFilter = new javax.swing.JComboBox<>();
+        cmbssBlockNoFilter = new javax.swing.JComboBox<>();
+        btnStudentGradesFilter1 = new javax.swing.JButton();
         scrllSubSchedView = new javax.swing.JScrollPane();
         tblSubSchedView = new javax.swing.JTable();
         pnlStudGradesViews = new javax.swing.JPanel();
         pnlStudGradesSearch = new javax.swing.JPanel();
-        lblStudGradesSearch = new javax.swing.JLabel();
-        txtStudGradesSearch = new javax.swing.JTextField();
-        btnStudGradesSearch = new javax.swing.JButton();
+        lblsgFilterTitle = new javax.swing.JLabel();
+        lblsgSchoolYearFilter = new javax.swing.JLabel();
+        lblsgSemesterFilter = new javax.swing.JLabel();
+        lblsgSubjectCodeFilter = new javax.swing.JLabel();
+        lblsgBlockNoFilter = new javax.swing.JLabel();
+        lblsgStudentNoFilter = new javax.swing.JLabel();
+        cmbsgSchoolYearFilter = new javax.swing.JComboBox<>();
+        cmbsgSemesterFilter = new javax.swing.JComboBox<>();
+        cmbsgSubjectCodeFilter = new javax.swing.JComboBox<>();
+        cmbsgBlockNoFilter = new javax.swing.JComboBox<>();
+        txtsgStudentNoFilter = new javax.swing.JTextField();
+        btnStudentGradesFilter = new javax.swing.JButton();
         scrllStudGradesView = new javax.swing.JScrollPane();
         tblStudGradesView = new javax.swing.JTable();
         pnlSubSched = new javax.swing.JPanel();
@@ -239,23 +105,27 @@ public class MainScreen extends javax.swing.JFrame {
         lblssSchoolYear = new javax.swing.JLabel();
         lblssSemester = new javax.swing.JLabel();
         lblssCollegeCode = new javax.swing.JLabel();
+        lblssBlockNo = new javax.swing.JLabel();
         lblssSubjectCode = new javax.swing.JLabel();
         lblssDay = new javax.swing.JLabel();
         lblssTime = new javax.swing.JLabel();
         lblssType = new javax.swing.JLabel();
         lblssRoom = new javax.swing.JLabel();
         lblssSequenceNo = new javax.swing.JLabel();
-        lblssEmployeeID = new javax.swing.JLabel();
-        txtssSchoolYear = new javax.swing.JTextField();
+        lblssFacultyID = new javax.swing.JLabel();
+        lblssFacultyNameTitle = new javax.swing.JLabel();
+        lblFacultyName = new javax.swing.JLabel();
         txtssTime = new javax.swing.JTextField();
+        txtssSequenceNo = new javax.swing.JTextField();
         txtssRoom = new javax.swing.JTextField();
-        cmbssSemester = new javax.swing.JComboBox<>();
+        cmbssSchoolYear = new javax.swing.JComboBox<>();
         cmbssCollegeCode = new javax.swing.JComboBox<>();
         cmbssSubjectCode = new javax.swing.JComboBox<>();
         cmbssDay = new javax.swing.JComboBox<>();
         cmbssType = new javax.swing.JComboBox<>();
-        cmbssSequenceNo = new javax.swing.JComboBox<>();
-        cmbssEmployeeID = new javax.swing.JComboBox<>();
+        cmbssFacultyID = new javax.swing.JComboBox<>();
+        cmbssSubjectCode1 = new javax.swing.JComboBox<>();
+        cmbssSemester1 = new javax.swing.JComboBox<>();
         pnlSubSchedBtns = new javax.swing.JPanel();
         btnSubSchedClear = new javax.swing.JButton();
         btnSubSchedAdd = new javax.swing.JButton();
@@ -286,6 +156,7 @@ public class MainScreen extends javax.swing.JFrame {
         btnStudGradesDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Information System");
         setBackground(new java.awt.Color(153, 153, 153));
         setMinimumSize(new java.awt.Dimension(1080, 720));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -300,13 +171,13 @@ public class MainScreen extends javax.swing.JFrame {
         pnlFramebg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlHeaderbg.setBackground(new java.awt.Color(204, 204, 204));
-        pnlHeaderbg.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 102, 102), new java.awt.Color(153, 153, 153), new java.awt.Color(102, 102, 102), new java.awt.Color(116, 116, 116)));
+        pnlHeaderbg.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.lightGray, null));
         pnlHeaderbg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHeaderTitle.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         lblHeaderTitle.setForeground(new java.awt.Color(0, 0, 0));
-        lblHeaderTitle.setText("Header daw");
-        pnlHeaderbg.add(lblHeaderTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 275, 44));
+        lblHeaderTitle.setText("Information System");
+        pnlHeaderbg.add(lblHeaderTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 430, 44));
 
         lblDate.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
         lblDate.setForeground(new java.awt.Color(0, 0, 0));
@@ -362,46 +233,59 @@ public class MainScreen extends javax.swing.JFrame {
 
         pnlFramebg.add(pnlNavbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 720));
 
-        pnlViews.setBackground(new java.awt.Color(204, 204, 204));
         pnlViews.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlViewsHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlBgStudentCount.setBackground(new java.awt.Color(51, 0, 255));
+        pnlBgStudentCount.setBackground(new java.awt.Color(128, 0, 32));
+        pnlBgStudentCount.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         pnlBgStudentCount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlContStudentCount.setBackground(new java.awt.Color(255, 102, 204));
+        pnlContStudentCount.setBackground(new java.awt.Color(204, 204, 204));
+        pnlContStudentCount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlContStudentCount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitleStudentCount.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
+        lblTitleStudentCount.setForeground(new java.awt.Color(0, 0, 0));
         lblTitleStudentCount.setText("Student Count");
-        pnlContStudentCount.add(lblTitleStudentCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 260, 30));
+        pnlContStudentCount.add(lblTitleStudentCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 190, 30));
 
         lblStudentCount.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblStudentCount.setForeground(new java.awt.Color(0, 0, 0));
         lblStudentCount.setText("1");
-        pnlContStudentCount.add(lblStudentCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 220, 40));
+        pnlContStudentCount.add(lblStudentCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 190, 40));
+
+        lblStudentIcon.setToolTipText("label");
+        pnlContStudentCount.add(lblStudentIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 60));
 
         pnlBgStudentCount.add(pnlContStudentCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 80));
 
         pnlViewsHeader.add(pnlBgStudentCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 290, 100));
 
-        pnlBGEmployeeCount.setBackground(new java.awt.Color(51, 0, 255));
-        pnlBGEmployeeCount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlBgEmployeeCount.setBackground(new java.awt.Color(128, 0, 32));
+        pnlBgEmployeeCount.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pnlBgEmployeeCount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlContEmployeeCount.setBackground(new java.awt.Color(255, 102, 204));
+        pnlContEmployeeCount.setBackground(new java.awt.Color(204, 204, 204));
+        pnlContEmployeeCount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlContEmployeeCount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitleEmployeeCount.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
+        lblTitleEmployeeCount.setForeground(new java.awt.Color(0, 0, 0));
         lblTitleEmployeeCount.setText("Employee Count");
-        pnlContEmployeeCount.add(lblTitleEmployeeCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 260, 30));
+        pnlContEmployeeCount.add(lblTitleEmployeeCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 190, 30));
 
         lblEmployeeCount.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblEmployeeCount.setForeground(new java.awt.Color(0, 0, 0));
         lblEmployeeCount.setText("1");
-        pnlContEmployeeCount.add(lblEmployeeCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 220, 40));
+        pnlContEmployeeCount.add(lblEmployeeCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 190, 40));
 
-        pnlBGEmployeeCount.add(pnlContEmployeeCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 80));
+        lblEmployeeIcon.setToolTipText("label");
+        pnlContEmployeeCount.add(lblEmployeeIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 60));
 
-        pnlViewsHeader.add(pnlBGEmployeeCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 290, 100));
+        pnlBgEmployeeCount.add(pnlContEmployeeCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 80));
+
+        pnlViewsHeader.add(pnlBgEmployeeCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 290, 100));
 
         pnlViews.add(pnlViewsHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 120));
 
@@ -412,7 +296,6 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
-        pnlSubSchedView.setBackground(new java.awt.Color(255, 255, 255));
         pnlSubSchedView.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
         pnlSubSchedView.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -421,27 +304,53 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSubSchedSearch.setOpaque(false);
         pnlSubSchedSearch.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblSubSchedSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblSubSchedSearch.setText("Search Subject Code  :");
-        pnlSubSchedSearch.add(lblSubSchedSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 130, 20));
+        lblssFilterTitle.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        lblssFilterTitle.setText("Filter by    : ");
+        pnlSubSchedSearch.add(lblssFilterTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        txtSubSchedSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtSubSchedSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        pnlSubSchedSearch.add(txtSubSchedSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 180, -1));
+        lblssSchoolYearFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
+        lblssSchoolYearFilter.setText("School Year");
+        pnlSubSchedSearch.add(lblssSchoolYearFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
-        btnSubSchedSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        btnSubSchedSearch.setText("Search");
-        btnSubSchedSearch.setMaximumSize(new java.awt.Dimension(72, 20));
-        btnSubSchedSearch.setMinimumSize(new java.awt.Dimension(72, 20));
-        btnSubSchedSearch.setPreferredSize(new java.awt.Dimension(72, 20));
-        btnSubSchedSearch.addActionListener(new java.awt.event.ActionListener() {
+        lblssSemesterFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
+        lblssSemesterFilter.setText("Semester");
+        pnlSubSchedSearch.add(lblssSemesterFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
+
+        lblssCollegeFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
+        lblssCollegeFilter.setText("Subject Code");
+        pnlSubSchedSearch.add(lblssCollegeFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, -1, -1));
+
+        lblssSubjectCodeFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
+        lblssSubjectCodeFilter.setText("Block Number");
+        pnlSubSchedSearch.add(lblssSubjectCodeFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, -1));
+
+        cmbssSchoolYearFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        cmbssSchoolYearFilter.setPreferredSize(new java.awt.Dimension(79, 20));
+        pnlSubSchedSearch.add(cmbssSchoolYearFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 160, 20));
+
+        cmbssSemesterFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        cmbssSemesterFilter.setPreferredSize(new java.awt.Dimension(79, 20));
+        pnlSubSchedSearch.add(cmbssSemesterFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 160, 20));
+
+        cmbssCollegeFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        cmbssCollegeFilter.setPreferredSize(new java.awt.Dimension(79, 20));
+        cmbssCollegeFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubSchedSearchActionPerformed(evt);
+                cmbssCollegeFilterActionPerformed(evt);
             }
         });
-        pnlSubSchedSearch.add(btnSubSchedSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 80, -1));
+        pnlSubSchedSearch.add(cmbssCollegeFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 160, 20));
 
-        pnlSubSchedView.add(pnlSubSchedSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 60));
+        cmbssBlockNoFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        cmbssBlockNoFilter.setPreferredSize(new java.awt.Dimension(79, 20));
+        pnlSubSchedSearch.add(cmbssBlockNoFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 160, 20));
+
+        btnStudentGradesFilter1.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        btnStudentGradesFilter1.setText("Search");
+        btnStudentGradesFilter1.setPreferredSize(new java.awt.Dimension(84, 20));
+        pnlSubSchedSearch.add(btnStudentGradesFilter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, 80, -1));
+
+        pnlSubSchedView.add(pnlSubSchedSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 50));
 
         tblSubSchedView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -455,13 +364,13 @@ public class MainScreen extends javax.swing.JFrame {
             }
         ));
         tblSubSchedView.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblSubSchedView.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         scrllSubSchedView.setViewportView(tblSubSchedView);
 
-        pnlSubSchedView.add(scrllSubSchedView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 870, -1));
+        pnlSubSchedView.add(scrllSubSchedView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 47, 870, 440));
 
         tabbViewsNav.addTab("Subject Schedule", pnlSubSchedView);
 
-        pnlStudGradesViews.setBackground(new java.awt.Color(255, 255, 255));
         pnlStudGradesViews.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlStudGradesSearch.setBackground(new java.awt.Color(204, 204, 204));
@@ -469,27 +378,60 @@ public class MainScreen extends javax.swing.JFrame {
         pnlStudGradesSearch.setOpaque(false);
         pnlStudGradesSearch.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblStudGradesSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblStudGradesSearch.setText("Search Student No  :");
-        pnlStudGradesSearch.add(lblStudGradesSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 120, 20));
+        lblsgFilterTitle.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        lblsgFilterTitle.setText("Filter by    : ");
+        pnlStudGradesSearch.add(lblsgFilterTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        txtStudGradesSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtStudGradesSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        pnlStudGradesSearch.add(txtStudGradesSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 180, -1));
+        lblsgSchoolYearFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
+        lblsgSchoolYearFilter.setText("School Year");
+        pnlStudGradesSearch.add(lblsgSchoolYearFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, -1));
 
-        btnStudGradesSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        btnStudGradesSearch.setText("Search");
-        btnStudGradesSearch.setMaximumSize(new java.awt.Dimension(72, 20));
-        btnStudGradesSearch.setMinimumSize(new java.awt.Dimension(72, 20));
-        btnStudGradesSearch.setPreferredSize(new java.awt.Dimension(72, 20));
-        btnStudGradesSearch.addActionListener(new java.awt.event.ActionListener() {
+        lblsgSemesterFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
+        lblsgSemesterFilter.setText("Semester");
+        pnlStudGradesSearch.add(lblsgSemesterFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+
+        lblsgSubjectCodeFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
+        lblsgSubjectCodeFilter.setText("Subject Code");
+        pnlStudGradesSearch.add(lblsgSubjectCodeFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 30, -1, -1));
+
+        lblsgBlockNoFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
+        lblsgBlockNoFilter.setText("Block Number");
+        pnlStudGradesSearch.add(lblsgBlockNoFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, -1));
+
+        lblsgStudentNoFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
+        lblsgStudentNoFilter.setText("Student Number");
+        pnlStudGradesSearch.add(lblsgStudentNoFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, -1));
+
+        cmbsgSchoolYearFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        cmbsgSchoolYearFilter.setPreferredSize(new java.awt.Dimension(79, 20));
+        pnlStudGradesSearch.add(cmbsgSchoolYearFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 150, 20));
+
+        cmbsgSemesterFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        cmbsgSemesterFilter.setPreferredSize(new java.awt.Dimension(79, 20));
+        pnlStudGradesSearch.add(cmbsgSemesterFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 100, 20));
+
+        cmbsgSubjectCodeFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        cmbsgSubjectCodeFilter.setPreferredSize(new java.awt.Dimension(79, 20));
+        cmbsgSubjectCodeFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStudGradesSearchActionPerformed(evt);
+                cmbsgSubjectCodeFilterActionPerformed(evt);
             }
         });
-        pnlStudGradesSearch.add(btnStudGradesSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 80, 20));
+        pnlStudGradesSearch.add(cmbsgSubjectCodeFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 120, 20));
 
-        pnlStudGradesViews.add(pnlStudGradesSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 60));
+        cmbsgBlockNoFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        cmbsgBlockNoFilter.setPreferredSize(new java.awt.Dimension(79, 20));
+        pnlStudGradesSearch.add(cmbsgBlockNoFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 100, 20));
+
+        txtsgStudentNoFilter.setPreferredSize(new java.awt.Dimension(73, 20));
+        pnlStudGradesSearch.add(txtsgStudentNoFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 170, -1));
+
+        btnStudentGradesFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        btnStudentGradesFilter.setText("Search");
+        btnStudentGradesFilter.setPreferredSize(new java.awt.Dimension(84, 20));
+        pnlStudGradesSearch.add(btnStudentGradesFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, 80, -1));
+
+        pnlStudGradesViews.add(pnlStudGradesSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 50));
 
         tblStudGradesView.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -503,9 +445,10 @@ public class MainScreen extends javax.swing.JFrame {
             }
         ));
         tblStudGradesView.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblStudGradesView.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         scrllStudGradesView.setViewportView(tblStudGradesView);
 
-        pnlStudGradesViews.add(scrllStudGradesView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 870, -1));
+        pnlStudGradesViews.add(scrllStudGradesView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 47, 870, 440));
 
         tabbViewsNav.addTab("Student Grades", pnlStudGradesViews);
 
@@ -527,30 +470,37 @@ public class MainScreen extends javax.swing.JFrame {
 
         lblssSchoolYear.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         lblssSchoolYear.setForeground(new java.awt.Color(0, 0, 0));
-        lblssSchoolYear.setText("School Year     :");
+        lblssSchoolYear.setText("School Year      :");
         lblssSchoolYear.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssSchoolYear.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlSubSchedInfo.add(lblssSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 35, 100, -1));
+        pnlSubSchedInfo.add(lblssSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 35, 105, 20));
 
         lblssSemester.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         lblssSemester.setForeground(new java.awt.Color(0, 0, 0));
-        lblssSemester.setText("Semester        :");
+        lblssSemester.setText("Semester         :");
         lblssSemester.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssSemester.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlSubSchedInfo.add(lblssSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 75, 100, -1));
+        pnlSubSchedInfo.add(lblssSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, 105, 20));
 
         lblssCollegeCode.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         lblssCollegeCode.setForeground(new java.awt.Color(0, 0, 0));
-        lblssCollegeCode.setText("College Code  :");
+        lblssCollegeCode.setText("College Code   :");
         lblssCollegeCode.setMinimumSize(new java.awt.Dimension(80, 20));
-        pnlSubSchedInfo.add(lblssCollegeCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 115, 100, 20));
+        pnlSubSchedInfo.add(lblssCollegeCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 95, 105, 20));
+
+        lblssBlockNo.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        lblssBlockNo.setForeground(new java.awt.Color(0, 0, 0));
+        lblssBlockNo.setText("Block No          :");
+        lblssBlockNo.setMinimumSize(new java.awt.Dimension(80, 20));
+        lblssBlockNo.setPreferredSize(new java.awt.Dimension(100, 20));
+        pnlSubSchedInfo.add(lblssBlockNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 125, 105, 20));
 
         lblssSubjectCode.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         lblssSubjectCode.setForeground(new java.awt.Color(0, 0, 0));
-        lblssSubjectCode.setText("Subject Code  :");
+        lblssSubjectCode.setText("Subject Code   :");
         lblssSubjectCode.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssSubjectCode.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlSubSchedInfo.add(lblssSubjectCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 155, 100, -1));
+        pnlSubSchedInfo.add(lblssSubjectCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 155, 105, 20));
 
         lblssDay.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         lblssDay.setForeground(new java.awt.Color(0, 0, 0));
@@ -564,66 +514,80 @@ public class MainScreen extends javax.swing.JFrame {
         lblssTime.setText("Time        :");
         lblssTime.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssTime.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlSubSchedInfo.add(lblssTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 75, 70, -1));
+        pnlSubSchedInfo.add(lblssTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 65, 70, -1));
 
         lblssType.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         lblssType.setForeground(new java.awt.Color(0, 0, 0));
         lblssType.setText("Type        :");
         lblssType.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssType.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlSubSchedInfo.add(lblssType, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 115, 70, -1));
+        pnlSubSchedInfo.add(lblssType, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 95, 70, -1));
 
         lblssRoom.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         lblssRoom.setForeground(new java.awt.Color(0, 0, 0));
-        lblssRoom.setText(" Room     :");
+        lblssRoom.setText("Room      :");
         lblssRoom.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssRoom.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlSubSchedInfo.add(lblssRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 155, 70, -1));
+        pnlSubSchedInfo.add(lblssRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 125, 70, -1));
 
         lblssSequenceNo.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         lblssSequenceNo.setForeground(new java.awt.Color(0, 0, 0));
         lblssSequenceNo.setText("Sequence No  :");
         lblssSequenceNo.setMinimumSize(new java.awt.Dimension(80, 20));
-        pnlSubSchedInfo.add(lblssSequenceNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 35, 100, -1));
+        pnlSubSchedInfo.add(lblssSequenceNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 35, 100, -1));
 
-        lblssEmployeeID.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssEmployeeID.setForeground(new java.awt.Color(0, 0, 0));
-        lblssEmployeeID.setText("Employee ID   :");
-        lblssEmployeeID.setMinimumSize(new java.awt.Dimension(80, 20));
-        lblssEmployeeID.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlSubSchedInfo.add(lblssEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 75, 100, -1));
+        lblssFacultyID.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        lblssFacultyID.setForeground(new java.awt.Color(0, 0, 0));
+        lblssFacultyID.setText("Faculty ID   :");
+        lblssFacultyID.setMinimumSize(new java.awt.Dimension(80, 20));
+        lblssFacultyID.setPreferredSize(new java.awt.Dimension(100, 20));
+        pnlSubSchedInfo.add(lblssFacultyID, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 65, 100, -1));
 
-        txtssSchoolYear.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtssSchoolYear.setMinimumSize(new java.awt.Dimension(140, 20));
-        txtssSchoolYear.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(txtssSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 35, 140, 20));
+        lblssFacultyNameTitle.setFont(new java.awt.Font("Yu Gothic UI", 1, 10)); // NOI18N
+        lblssFacultyNameTitle.setForeground(new java.awt.Color(0, 0, 0));
+        lblssFacultyNameTitle.setText("Faculty Name  :");
+        lblssFacultyNameTitle.setMinimumSize(new java.awt.Dimension(80, 20));
+        lblssFacultyNameTitle.setPreferredSize(new java.awt.Dimension(100, 20));
+        pnlSubSchedInfo.add(lblssFacultyNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 80, -1));
+
+        lblFacultyName.setFont(new java.awt.Font("Yu Gothic UI", 1, 10)); // NOI18N
+        lblFacultyName.setForeground(new java.awt.Color(0, 0, 0));
+        lblFacultyName.setText("--");
+        lblFacultyName.setMinimumSize(new java.awt.Dimension(80, 20));
+        lblFacultyName.setPreferredSize(new java.awt.Dimension(100, 20));
+        pnlSubSchedInfo.add(lblFacultyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 170, -1));
 
         txtssTime.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         txtssTime.setMinimumSize(new java.awt.Dimension(140, 20));
         txtssTime.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(txtssTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 75, 140, 20));
-        txtssTime.getAccessibleContext().setAccessibleName("");
+        pnlSubSchedInfo.add(txtssTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 65, 140, 20));
+
+        txtssSequenceNo.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        txtssSequenceNo.setMinimumSize(new java.awt.Dimension(140, 20));
+        txtssSequenceNo.setPreferredSize(new java.awt.Dimension(140, 20));
+        pnlSubSchedInfo.add(txtssSequenceNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 35, 140, 20));
+        txtssSequenceNo.getAccessibleContext().setAccessibleName("");
 
         txtssRoom.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         txtssRoom.setMinimumSize(new java.awt.Dimension(140, 20));
         txtssRoom.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(txtssRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 155, 140, 20));
+        pnlSubSchedInfo.add(txtssRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 125, 140, 20));
         txtssRoom.getAccessibleContext().setAccessibleName("");
 
-        cmbssSemester.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbssSemester.setMinimumSize(new java.awt.Dimension(140, 20));
-        cmbssSemester.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(cmbssSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 75, 140, 20));
+        cmbssSchoolYear.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        cmbssSchoolYear.setMinimumSize(new java.awt.Dimension(140, 20));
+        cmbssSchoolYear.setPreferredSize(new java.awt.Dimension(140, 20));
+        pnlSubSchedInfo.add(cmbssSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 35, 140, 20));
 
         cmbssCollegeCode.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         cmbssCollegeCode.setMinimumSize(new java.awt.Dimension(140, 20));
         cmbssCollegeCode.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(cmbssCollegeCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 115, 140, 20));
+        pnlSubSchedInfo.add(cmbssCollegeCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 95, 140, 20));
 
         cmbssSubjectCode.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         cmbssSubjectCode.setMinimumSize(new java.awt.Dimension(140, 20));
         cmbssSubjectCode.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(cmbssSubjectCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 155, 140, 20));
+        pnlSubSchedInfo.add(cmbssSubjectCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 125, 140, 20));
 
         cmbssDay.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         cmbssDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "T", "W", "TH", "F", "S" }));
@@ -635,18 +599,23 @@ public class MainScreen extends javax.swing.JFrame {
         cmbssType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F2F", "OL" }));
         cmbssType.setMinimumSize(new java.awt.Dimension(140, 20));
         cmbssType.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(cmbssType, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 115, 140, 20));
+        pnlSubSchedInfo.add(cmbssType, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 95, 140, 20));
         cmbssType.getAccessibleContext().setAccessibleName("");
 
-        cmbssSequenceNo.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbssSequenceNo.setMinimumSize(new java.awt.Dimension(140, 20));
-        cmbssSequenceNo.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(cmbssSequenceNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 35, 140, 20));
+        cmbssFacultyID.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        cmbssFacultyID.setMinimumSize(new java.awt.Dimension(140, 20));
+        cmbssFacultyID.setPreferredSize(new java.awt.Dimension(140, 20));
+        pnlSubSchedInfo.add(cmbssFacultyID, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 65, 140, 20));
 
-        cmbssEmployeeID.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbssEmployeeID.setMinimumSize(new java.awt.Dimension(140, 20));
-        cmbssEmployeeID.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(cmbssEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(672, 75, 140, 20));
+        cmbssSubjectCode1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        cmbssSubjectCode1.setMinimumSize(new java.awt.Dimension(140, 20));
+        cmbssSubjectCode1.setPreferredSize(new java.awt.Dimension(140, 20));
+        pnlSubSchedInfo.add(cmbssSubjectCode1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 155, 140, 20));
+
+        cmbssSemester1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        cmbssSemester1.setMinimumSize(new java.awt.Dimension(140, 20));
+        cmbssSemester1.setPreferredSize(new java.awt.Dimension(140, 20));
+        pnlSubSchedInfo.add(cmbssSemester1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 65, 140, 20));
 
         pnlSubSched.add(pnlSubSchedInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 830, 200));
 
@@ -824,6 +793,7 @@ public class MainScreen extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    
     private void setDate(){
         LocalDateTime curDate = LocalDateTime.now();
         int getYear = curDate.getYear();
@@ -886,6 +856,162 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
         timer.start();
+    }
+    
+    private void tablesLook() {
+    // FOR STUDENT GRADES VIEWS - TABLE
+            scrllStudGradesView.setOpaque(false);
+            scrllStudGradesView.getViewport().setOpaque(false);  
+            tblStudGradesView.setOpaque(false);
+            tblStudGradesView.setShowGrid(false);  
+            tblStudGradesView.setBackground(new Color(0, 0, 0, 0));  
+
+            tblStudGradesView.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            if (!isSelected) {
+                c.setBackground(new Color(0, 0, 0, 0)); 
+                setForeground(Color.BLACK);
+            } else {
+                c.setBackground(new Color(153, 51, 51));
+                c.setForeground(Color.WHITE);  
+            }
+            return c;
+            }
+            });
+            
+        // FOR SUB SCHED VIEWS - TABLE
+            scrllSubSchedView.setOpaque(false);
+            scrllSubSchedView.getViewport().setOpaque(false);  
+            tblSubSchedView.setOpaque(false);
+            tblSubSchedView.setShowGrid(false);  
+            tblSubSchedView.setBackground(new Color(0, 0, 0, 0));  
+
+            tblSubSchedView.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            if (!isSelected) {
+                c.setBackground(new Color(0, 0, 0, 0)); 
+                setForeground(Color.BLACK);
+            } else {
+                c.setBackground(new Color(153, 51, 51));
+                c.setForeground(Color.WHITE);  
+            }
+            return c;
+            }
+            });
+
+        // FOR STUDENT GRADES - TABLE
+            scrllStudGrades.setOpaque(false);
+            scrllStudGrades.getViewport().setOpaque(false);  
+            tblStudGrades.setOpaque(false);
+            tblStudGrades.setShowGrid(false);  
+            tblStudGrades.setBackground(new Color(0, 0, 0, 0));
+
+            tblStudGrades.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            if (!isSelected) {
+                c.setBackground(new Color(0, 0, 0, 0)); 
+                setForeground(Color.BLACK);
+            } else {
+                c.setBackground(new Color(153, 51, 51));
+                c.setForeground(Color.WHITE);  
+            }
+            return c;
+            }
+            });
+        
+        // FOR SUBJECT SCHEDULE - TABLE
+            scrllSubSched.setOpaque(false);
+            scrllSubSched.getViewport().setOpaque(false);  
+            tblSubSched.setOpaque(false);
+            tblSubSched.setShowGrid(false);  
+            tblSubSched.setBackground(new Color(0, 0, 0, 0));  
+
+            tblSubSched.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            if (!isSelected) {
+                c.setBackground(new Color(0, 0, 0, 0)); 
+                setForeground(Color.BLACK);
+            } else {
+                c.setBackground(new Color(153, 51, 51));
+                c.setForeground(Color.WHITE);  
+            }
+            return c;
+            }
+            });
+}
+    
+    private void buttonsLook() {
+            // CLEAR
+            btnSubSchedClear.setBackground(new Color(112, 128, 144));  
+            btnSubSchedClear.setForeground(Color.WHITE);  
+            btnSubSchedClear.setFocusPainted(false);  
+            btnSubSchedClear.setBorderPainted(false);  
+            btnSubSchedClear.setOpaque(true);
+            
+            btnStudGradesClear.setBackground(new Color(112, 128, 144));  
+            btnStudGradesClear.setForeground(Color.WHITE);  
+            btnStudGradesClear.setFocusPainted(false);  
+            btnStudGradesClear.setBorderPainted(false);  
+            btnStudGradesClear.setOpaque(true);
+            
+            // ADD
+            btnSubSchedAdd.setBackground(new Color(34, 139, 34));   
+            btnSubSchedAdd.setForeground(Color.WHITE);  
+            btnSubSchedAdd.setFocusPainted(false);  
+            btnSubSchedAdd.setBorderPainted(false);  
+            btnSubSchedAdd.setOpaque(true);
+            
+            btnStudGradesAdd.setBackground(new Color(34, 139, 34));   
+            btnStudGradesAdd.setForeground(Color.WHITE);  
+            btnStudGradesAdd.setFocusPainted(false);  
+            btnStudGradesAdd.setBorderPainted(false);  
+            btnStudGradesAdd.setOpaque(true);  
+            
+            // UPDATE
+            btnSubSchedUpdate.setBackground(new Color(204, 153, 0));  
+            btnSubSchedUpdate.setForeground(Color.WHITE);  
+            btnSubSchedUpdate.setFocusPainted(false);  
+            btnSubSchedUpdate.setBorderPainted(false);  
+            btnSubSchedUpdate.setOpaque(true);  
+            
+            btnStudGradesUpdate.setBackground(new Color(204, 153, 0));  
+            btnStudGradesUpdate.setForeground(Color.WHITE);  
+            btnStudGradesUpdate.setFocusPainted(false);  
+            btnStudGradesUpdate.setBorderPainted(false);  
+            btnStudGradesUpdate.setOpaque(true);  
+            
+            // DELETE 
+            btnSubSchedDelete.setBackground(new Color(204, 0, 0));  
+            btnSubSchedDelete.setForeground(Color.WHITE);  
+            btnSubSchedDelete.setFocusPainted(false);  
+            btnSubSchedDelete.setBorderPainted(false);  
+            btnSubSchedDelete.setOpaque(true);
+
+            btnStudGradesDelete.setBackground(new Color(204, 0, 0));  
+            btnStudGradesDelete.setForeground(Color.WHITE);  
+            btnStudGradesDelete.setFocusPainted(false);  
+            btnStudGradesDelete.setBorderPainted(false);  
+            btnStudGradesDelete.setOpaque(true);
     }
     
     private void buttonEffects() {
@@ -997,68 +1123,30 @@ public class MainScreen extends javax.swing.JFrame {
 //        refresh();
     }//GEN-LAST:event_tabbViewsNavMouseClicked
 
-    private void btnSubSchedSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubSchedSearchActionPerformed
-//       if (!(txtSubSchedSearch.getText().trim().isBlank())){
-//            try {
-//                conn = ConnectDB.Connect();
-//                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE subject_code LIKE ?");
-//                ps.setString(1, txtSubSchedSearch.getText().trim());
-//                rs = ps.executeQuery();
-//                if (!rs.isBeforeFirst())
-//                    JOptionPane.showMessageDialog(null, "No Subject Code with \"" + txtSubSchedSearch.getText().trim() + "\" found.");
-//                else
-//                    tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
-//            } catch (Exception e){
-//                e.printStackTrace();
-//            }
-//        } else 
-//            JOptionPane.showMessageDialog(null, "Please enter a Student ID");
-//        
-    }//GEN-LAST:event_btnSubSchedSearchActionPerformed
-
-    private void btnStudGradesSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudGradesSearchActionPerformed
-        // TODO add your handling code here:
-//        if (!(txtStudGradesSearch.getText().trim().isBlank())){
-//            try {
-//                conn = ConnectDB.Connect();
-//                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE student_number LIKE ?");
-//                ps.setString(1, txtStudGradesSearch.getText().trim());
-//                rs = ps.executeQuery();
-//                if (!rs.isBeforeFirst())
-//                    JOptionPane.showMessageDialog(null, "No Student No with \"" + txtStudGradesSearch.getText().trim() + "\" found.");
-//                else
-//                    tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
-//            } catch (Exception e){
-//                e.printStackTrace();
-//            }
-//        } else 
-//            JOptionPane.showMessageDialog(null, "Please enter a Student ID");
-    }//GEN-LAST:event_btnStudGradesSearchActionPerformed
-
     private void tblSubSchedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSubSchedMouseClicked
         int row = tblSubSched.getSelectedRow();
         // s.y cmb box
-        cmbssSemester.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 1)));
+        cmbssSchoolYear.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 1)));
         cmbssCollegeCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 2)));
         cmbssSubjectCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 4)));
         // insert block no.
         cmbssDay.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 5)));
-        txtssTime.setText(getValueOrDefault(tblSubSched.getValueAt(row, 6)));
+        txtssSequenceNo.setText(getValueOrDefault(tblSubSched.getValueAt(row, 6)));
         cmbssType.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 8)));
         txtssRoom.setText(getValueOrDefault(tblSubSched.getValueAt(row, 7)));
-        cmbssSequenceNo.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 9))); // fix, it acts as a dupli daw
-        cmbssEmployeeID.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 10)));
+//      cmbssSequenceNo.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 9))); // fix, it acts as a dupli daw
+        cmbssFacultyID.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 10)));
         
 //        txtssTime.setText(String.valueOf(tblSubSched.getValueAt(row, 7)).isBlank() ? " " : String.valueOf(tblSubSched.getValueAt(row, 7)));
     }//GEN-LAST:event_tblSubSchedMouseClicked
 
     public void getCMBSubSched(){ 
         try {
-            cmbssSemester.removeAllItems();
+            cmbssSchoolYear.removeAllItems();
             ps = conn.prepareStatement("SELECT semester FROM plm.semester");
             rs = ps.executeQuery();
             while(rs.next())
-                cmbssSemester.addItem(rs.getString("semester"));
+                cmbssSchoolYear.addItem(rs.getString("semester"));
             
             cmbssCollegeCode.removeAllItems();
             ps = conn.prepareStatement("SELECT college_code FROM plm.college");
@@ -1072,11 +1160,11 @@ public class MainScreen extends javax.swing.JFrame {
             while(rs.next())
                 cmbssSubjectCode.addItem(rs.getString("subject_code"));
             
-            cmbssEmployeeID.removeAllItems();
+            cmbssFacultyID.removeAllItems();
             ps = conn.prepareStatement("SELECT employee_id FROM plm.employee");
             rs = ps.executeQuery();
             while(rs.next())
-                cmbssEmployeeID.addItem(rs.getString("employee_id"));
+                cmbssFacultyID.addItem(rs.getString("employee_id"));
             
         } catch (Exception e){
             e.printStackTrace();
@@ -1090,6 +1178,14 @@ public class MainScreen extends javax.swing.JFrame {
         cmbssCollegeCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 2)));
         
     }//GEN-LAST:event_tblStudGradesMouseClicked
+
+    private void cmbsgSubjectCodeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbsgSubjectCodeFilterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbsgSubjectCodeFilterActionPerformed
+
+    private void cmbssCollegeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbssCollegeFilterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbssCollegeFilterActionPerformed
 
     public void getCMBStudGrade(){ 
         try {
@@ -1149,52 +1245,75 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton btnStudGradesAdd;
     private javax.swing.JButton btnStudGradesClear;
     private javax.swing.JButton btnStudGradesDelete;
-    private javax.swing.JButton btnStudGradesSearch;
     private javax.swing.JButton btnStudGradesUpdate;
+    private javax.swing.JButton btnStudentGradesFilter;
+    private javax.swing.JButton btnStudentGradesFilter1;
     private javax.swing.JButton btnSubSched;
     private javax.swing.JButton btnSubSchedAdd;
     private javax.swing.JButton btnSubSchedClear;
     private javax.swing.JButton btnSubSchedDelete;
-    private javax.swing.JButton btnSubSchedSearch;
     private javax.swing.JButton btnSubSchedUpdate;
     private javax.swing.JButton btnViews;
+    private javax.swing.JComboBox<String> cmbsgBlockNoFilter;
     private javax.swing.JComboBox<String> cmbsgBlockNumber;
     private javax.swing.JComboBox<String> cmbsgCollegeCode;
     private javax.swing.JComboBox<String> cmbsgGrades;
+    private javax.swing.JComboBox<String> cmbsgSchoolYearFilter;
     private javax.swing.JComboBox<String> cmbsgSemester;
+    private javax.swing.JComboBox<String> cmbsgSemesterFilter;
+    private javax.swing.JComboBox<String> cmbsgSubjectCodeFilter;
+    private javax.swing.JComboBox<String> cmbssBlockNoFilter;
     private javax.swing.JComboBox<String> cmbssCollegeCode;
+    private javax.swing.JComboBox<String> cmbssCollegeFilter;
     private javax.swing.JComboBox<String> cmbssDay;
-    private javax.swing.JComboBox<String> cmbssEmployeeID;
-    private javax.swing.JComboBox<String> cmbssSemester;
-    private javax.swing.JComboBox<String> cmbssSequenceNo;
+    private javax.swing.JComboBox<String> cmbssFacultyID;
+    private javax.swing.JComboBox<String> cmbssSchoolYear;
+    private javax.swing.JComboBox<String> cmbssSchoolYearFilter;
+    private javax.swing.JComboBox<String> cmbssSemester1;
+    private javax.swing.JComboBox<String> cmbssSemesterFilter;
     private javax.swing.JComboBox<String> cmbssSubjectCode;
+    private javax.swing.JComboBox<String> cmbssSubjectCode1;
     private javax.swing.JComboBox<String> cmbssType;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblEmployeeCount;
+    private javax.swing.JLabel lblEmployeeIcon;
+    private javax.swing.JLabel lblFacultyName;
     private javax.swing.JLabel lblHeaderTitle;
-    private javax.swing.JLabel lblStudGradesSearch;
     private javax.swing.JLabel lblStudentCount;
-    private javax.swing.JLabel lblSubSchedSearch;
+    private javax.swing.JLabel lblStudentIcon;
     private javax.swing.JLabel lblTime;
     private javax.swing.JLabel lblTitleEmployeeCount;
     private javax.swing.JLabel lblTitleStudentCount;
+    private javax.swing.JLabel lblsgBlockNoFilter;
     private javax.swing.JLabel lblsgBlockNumber;
     private javax.swing.JLabel lblsgCollegeCode;
+    private javax.swing.JLabel lblsgFilterTitle;
     private javax.swing.JLabel lblsgGrades;
     private javax.swing.JLabel lblsgSchoolYear;
+    private javax.swing.JLabel lblsgSchoolYearFilter;
     private javax.swing.JLabel lblsgSemester;
+    private javax.swing.JLabel lblsgSemesterFilter;
+    private javax.swing.JLabel lblsgStudentNoFilter;
     private javax.swing.JLabel lblsgStudentNumber;
+    private javax.swing.JLabel lblsgSubjectCodeFilter;
+    private javax.swing.JLabel lblssBlockNo;
     private javax.swing.JLabel lblssCollegeCode;
+    private javax.swing.JLabel lblssCollegeFilter;
     private javax.swing.JLabel lblssDay;
-    private javax.swing.JLabel lblssEmployeeID;
+    private javax.swing.JLabel lblssFacultyID;
+    private javax.swing.JLabel lblssFacultyNameTitle;
+    private javax.swing.JLabel lblssFilterTitle;
     private javax.swing.JLabel lblssRoom;
     private javax.swing.JLabel lblssSchoolYear;
+    private javax.swing.JLabel lblssSchoolYearFilter;
     private javax.swing.JLabel lblssSemester;
+    private javax.swing.JLabel lblssSemesterFilter;
     private javax.swing.JLabel lblssSequenceNo;
     private javax.swing.JLabel lblssSubjectCode;
+    private javax.swing.JLabel lblssSubjectCodeFilter;
     private javax.swing.JLabel lblssTime;
     private javax.swing.JLabel lblssType;
-    private javax.swing.JPanel pnlBGEmployeeCount;
+    private javax.swing.JPanel pnlBgEmployeeCount;
     private javax.swing.JPanel pnlBgStudentCount;
     private javax.swing.JPanel pnlContEmployeeCount;
     private javax.swing.JPanel pnlContStudentCount;
@@ -1222,12 +1341,11 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JTable tblStudGradesView;
     private javax.swing.JTable tblSubSched;
     private javax.swing.JTable tblSubSchedView;
-    private javax.swing.JTextField txtStudGradesSearch;
-    private javax.swing.JTextField txtSubSchedSearch;
     private javax.swing.JTextField txtsgSchoolYear;
+    private javax.swing.JTextField txtsgStudentNoFilter;
     private javax.swing.JTextField txtsgStudentNumber;
     private javax.swing.JTextField txtssRoom;
-    private javax.swing.JTextField txtssSchoolYear;
+    private javax.swing.JTextField txtssSequenceNo;
     private javax.swing.JTextField txtssTime;
     // End of variables declaration//GEN-END:variables
 }
