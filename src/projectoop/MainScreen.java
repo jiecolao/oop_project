@@ -492,7 +492,6 @@ public class MainScreen extends javax.swing.JFrame {
         lblssBlockNo.setForeground(new java.awt.Color(0, 0, 0));
         lblssBlockNo.setText("Block No          :");
         lblssBlockNo.setMinimumSize(new java.awt.Dimension(80, 20));
-        lblssBlockNo.setPreferredSize(new java.awt.Dimension(100, 20));
         pnlSubSchedInfo.add(lblssBlockNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 125, 105, 20));
 
         lblssSubjectCode.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -543,19 +542,19 @@ public class MainScreen extends javax.swing.JFrame {
         lblssFacultyID.setPreferredSize(new java.awt.Dimension(100, 20));
         pnlSubSchedInfo.add(lblssFacultyID, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 65, 100, -1));
 
-        lblssFacultyNameTitle.setFont(new java.awt.Font("Yu Gothic UI", 1, 10)); // NOI18N
+        lblssFacultyNameTitle.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         lblssFacultyNameTitle.setForeground(new java.awt.Color(0, 0, 0));
         lblssFacultyNameTitle.setText("Faculty Name  :");
         lblssFacultyNameTitle.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssFacultyNameTitle.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlSubSchedInfo.add(lblssFacultyNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 80, -1));
+        pnlSubSchedInfo.add(lblssFacultyNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 95, 110, -1));
 
-        lblFacultyName.setFont(new java.awt.Font("Yu Gothic UI", 1, 10)); // NOI18N
+        lblFacultyName.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         lblFacultyName.setForeground(new java.awt.Color(0, 0, 0));
         lblFacultyName.setText("--");
         lblFacultyName.setMinimumSize(new java.awt.Dimension(80, 20));
         lblFacultyName.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlSubSchedInfo.add(lblFacultyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 90, 170, -1));
+        pnlSubSchedInfo.add(lblFacultyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 95, 150, -1));
 
         txtssTime.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         txtssTime.setMinimumSize(new java.awt.Dimension(140, 20));
@@ -1083,12 +1082,44 @@ public class MainScreen extends javax.swing.JFrame {
             rs = ps.executeQuery();
             tblStudGrades.setModel(DbUtils.resultSetToTableModel(rs));
             
+            // stats panel
+            getStudCount();
+            getEmployeeCount();
+                    
             getCMBSubSched();
             getCMBStudGrade();
             
         } catch (Exception e){
             System.out.println(e);
         }
+    }
+    
+    public void getStudCount(){
+        int counter = 0;
+        try {
+            conn = ConnectDB.Connect();
+            ps = conn.prepareStatement("SELECT * FROM STUDENT");
+            rs = ps.executeQuery();
+            while (rs.next())
+                ++counter;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        lblStudentCount.setText(String.valueOf(counter));
+    }
+    
+    public void getEmployeeCount(){
+        int counter = 0;
+        try {
+            conn = ConnectDB.Connect();
+            ps = conn.prepareStatement("SELECT * FROM EMPLOYEE");
+            rs = ps.executeQuery();
+            while (rs.next())
+                ++counter;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        lblEmployeeCount.setText(String.valueOf(counter));
     }
     
     private void btnViewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewsActionPerformed
