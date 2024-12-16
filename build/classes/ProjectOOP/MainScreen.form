@@ -1380,7 +1380,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cmbssSubjectCode">
+                <Component class="javax.swing.JComboBox" name="cmbssBlockNo">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="12" style="0"/>
@@ -1480,6 +1480,9 @@
                       <Dimension value="[140, 20]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="cmbssFacultyIDPopupMenuWillBecomeInvisible"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -1489,7 +1492,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cmbssSubjectCode1">
+                <Component class="javax.swing.JComboBox" name="cmbssSubjectCode">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Yu Gothic UI" size="12" style="0"/>

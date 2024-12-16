@@ -120,11 +120,11 @@ public class MainScreen extends javax.swing.JFrame {
         txtssRoom = new javax.swing.JTextField();
         cmbssSchoolYear = new javax.swing.JComboBox<>();
         cmbssCollegeCode = new javax.swing.JComboBox<>();
-        cmbssSubjectCode = new javax.swing.JComboBox<>();
+        cmbssBlockNo = new javax.swing.JComboBox<>();
         cmbssDay = new javax.swing.JComboBox<>();
         cmbssType = new javax.swing.JComboBox<>();
         cmbssFacultyID = new javax.swing.JComboBox<>();
-        cmbssSubjectCode1 = new javax.swing.JComboBox<>();
+        cmbssSubjectCode = new javax.swing.JComboBox<>();
         cmbssSemester1 = new javax.swing.JComboBox<>();
         pnlSubSchedBtns = new javax.swing.JPanel();
         btnSubSchedClear = new javax.swing.JButton();
@@ -588,10 +588,10 @@ public class MainScreen extends javax.swing.JFrame {
         cmbssCollegeCode.setPreferredSize(new java.awt.Dimension(140, 20));
         pnlSubSchedInfo.add(cmbssCollegeCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 95, 140, 20));
 
-        cmbssSubjectCode.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbssSubjectCode.setMinimumSize(new java.awt.Dimension(140, 20));
-        cmbssSubjectCode.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(cmbssSubjectCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 125, 140, 20));
+        cmbssBlockNo.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        cmbssBlockNo.setMinimumSize(new java.awt.Dimension(140, 20));
+        cmbssBlockNo.setPreferredSize(new java.awt.Dimension(140, 20));
+        pnlSubSchedInfo.add(cmbssBlockNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 125, 140, 20));
 
         cmbssDay.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         cmbssDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "T", "W", "TH", "F", "S" }));
@@ -609,12 +609,21 @@ public class MainScreen extends javax.swing.JFrame {
         cmbssFacultyID.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         cmbssFacultyID.setMinimumSize(new java.awt.Dimension(140, 20));
         cmbssFacultyID.setPreferredSize(new java.awt.Dimension(140, 20));
+        cmbssFacultyID.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                cmbssFacultyIDPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         pnlSubSchedInfo.add(cmbssFacultyID, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 65, 140, 20));
 
-        cmbssSubjectCode1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbssSubjectCode1.setMinimumSize(new java.awt.Dimension(140, 20));
-        cmbssSubjectCode1.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(cmbssSubjectCode1, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 155, 140, 20));
+        cmbssSubjectCode.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        cmbssSubjectCode.setMinimumSize(new java.awt.Dimension(140, 20));
+        cmbssSubjectCode.setPreferredSize(new java.awt.Dimension(140, 20));
+        pnlSubSchedInfo.add(cmbssSubjectCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 155, 140, 20));
 
         cmbssSemester1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         cmbssSemester1.setMinimumSize(new java.awt.Dimension(140, 20));
@@ -1238,7 +1247,7 @@ public class MainScreen extends javax.swing.JFrame {
         // s.y cmb box
         cmbssSchoolYear.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 1)));
         cmbssCollegeCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 2)));
-        cmbssSubjectCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 4)));
+        cmbssBlockNo.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 4)));
         // insert block no.
         cmbssDay.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 5)));
         txtssSequenceNo.setText(getValueOrDefault(tblSubSched.getValueAt(row, 6)));
@@ -1252,17 +1261,25 @@ public class MainScreen extends javax.swing.JFrame {
 
     public void setCMBSubSched(){ 
         try {
-            cmbssSchoolYear.removeAllItems(); // fix
+            cmbssSchoolYear.removeAllItems();
+            ps = conn.prepareStatement("SELECT syear FROM plm.schoolyear");
+            rs = ps.executeQuery();
+            while(rs.next())
+                cmbssSchoolYear.addItem(rs.getString("syear"));
+            
+            cmbssSemester1.removeAllItems();
             ps = conn.prepareStatement("SELECT semester FROM plm.semester");
             rs = ps.executeQuery();
             while(rs.next())
-                cmbssSchoolYear.addItem(rs.getString("semester"));
+                cmbssSemester1.addItem(rs.getString("semester"));
             
             cmbssCollegeCode.removeAllItems();
             ps = conn.prepareStatement("SELECT college_code FROM plm.college");
             rs = ps.executeQuery();
             while(rs.next())
                 cmbssCollegeCode.addItem(rs.getString("college_code"));
+            
+            // blk no. textfield
             
             cmbssSubjectCode.removeAllItems();
             ps = conn.prepareStatement("SELECT subject_code FROM plm.subject");
@@ -1276,6 +1293,12 @@ public class MainScreen extends javax.swing.JFrame {
             while(rs.next())
                 cmbssFacultyID.addItem(rs.getString("employee_id"));
             
+            ps = conn.prepareStatement("SELECT * FROM plm.employee WHERE "
+                    + "employee_id LIKE ?");
+            ps.setString(1, cmbssFacultyID.getSelectedItem().toString());
+            rs = ps.executeQuery();
+            while(rs.next())
+                lblFacultyName.setText(rs.getString("lastname") + ", " + rs.getString("firstname"));
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -1969,6 +1992,19 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnStudentGradesFilterActionPerformed
 
+    private void cmbssFacultyIDPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cmbssFacultyIDPopupMenuWillBecomeInvisible
+        try {
+            ps = conn.prepareStatement("SELECT * FROM plm.employee WHERE "
+                    + "employee_id LIKE ?");
+            ps.setString(1, cmbssFacultyID.getSelectedItem().toString());
+            rs = ps.executeQuery();
+            while(rs.next())
+                lblFacultyName.setText(rs.getString("lastname") + ", " + rs.getString("firstname"));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_cmbssFacultyIDPopupMenuWillBecomeInvisible
+
     private String getValueOrDefault(Object value) {
         return value == null ? "" : value.toString();
     }
@@ -2031,6 +2067,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbsgSemester;
     private javax.swing.JComboBox<String> cmbsgSemesterFilter;
     private javax.swing.JComboBox<String> cmbsgSubjectCodeFilter;
+    private javax.swing.JComboBox<String> cmbssBlockNo;
     private javax.swing.JComboBox<String> cmbssBlockNoFilter;
     private javax.swing.JComboBox<String> cmbssCollegeCode;
     private javax.swing.JComboBox<String> cmbssCollegeFilter;
@@ -2041,7 +2078,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbssSemester1;
     private javax.swing.JComboBox<String> cmbssSemesterFilter;
     private javax.swing.JComboBox<String> cmbssSubjectCode;
-    private javax.swing.JComboBox<String> cmbssSubjectCode1;
     private javax.swing.JComboBox<String> cmbssType;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblEmployeeCount;
