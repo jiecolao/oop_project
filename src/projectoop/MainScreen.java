@@ -81,7 +81,7 @@ public class MainScreen extends javax.swing.JFrame {
         cmbssSemesterFilter = new javax.swing.JComboBox<>();
         cmbssCollegeFilter = new javax.swing.JComboBox<>();
         cmbssBlockNoFilter = new javax.swing.JComboBox<>();
-        btnStudentGradesFilter1 = new javax.swing.JButton();
+        btnSubjectScheduleFilter = new javax.swing.JButton();
         scrllSubSchedView = new javax.swing.JScrollPane();
         tblSubSchedView = new javax.swing.JTable();
         pnlStudGradesViews = new javax.swing.JPanel();
@@ -290,11 +290,6 @@ public class MainScreen extends javax.swing.JFrame {
         pnlViews.add(pnlViewsHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 120));
 
         tabbViewsNav.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
-        tabbViewsNav.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabbViewsNavMouseClicked(evt);
-            }
-        });
 
         pnlSubSchedView.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
         pnlSubSchedView.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -317,7 +312,7 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSubSchedSearch.add(lblssSemesterFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
 
         lblssCollegeFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
-        lblssCollegeFilter.setText("Subject Code");
+        lblssCollegeFilter.setText("College");
         pnlSubSchedSearch.add(lblssCollegeFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, -1, -1));
 
         lblssSubjectCodeFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
@@ -345,10 +340,15 @@ public class MainScreen extends javax.swing.JFrame {
         cmbssBlockNoFilter.setPreferredSize(new java.awt.Dimension(79, 20));
         pnlSubSchedSearch.add(cmbssBlockNoFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 160, 20));
 
-        btnStudentGradesFilter1.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        btnStudentGradesFilter1.setText("Search");
-        btnStudentGradesFilter1.setPreferredSize(new java.awt.Dimension(84, 20));
-        pnlSubSchedSearch.add(btnStudentGradesFilter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, 80, -1));
+        btnSubjectScheduleFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
+        btnSubjectScheduleFilter.setText("Search");
+        btnSubjectScheduleFilter.setPreferredSize(new java.awt.Dimension(84, 20));
+        btnSubjectScheduleFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubjectScheduleFilterActionPerformed(evt);
+            }
+        });
+        pnlSubSchedSearch.add(btnSubjectScheduleFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, 80, -1));
 
         pnlSubSchedView.add(pnlSubSchedSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 50));
 
@@ -1060,6 +1060,22 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     public void refresh(){
+        // for tables
+        setTableDisplays();
+        
+        // for stats panel
+        setStudCount();
+        setEmployeeCount();
+
+        // for cmbbx VIEWS
+        setCMBSubSchedViewFilter();
+        setCMBStudGradeViewFilter();
+        
+        setCMBSubSched();
+        setCMBStudGrade();
+    }
+    
+    public void setTableDisplays(){
         try {
             // sched view
             conn = ConnectDB.Connect();
@@ -1082,19 +1098,12 @@ public class MainScreen extends javax.swing.JFrame {
             rs = ps.executeQuery();
             tblStudGrades.setModel(DbUtils.resultSetToTableModel(rs));
             
-            // stats panel
-            getStudCount();
-            getEmployeeCount();
-                    
-            getCMBSubSched();
-            getCMBStudGrade();
-            
         } catch (Exception e){
             System.out.println(e);
         }
     }
     
-    public void getStudCount(){
+    public void setStudCount(){
         int counter = 0;
         try {
             conn = ConnectDB.Connect();
@@ -1108,7 +1117,7 @@ public class MainScreen extends javax.swing.JFrame {
         lblStudentCount.setText(String.valueOf(counter));
     }
     
-    public void getEmployeeCount(){
+    public void setEmployeeCount(){
         int counter = 0;
         try {
             conn = ConnectDB.Connect();
@@ -1120,6 +1129,74 @@ public class MainScreen extends javax.swing.JFrame {
             e.printStackTrace();
         }
         lblEmployeeCount.setText(String.valueOf(counter));
+    }
+
+    public void setCMBSubSchedViewFilter(){
+        try {
+            cmbssSchoolYearFilter.removeAllItems();
+            ps = conn.prepareStatement("SELECT syear FROM schoolyear");
+            rs = ps.executeQuery();
+            cmbssSchoolYearFilter.addItem(" -- ");
+            while (rs.next())
+                cmbssSchoolYearFilter.addItem(rs.getString("syear"));
+            
+            cmbssSemesterFilter.removeAllItems();
+            ps = conn.prepareStatement("SELECT semester FROM semester");
+            rs = ps.executeQuery();
+            cmbssSemesterFilter.addItem(" -- ");
+            while (rs.next())
+                cmbssSemesterFilter.addItem(rs.getString("semester"));
+            
+            cmbssCollegeFilter.removeAllItems();
+            ps = conn.prepareStatement("SELECT college_code FROM college");
+            rs = ps.executeQuery();
+            cmbssCollegeFilter.addItem(" -- ");
+            while (rs.next())
+                cmbssCollegeFilter.addItem(rs.getString("college_code"));
+            
+            cmbssBlockNoFilter.removeAllItems();
+            ps = conn.prepareStatement("SELECT block_no FROM subject_schedule");
+            rs = ps.executeQuery();
+            cmbssBlockNoFilter.addItem(" -- ");
+            while (rs.next())
+                cmbssBlockNoFilter.addItem(rs.getString("block_no"));
+            
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    public void setCMBStudGradeViewFilter(){
+        try {
+            cmbsgSchoolYearFilter.removeAllItems();
+            ps = conn.prepareStatement("SELECT syear FROM schoolyear");
+            rs = ps.executeQuery();
+            while (rs.next())
+                cmbsgSchoolYearFilter.addItem(rs.getString("syear"));
+            
+            cmbsgSemesterFilter.removeAllItems();
+            ps = conn.prepareStatement("SELECT semester FROM semester");
+            rs = ps.executeQuery();
+            cmbsgSemesterFilter.addItem(" -- ");
+            while (rs.next())
+                cmbsgSemesterFilter.addItem(rs.getString("semester"));
+            
+            cmbsgSubjectCodeFilter.removeAllItems();
+            ps = conn.prepareStatement("SELECT subject_code FROM plm.subject");
+            rs = ps.executeQuery();
+            cmbsgSubjectCodeFilter.addItem(" -- ");
+            while(rs.next())
+                cmbsgSubjectCodeFilter.addItem(rs.getString("subject_code"));
+            
+            cmbsgBlockNoFilter.removeAllItems();
+            ps = conn.prepareStatement("SELECT block_no FROM subject_schedule");
+            rs = ps.executeQuery();
+            cmbsgBlockNoFilter.addItem(" -- ");
+            while (rs.next())
+                cmbsgBlockNoFilter.addItem(rs.getString("block_no"));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
     
     private void btnViewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewsActionPerformed
@@ -1150,10 +1227,6 @@ public class MainScreen extends javax.swing.JFrame {
         refresh();
     }//GEN-LAST:event_formWindowActivated
 
-    private void tabbViewsNavMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabbViewsNavMouseClicked
-//        refresh();
-    }//GEN-LAST:event_tabbViewsNavMouseClicked
-
     private void tblSubSchedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSubSchedMouseClicked
         int row = tblSubSched.getSelectedRow();
         // s.y cmb box
@@ -1171,9 +1244,9 @@ public class MainScreen extends javax.swing.JFrame {
 //        txtssTime.setText(String.valueOf(tblSubSched.getValueAt(row, 7)).isBlank() ? " " : String.valueOf(tblSubSched.getValueAt(row, 7)));
     }//GEN-LAST:event_tblSubSchedMouseClicked
 
-    public void getCMBSubSched(){ 
+    public void setCMBSubSched(){ 
         try {
-            cmbssSchoolYear.removeAllItems();
+            cmbssSchoolYear.removeAllItems(); // fix
             ps = conn.prepareStatement("SELECT semester FROM plm.semester");
             rs = ps.executeQuery();
             while(rs.next())
@@ -1202,6 +1275,19 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }
     
+    public void setCMBStudGrade(){ 
+        try {
+            cmbsgSemester.removeAllItems();
+            ps = conn.prepareStatement("SELECT semester FROM plm.semester");
+            rs = ps.executeQuery();
+            while(rs.next())
+                cmbsgSemester.addItem(rs.getString("semester"));
+            
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     private void tblStudGradesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudGradesMouseClicked
         int row = tblStudGrades.getSelectedRow();
         // s.y combo box
@@ -1217,20 +1303,212 @@ public class MainScreen extends javax.swing.JFrame {
     private void cmbssCollegeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbssCollegeFilterActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbssCollegeFilterActionPerformed
-
-    public void getCMBStudGrade(){ 
+                                                     
+    private void btnSubjectScheduleFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubjectScheduleFilterActionPerformed
         try {
-            cmbsgSemester.removeAllItems();
-            ps = conn.prepareStatement("SELECT semester FROM plm.semester");
-            rs = ps.executeQuery();
-            while(rs.next())
-                cmbsgSemester.addItem(rs.getString("semester"));
-            
+            if (cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("A: all --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched");
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    !cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    !cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    !cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){ 
+                System.out.println("B: all has choices");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "school_year LIKE ? AND "
+                        + "sem LIKE ? AND "
+                        + "college LIKE ? AND "
+                        + "block LIKE ?");
+                ps.setString(1, cmbssSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbssSemesterFilter.getSelectedItem().toString());
+                ps.setString(3, cmbssCollegeFilter.getSelectedItem().toString());
+                ps.setString(4, cmbssBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("C: A is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "school_year LIKE ?");
+                ps.setString(1, cmbssSchoolYearFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    !cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("D: A and B is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "school_year LIKE ? AND "
+                        + "sem LIKE ?");
+                ps.setString(1, cmbssSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbssSemesterFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    !cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    !cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("E: A, B, and C is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "school_year LIKE ? AND "
+                        + "sem LIKE ? AND "
+                        + "college LIKE ?");
+                ps.setString(1, cmbssSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbssSemesterFilter.getSelectedItem().toString());
+                ps.setString(3, cmbssCollegeFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    !cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    !cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    !cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("F: B, C, and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "sem LIKE ? AND "
+                        + "college LIKE ? AND "
+                        + "block LIKE ?");
+                ps.setString(1, cmbssSemesterFilter.getSelectedItem().toString());
+                ps.setString(2, cmbssCollegeFilter.getSelectedItem().toString());
+                ps.setString(3, cmbssBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    !cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    !cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("G: C and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "college LIKE ? AND "
+                        + "block LIKE ?");
+                ps.setString(1, cmbssCollegeFilter.getSelectedItem().toString());
+                ps.setString(2, cmbssBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    !cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("H: D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "block LIKE ?");
+                ps.setString(1, cmbssBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    !cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("I: A and C is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "school_year LIKE ? AND "
+                        + "college LIKE ?");
+                ps.setString(1, cmbssSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbssCollegeFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    !cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    !cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("J: B and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "sem LIKE ? AND "
+                        + "block LIKE ?");
+                ps.setString(1, cmbssSemesterFilter.getSelectedItem().toString());
+                ps.setString(2, cmbssBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    !cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("K: A and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "school_year LIKE ? AND "
+                        + "block LIKE ?");
+                ps.setString(1, cmbssSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbssBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    !cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    !cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("L: B and C is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "sem LIKE ? AND "
+                        + "college LIKE ?");
+                ps.setString(1, cmbssSemesterFilter.getSelectedItem().toString());
+                ps.setString(2, cmbssCollegeFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    !cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("M: B is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "sem LIKE ?");
+                ps.setString(1, cmbssSemesterFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    !cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("N: C is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "college LIKE ?");
+                ps.setString(1, cmbssCollegeFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    !cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    !cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("O: A, B, and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "school_year LIKE ? AND "
+                        + "sem LIKE ? AND "
+                        + "block LIKE ?");
+                ps.setString(1, cmbssSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbssSemesterFilter.getSelectedItem().toString());
+                ps.setString(3, cmbssBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0)) && 
+                    cmbssSemesterFilter.getSelectedItem().equals(cmbssSemesterFilter.getItemAt(0)) &&
+                    !cmbssCollegeFilter.getSelectedItem().equals(cmbssCollegeFilter.getItemAt(0)) &&
+                    !cmbssBlockNoFilter.getSelectedItem().equals(cmbssBlockNoFilter.getItemAt(0))){
+                System.out.println("P: A, C, and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.subj_sched WHERE "
+                        + "school_year LIKE ? AND "
+                        + "college LIKE ? AND "
+                        + "block LIKE ?");
+                ps.setString(1, cmbssSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbssCollegeFilter.getSelectedItem().toString());
+                ps.setString(3, cmbssBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
+            } 
         } catch (Exception e){
             e.printStackTrace();
         }
-    }
-    
+        
+//        cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0))
+//        cmbssSemesterFilter.getSelectedItem().equals(evt)
+//        setCMBSubSchedViewFilter();
+//        setCMBStudGradeViewFilter();
+    }//GEN-LAST:event_btnSubjectScheduleFilterActionPerformed
+
     private String getValueOrDefault(Object value) {
         return value == null ? "" : value.toString();
     }
@@ -1278,12 +1556,12 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton btnStudGradesDelete;
     private javax.swing.JButton btnStudGradesUpdate;
     private javax.swing.JButton btnStudentGradesFilter;
-    private javax.swing.JButton btnStudentGradesFilter1;
     private javax.swing.JButton btnSubSched;
     private javax.swing.JButton btnSubSchedAdd;
     private javax.swing.JButton btnSubSchedClear;
     private javax.swing.JButton btnSubSchedDelete;
     private javax.swing.JButton btnSubSchedUpdate;
+    private javax.swing.JButton btnSubjectScheduleFilter;
     private javax.swing.JButton btnViews;
     private javax.swing.JComboBox<String> cmbsgBlockNoFilter;
     private javax.swing.JComboBox<String> cmbsgBlockNumber;
