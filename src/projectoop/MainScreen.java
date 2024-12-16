@@ -429,6 +429,11 @@ public class MainScreen extends javax.swing.JFrame {
         btnStudentGradesFilter.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         btnStudentGradesFilter.setText("Search");
         btnStudentGradesFilter.setPreferredSize(new java.awt.Dimension(84, 20));
+        btnStudentGradesFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudentGradesFilterActionPerformed(evt);
+            }
+        });
         pnlStudGradesSearch.add(btnStudentGradesFilter, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, 80, -1));
 
         pnlStudGradesViews.add(pnlStudGradesSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 50));
@@ -1171,6 +1176,7 @@ public class MainScreen extends javax.swing.JFrame {
             cmbsgSchoolYearFilter.removeAllItems();
             ps = conn.prepareStatement("SELECT syear FROM schoolyear");
             rs = ps.executeQuery();
+            cmbsgSchoolYearFilter.addItem(" -- ");
             while (rs.next())
                 cmbsgSchoolYearFilter.addItem(rs.getString("syear"));
             
@@ -1508,6 +1514,460 @@ public class MainScreen extends javax.swing.JFrame {
 //        setCMBSubSchedViewFilter();
 //        setCMBStudGradeViewFilter();
     }//GEN-LAST:event_btnSubjectScheduleFilterActionPerformed
+
+    private void btnStudentGradesFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentGradesFilterActionPerformed
+        try {
+            if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("1: all has choices");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "semester LIKE ? AND "
+                        + "subject_code LIKE ? AND "
+                        + "block_no LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(3, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(4, cmbsgBlockNoFilter.getSelectedItem().toString());
+                ps.setString(5, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("2: A, B, C, and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "semester LIKE ? AND "
+                        + "subject_code LIKE ? AND "
+                        + "block_no LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(3, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(4, cmbsgBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("3: A, B, C, and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "semester LIKE ? AND "
+                        + "subject_code LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(3, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(4, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("4: A, B, C is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "semester LIKE ? AND "
+                        + "subject_code LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(3, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("5: A, B, D, and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "semester LIKE ? AND "
+                        + "block_no LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(3, cmbsgBlockNoFilter.getSelectedItem().toString());
+                ps.setString(4, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("6: A, B, and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "semester LIKE ? AND "
+                        + "block_no LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(3, cmbsgBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("7: A, B, and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "semester LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(3, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("8: A and B is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "semester LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSemesterFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("9: A, C, D, and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "subject_code LIKE ? AND "
+                        + "block_no LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgBlockNoFilter.getSelectedItem().toString());
+                ps.setString(3, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("10: A, C, and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "subject_code LIKE ? AND "
+                        + "block_no LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(3, cmbsgBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("11: A, C, and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "subject_code LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(3, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("12: A and C is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "subject_code LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("13: A, D, and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "block_no LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgBlockNoFilter.getSelectedItem().toString());
+                ps.setString(3, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("14: A and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "block_no LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("15: A and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                ps.setString(2, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (!cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("16: A is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "school_year LIKE ?");
+                ps.setString(1, cmbsgSchoolYearFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("17: B, C, D, and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "semester LIKE ? AND "
+                        + "subject_code LIKE ? AND "
+                        + "block_no LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(3, cmbsgBlockNoFilter.getSelectedItem().toString());
+                ps.setString(4, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("18: B, C, and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "semester LIKE ? AND "
+                        + "subject_code LIKE ? AND "
+                        + "block_no LIKE ?");
+                ps.setString(1, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(3, cmbsgBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("19: B, C, and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "semester LIKE ? AND "
+                        + "subject_code LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(3, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("20: B and C is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "semester LIKE ? AND "
+                        + "subject_code LIKE ?");
+                ps.setString(1, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("21: B, D, and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "semester LIKE ? AND "
+                        + "block_no LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgBlockNoFilter.getSelectedItem().toString());
+                ps.setString(3, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("22: B and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "semester LIKE ? AND "
+                        + "block_no LIKE ?");
+                ps.setString(1, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("23: B and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "semester LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSemesterFilter.getSelectedItem().toString());
+                ps.setString(2, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                !cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("24: B is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "semester LIKE ?");
+                ps.setString(1, cmbsgSemesterFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("25: C, D, and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "subject_code LIKE ? AND "
+                        + "block_no LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgBlockNoFilter.getSelectedItem().toString());
+                ps.setString(3, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("26: C and D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "subject_code LIKE ? AND "
+                        + "block_no LIKE ?");
+                ps.setString(1, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(2, cmbsgBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("27: C and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "subject_code LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                ps.setString(2, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                !cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("28: C is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "subject_code LIKE ?");
+                ps.setString(1, cmbsgSubjectCodeFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("29: D and E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "block_no LIKE ? AND "
+                        + "student_number LIKE ?");
+                ps.setString(1, cmbsgBlockNoFilter.getSelectedItem().toString());
+                ps.setString(2, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                !cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("30: D is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "block_no LIKE ?");
+                ps.setString(1, cmbsgBlockNoFilter.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                !txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("31: E is not --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade WHERE "
+                        + "student_number LIKE ?");
+                ps.setString(1, txtsgStudentNoFilter.getText().trim());
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            } else if (cmbsgSchoolYearFilter.getSelectedItem().equals(cmbsgSchoolYearFilter.getItemAt(0)) && 
+                cmbsgSemesterFilter.getSelectedItem().equals(cmbsgSemesterFilter.getItemAt(0)) && 
+                cmbsgSubjectCodeFilter.getSelectedItem().equals(cmbsgSubjectCodeFilter.getItemAt(0)) && 
+                cmbsgBlockNoFilter.getSelectedItem().equals(cmbsgBlockNoFilter.getItemAt(0)) && 
+                txtsgStudentNoFilter.getText().trim().isBlank()){
+                System.out.println("32: all are --");
+                ps = conn.prepareStatement("SELECT * FROM plm.stud_grade");
+                rs = ps.executeQuery();
+                tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnStudentGradesFilterActionPerformed
 
     private String getValueOrDefault(Object value) {
         return value == null ? "" : value.toString();
