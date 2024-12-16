@@ -638,6 +638,11 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSubSchedBtns.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnSubSchedClear.setText("Clear");
+        btnSubSchedClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubSchedClearActionPerformed(evt);
+            }
+        });
         pnlSubSchedBtns.add(btnSubSchedClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 120, 30));
 
         btnSubSchedAdd.setText("Add");
@@ -1244,19 +1249,17 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void tblSubSchedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSubSchedMouseClicked
         int row = tblSubSched.getSelectedRow();
-        // s.y cmb box
-        cmbssSchoolYear.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 1)));
+        cmbssSchoolYear.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 0)));
+        cmbssSemester1.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 1)));
         cmbssCollegeCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 2)));
-        cmbssBlockNo.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 4)));
-        // insert block no.
+        // blk txt field
         cmbssDay.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 5)));
-        txtssSequenceNo.setText(getValueOrDefault(tblSubSched.getValueAt(row, 6)));
+        txtssTime.setText(getValueOrDefault(tblSubSched.getValueAt(row, 6)));
         cmbssType.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 8)));
         txtssRoom.setText(getValueOrDefault(tblSubSched.getValueAt(row, 7)));
-//      cmbssSequenceNo.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 9))); // fix, it acts as a dupli daw
+        txtssSequenceNo.setText(getValueOrDefault(tblSubSched.getValueAt(row, 9)));
         cmbssFacultyID.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 10)));
-        
-//        txtssTime.setText(String.valueOf(tblSubSched.getValueAt(row, 7)).isBlank() ? " " : String.valueOf(tblSubSched.getValueAt(row, 7)));
+        setFacultyEmployee();
     }//GEN-LAST:event_tblSubSchedMouseClicked
 
     public void setCMBSubSched(){ 
@@ -1318,11 +1321,7 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     private void tblStudGradesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudGradesMouseClicked
-        int row = tblStudGrades.getSelectedRow();
-        // s.y combo box
-        cmbsgSemester.setSelectedItem(getValueOrDefault(tblStudGrades.getValueAt(row, 1)));
-        cmbssCollegeCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 2)));
-        
+        // needs design fix
     }//GEN-LAST:event_tblStudGradesMouseClicked
 
     private void cmbsgSubjectCodeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbsgSubjectCodeFilterActionPerformed
@@ -1531,11 +1530,6 @@ public class MainScreen extends javax.swing.JFrame {
         } catch (Exception e){
             e.printStackTrace();
         }
-        
-//        cmbssSchoolYearFilter.getSelectedItem().equals(cmbssSchoolYearFilter.getItemAt(0))
-//        cmbssSemesterFilter.getSelectedItem().equals(evt)
-//        setCMBSubSchedViewFilter();
-//        setCMBStudGradeViewFilter();
     }//GEN-LAST:event_btnSubjectScheduleFilterActionPerformed
 
     private void btnStudentGradesFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentGradesFilterActionPerformed
@@ -1993,6 +1987,10 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStudentGradesFilterActionPerformed
 
     private void cmbssFacultyIDPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cmbssFacultyIDPopupMenuWillBecomeInvisible
+        setFacultyEmployee();
+    }//GEN-LAST:event_cmbssFacultyIDPopupMenuWillBecomeInvisible
+    
+    public void setFacultyEmployee(){
         try {
             ps = conn.prepareStatement("SELECT * FROM plm.employee WHERE "
                     + "employee_id LIKE ?");
@@ -2003,7 +2001,21 @@ public class MainScreen extends javax.swing.JFrame {
         } catch (Exception e){
             e.printStackTrace();
         }
-    }//GEN-LAST:event_cmbssFacultyIDPopupMenuWillBecomeInvisible
+    }
+    
+    private void btnSubSchedClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubSchedClearActionPerformed
+        cmbssSchoolYear.setSelectedItem(cmbssSchoolYear.getItemAt(0));
+        cmbssSemester1.setSelectedItem(cmbssSemester1.getItemAt(0));
+        cmbssCollegeCode.setSelectedItem(cmbssCollegeCode.getItemAt(0));
+        // blk txt field
+        cmbssSubjectCode.setSelectedItem(cmbssSubjectCode.getItemAt(0));
+        cmbssDay.setSelectedItem(cmbssDay.getItemAt(0));
+        txtssTime.setText("");
+        cmbssType.setSelectedItem(cmbssType.getItemAt(0));
+        txtssRoom.setText("");
+        txtssSequenceNo.setText("");
+        cmbssFacultyID.setSelectedItem(cmbssFacultyID.getItemAt(0));
+    }//GEN-LAST:event_btnSubSchedClearActionPerformed
 
     private String getValueOrDefault(Object value) {
         return value == null ? "" : value.toString();
