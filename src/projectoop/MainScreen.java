@@ -4,12 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
 import java.awt.event.*;
-import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import net.proteanit.sql.DbUtils;
 
@@ -120,7 +119,7 @@ public class MainScreen extends javax.swing.JFrame {
         txtssRoom = new javax.swing.JTextField();
         cmbssSchoolYear = new javax.swing.JComboBox<>();
         cmbssCollegeCode = new javax.swing.JComboBox<>();
-        cmbssBlockNo = new javax.swing.JComboBox<>();
+        txtssBlockNo = new javax.swing.JTextField();
         cmbssDay = new javax.swing.JComboBox<>();
         cmbssType = new javax.swing.JComboBox<>();
         cmbssFacultyID = new javax.swing.JComboBox<>();
@@ -579,6 +578,7 @@ public class MainScreen extends javax.swing.JFrame {
         txtssRoom.getAccessibleContext().setAccessibleName("");
 
         cmbssSchoolYear.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        cmbssSchoolYear.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         cmbssSchoolYear.setMinimumSize(new java.awt.Dimension(140, 20));
         cmbssSchoolYear.setPreferredSize(new java.awt.Dimension(140, 20));
         pnlSubSchedInfo.add(cmbssSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 35, 140, 20));
@@ -588,10 +588,10 @@ public class MainScreen extends javax.swing.JFrame {
         cmbssCollegeCode.setPreferredSize(new java.awt.Dimension(140, 20));
         pnlSubSchedInfo.add(cmbssCollegeCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 95, 140, 20));
 
-        cmbssBlockNo.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbssBlockNo.setMinimumSize(new java.awt.Dimension(140, 20));
-        cmbssBlockNo.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlSubSchedInfo.add(cmbssBlockNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 125, 140, 20));
+        txtssBlockNo.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        txtssBlockNo.setMinimumSize(new java.awt.Dimension(140, 20));
+        txtssBlockNo.setPreferredSize(new java.awt.Dimension(140, 20));
+        pnlSubSchedInfo.add(txtssBlockNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 125, 140, 20));
 
         cmbssDay.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         cmbssDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "T", "W", "TH", "F", "S" }));
@@ -646,12 +646,27 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSubSchedBtns.add(btnSubSchedClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 120, 30));
 
         btnSubSchedAdd.setText("Add");
+        btnSubSchedAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubSchedAddActionPerformed(evt);
+            }
+        });
         pnlSubSchedBtns.add(btnSubSchedAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 120, 30));
 
         btnSubSchedUpdate.setText("Update");
+        btnSubSchedUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubSchedUpdateActionPerformed(evt);
+            }
+        });
         pnlSubSchedBtns.add(btnSubSchedUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 120, 30));
 
         btnSubSchedDelete.setText("Delete");
+        btnSubSchedDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubSchedDeleteActionPerformed(evt);
+            }
+        });
         pnlSubSchedBtns.add(btnSubSchedDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 120, 30));
 
         pnlSubSched.add(pnlSubSchedBtns, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 830, 40));
@@ -1102,8 +1117,9 @@ public class MainScreen extends javax.swing.JFrame {
             rs = ps.executeQuery();
             tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
             
+            
             // grade view
-            ps = conn.prepareStatement("SELECT * FROM plm.stud_grade");
+            ps = conn.prepareStatement("SELECT * FROM plm.stud_gradeTwo"); // stud_grade
             rs = ps.executeQuery();
             tblStudGradesView.setModel(DbUtils.resultSetToTableModel(rs));
         
@@ -1252,7 +1268,8 @@ public class MainScreen extends javax.swing.JFrame {
         cmbssSchoolYear.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 0)));
         cmbssSemester1.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 1)));
         cmbssCollegeCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 2)));
-        // blk txt field
+        txtssBlockNo.setText(getValueOrDefault(tblSubSched.getValueAt(row, 3)));
+        cmbssSubjectCode.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 4)));
         cmbssDay.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 5)));
         txtssTime.setText(getValueOrDefault(tblSubSched.getValueAt(row, 6)));
         cmbssType.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 8)));
@@ -1296,12 +1313,8 @@ public class MainScreen extends javax.swing.JFrame {
             while(rs.next())
                 cmbssFacultyID.addItem(rs.getString("employee_id"));
             
-            ps = conn.prepareStatement("SELECT * FROM plm.employee WHERE "
-                    + "employee_id LIKE ?");
-            ps.setString(1, cmbssFacultyID.getSelectedItem().toString());
-            rs = ps.executeQuery();
-            while(rs.next())
-                lblFacultyName.setText(rs.getString("lastname") + ", " + rs.getString("firstname"));
+            setFacultyEmployee();
+            
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -2007,7 +2020,7 @@ public class MainScreen extends javax.swing.JFrame {
         cmbssSchoolYear.setSelectedItem(cmbssSchoolYear.getItemAt(0));
         cmbssSemester1.setSelectedItem(cmbssSemester1.getItemAt(0));
         cmbssCollegeCode.setSelectedItem(cmbssCollegeCode.getItemAt(0));
-        // blk txt field
+        txtssBlockNo.setText("");
         cmbssSubjectCode.setSelectedItem(cmbssSubjectCode.getItemAt(0));
         cmbssDay.setSelectedItem(cmbssDay.getItemAt(0));
         txtssTime.setText("");
@@ -2015,7 +2028,113 @@ public class MainScreen extends javax.swing.JFrame {
         txtssRoom.setText("");
         txtssSequenceNo.setText("");
         cmbssFacultyID.setSelectedItem(cmbssFacultyID.getItemAt(0));
+        setFacultyEmployee();
     }//GEN-LAST:event_btnSubSchedClearActionPerformed
+
+    // IMPROVE
+    private void btnSubSchedAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubSchedAddActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to add?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){
+            try {
+                ps = conn.prepareStatement("INSERT INTO plm.subject_schedule "
+                        + "(syear, semester, college_code, block_no, subject_code, "
+                        + "day, time, room, type, sequence_no, employee_id) VALUES "
+                        + "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                ps.setString(1, cmbssSchoolYear.getSelectedItem().toString());
+                ps.setString(2, cmbssSemester1.getSelectedItem().toString());
+                ps.setString(3, cmbssCollegeCode.getSelectedItem().toString());
+                ps.setString(4, txtssBlockNo.getText().trim());
+                ps.setString(5, cmbssSubjectCode.getSelectedItem().toString());
+                ps.setString(6, cmbssDay.getSelectedItem().toString());
+                ps.setString(7, txtssTime.getText().trim());
+                ps.setString(8, txtssRoom.getText().trim());
+                ps.setString(9, cmbssType.getSelectedItem().toString());
+                ps.setString(10, txtssSequenceNo.getText().trim());
+                ps.setString(11, cmbssFacultyID.getSelectedItem().toString());
+                rs = ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Subject Schedule ADDED Successfully");
+            } catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Syear, Semester, College, Block No, Sequence No, Employee No\nalready exists!");
+            }
+        } else
+            JOptionPane.showMessageDialog(null, "Add was aborted.");
+    }//GEN-LAST:event_btnSubSchedAddActionPerformed
+
+    // NEEDS FIX (Catch selected values to map to filter)
+    private void btnSubSchedUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubSchedUpdateActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to Edit?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){
+            try {
+                ps = conn.prepareStatement("UPDATE plm.subject_schedule SET "
+                        + "syear = ?, "
+                        + "semester = ?, "
+                        + "college_code = ?, "
+                        + "block_no = ?, "
+                        + "subject_code = ?, "
+                        + "day = ?, "
+                        + "time = ?, "
+                        + "room = ?, "
+                        + "type = ?, "
+                        + "sequence_no = ?, "
+                        + "employee_id = ? "
+                        + " WHERE "
+                        + "syear = ? AND "
+                        + "semester = ? AND "
+                        + "college_code = ? AND "
+                        + "block_no = ? AND "
+                        + "subject_code = ? AND "
+                        + "sequence_no = ?");
+                ps.setString(1, cmbssSchoolYear.getSelectedItem().toString());
+                ps.setString(2, cmbssSemester1.getSelectedItem().toString());
+                ps.setString(3, cmbssCollegeCode.getSelectedItem().toString());
+                ps.setString(4, txtssBlockNo.getText().trim());
+                ps.setString(5, cmbssSubjectCode.getSelectedItem().toString());
+                ps.setString(6, cmbssDay.getSelectedItem().toString());
+                ps.setString(7, txtssTime.getText().trim());
+                ps.setString(8, txtssRoom.getText().trim());
+                ps.setString(9, cmbssType.getSelectedItem().toString());
+                ps.setInt(10, Integer.parseInt(txtssSequenceNo.getText().trim()));
+                ps.setString(11, cmbssFacultyID.getSelectedItem().toString());
+                ps.setString(12, cmbssSchoolYear.getSelectedItem().toString());
+                ps.setString(13, cmbssSemester1.getSelectedItem().toString());
+                ps.setString(14, cmbssCollegeCode.getSelectedItem().toString());
+                ps.setString(15, txtssBlockNo.getText().trim());
+                ps.setString(16, cmbssSubjectCode.getSelectedItem().toString());
+                ps.setInt(17, Integer.parseInt(txtssSequenceNo.getText().trim()));
+                rs = ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Subject Schedule UPDATED Successfully ");
+            } catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Syear, Semester, College, Block No, Sequence No, Employee No\nalready exists!");
+            }
+        } else
+            JOptionPane.showMessageDialog(null, "Edit was aborted.");
+    }//GEN-LAST:event_btnSubSchedUpdateActionPerformed
+
+    private void btnSubSchedDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubSchedDeleteActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Confirm delete?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){
+            try {
+                ps = conn.prepareStatement("DELETE FROM plm.subject_schedule WHERE "
+                        + "syear = ? AND "
+                        + "semester = ? AND "
+                        + "college_code = ? AND "
+                        + "block_no = ? AND "
+                        + "subject_code = ? AND "
+                        + "sequence_no = ?");
+                ps.setString(1, cmbssSchoolYear.getSelectedItem().toString());
+                ps.setString(2, cmbssSemester1.getSelectedItem().toString());
+                ps.setString(3, cmbssCollegeCode.getSelectedItem().toString());
+                ps.setString(4, txtssBlockNo.getText());
+                ps.setString(5, cmbssSubjectCode.getSelectedItem().toString());
+                ps.setString(6, txtssSequenceNo.getText());
+                rs = ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Subject Schedule DELETED Successfully ");
+            } catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Syear, Semester, College, Block No, Sequence No, Employee No\nalready exists!");
+            }
+        } else
+            JOptionPane.showMessageDialog(null, "Delete was aborted.");
+    }//GEN-LAST:event_btnSubSchedDeleteActionPerformed
 
     private String getValueOrDefault(Object value) {
         return value == null ? "" : value.toString();
@@ -2079,7 +2198,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbsgSemester;
     private javax.swing.JComboBox<String> cmbsgSemesterFilter;
     private javax.swing.JComboBox<String> cmbsgSubjectCodeFilter;
-    private javax.swing.JComboBox<String> cmbssBlockNo;
     private javax.swing.JComboBox<String> cmbssBlockNoFilter;
     private javax.swing.JComboBox<String> cmbssCollegeCode;
     private javax.swing.JComboBox<String> cmbssCollegeFilter;
@@ -2161,6 +2279,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JTextField txtsgSchoolYear;
     private javax.swing.JTextField txtsgStudentNoFilter;
     private javax.swing.JTextField txtsgStudentNumber;
+    private javax.swing.JTextField txtssBlockNo;
     private javax.swing.JTextField txtssRoom;
     private javax.swing.JTextField txtssSequenceNo;
     private javax.swing.JTextField txtssTime;
