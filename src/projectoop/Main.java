@@ -8,11 +8,12 @@ public class Main {
         //       table display for both INSERTS panel
         //       INSERT schedule: maglalagay ba default option?, blk txtfield component
         //       fix table in VIEW GRADES
+        //       anticipate error: sequence no input sa subj sched, naglagay string
         ConnectDB clConnect = new ConnectDB();
         MainScreen jfMS = new MainScreen();
         Test t = new Test();
-//        t.setVisible(true);
         
-        jfMS.setVisible(true);
+        t.setVisible(true);
+//        jfMS.setVisible(true);
     }    
 }

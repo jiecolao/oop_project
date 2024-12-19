@@ -18,6 +18,8 @@ public class MainScreen extends javax.swing.JFrame {
     ResultSet rs = null;
     
     private Timer timer = null;
+    SubjectSchedule SubjectSchedule;
+    Grades Grades;
     
     public MainScreen() {
         initComponents();
@@ -1117,7 +1119,6 @@ public class MainScreen extends javax.swing.JFrame {
             rs = ps.executeQuery();
             tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
             
-            
             // grade view
             ps = conn.prepareStatement("SELECT * FROM plm.stud_gradeTwo"); // stud_grade
             rs = ps.executeQuery();
@@ -1277,6 +1278,12 @@ public class MainScreen extends javax.swing.JFrame {
         txtssSequenceNo.setText(getValueOrDefault(tblSubSched.getValueAt(row, 9)));
         cmbssFacultyID.setSelectedItem(getValueOrDefault(tblSubSched.getValueAt(row, 10)));
         setFacultyEmployee();
+        SubjectSchedule draft = new SubjectSchedule(
+                cmbssSchoolYear.getSelectedItem().toString(), cmbssSemester1.getSelectedItem().toString(), cmbssCollegeCode.getSelectedItem().toString(),
+                txtssBlockNo.getText().toString(), cmbssSubjectCode.getSelectedItem().toString(), cmbssDay.getSelectedItem().toString(),
+                txtssTime.getText().toString(), cmbssType.getSelectedItem().toString(), txtssRoom.getText().toString(),
+                Integer.parseInt(txtssSequenceNo.getText()), cmbssFacultyID.getSelectedItem().toString());
+        this.SubjectSchedule = draft;
     }//GEN-LAST:event_tblSubSchedMouseClicked
 
     public void setCMBSubSched(){ 
@@ -1538,8 +1545,8 @@ public class MainScreen extends javax.swing.JFrame {
                 ps.setString(2, cmbssCollegeFilter.getSelectedItem().toString());
                 ps.setString(3, cmbssBlockNoFilter.getSelectedItem().toString());
                 rs = ps.executeQuery();
-                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));
-            } 
+                tblSubSchedView.setModel(DbUtils.resultSetToTableModel(rs));   
+            }
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -2094,13 +2101,13 @@ public class MainScreen extends javax.swing.JFrame {
                 ps.setString(8, txtssRoom.getText().trim());
                 ps.setString(9, cmbssType.getSelectedItem().toString());
                 ps.setInt(10, Integer.parseInt(txtssSequenceNo.getText().trim()));
-                ps.setString(11, cmbssFacultyID.getSelectedItem().toString());
-                ps.setString(12, cmbssSchoolYear.getSelectedItem().toString());
-                ps.setString(13, cmbssSemester1.getSelectedItem().toString());
-                ps.setString(14, cmbssCollegeCode.getSelectedItem().toString());
-                ps.setString(15, txtssBlockNo.getText().trim());
-                ps.setString(16, cmbssSubjectCode.getSelectedItem().toString());
-                ps.setInt(17, Integer.parseInt(txtssSequenceNo.getText().trim()));
+                ps.setString(11, SubjectSchedule.getEmployee_id());
+                ps.setString(12, SubjectSchedule.getSyear());
+                ps.setString(13, SubjectSchedule.getSemester());
+                ps.setString(14, SubjectSchedule.getCollege_code());
+                ps.setString(15, SubjectSchedule.getBlock_no());
+                ps.setString(16, SubjectSchedule.getSubject_code());
+                ps.setInt(17, SubjectSchedule.getSequence_no());
                 rs = ps.executeQuery();
                 JOptionPane.showMessageDialog(null, "Subject Schedule UPDATED Successfully ");
             } catch (Exception e){
