@@ -2015,7 +2015,7 @@ public class MainScreen extends javax.swing.JFrame {
                         + "college_code = ? AND "
                         + "block_no = ? AND "
                         + "subject_code = ? AND "
-                        + "sequence_no = ?");
+                        + "sequence_no = ?"); // 17
                 ps.setString(1, cmbssSchoolYear.getSelectedItem().toString());
                 ps.setString(2, cmbssSemester1.getSelectedItem().toString());
                 ps.setString(3, cmbssCollegeCode.getSelectedItem().toString());
@@ -2026,7 +2026,7 @@ public class MainScreen extends javax.swing.JFrame {
                 ps.setString(8, txtssRoom.getText().trim());
                 ps.setString(9, cmbssType.getSelectedItem().toString());
                 ps.setInt(10, Integer.parseInt(txtssSequenceNo.getText().trim()));
-                ps.setString(11, SubjectSchedule.getEmployee_id());
+                ps.setString(11, cmbssFacultyID.getSelectedItem().toString());
                 ps.setString(12, SubjectSchedule.getSyear());
                 ps.setString(13, SubjectSchedule.getSemester());
                 ps.setString(14, SubjectSchedule.getCollege_code());
