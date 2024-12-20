@@ -156,6 +156,27 @@ public class MainScreen extends javax.swing.JFrame {
         btnStudGradesUpdate = new javax.swing.JButton();
         btnStudGradesDelete = new javax.swing.JButton();
         btnStudGradesSearch = new javax.swing.JButton();
+        pnlSchoolYear = new javax.swing.JPanel();
+        scrllSchoolYear = new javax.swing.JScrollPane();
+        tblSchoolYear = new javax.swing.JTable();
+        pnlSchoolYearBtns = new javax.swing.JPanel();
+        lblDash = new javax.swing.JLabel();
+        lblEndSY = new javax.swing.JLabel();
+        lblStartSY2 = new javax.swing.JLabel();
+        btnSchoolYearAdd = new javax.swing.JButton();
+        btnSchoolYearUpdate = new javax.swing.JButton();
+        btnSchoolYearDelete = new javax.swing.JButton();
+        txtStartSY = new javax.swing.JTextField();
+        txtEndSY = new javax.swing.JTextField();
+        pnlSemester = new javax.swing.JPanel();
+        scrllSemester = new javax.swing.JScrollPane();
+        tblSemester = new javax.swing.JTable();
+        pnlSemesterBtns = new javax.swing.JPanel();
+        lblSemester = new javax.swing.JLabel();
+        btnSemesterAdd = new javax.swing.JButton();
+        btnSemesterUpdate = new javax.swing.JButton();
+        btnSemesterDelete = new javax.swing.JButton();
+        txtSemester = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Information System");
@@ -244,7 +265,6 @@ public class MainScreen extends javax.swing.JFrame {
         btnSubject.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnSubject.setForeground(new java.awt.Color(255, 255, 255));
         btnSubject.setText("Subject");
-        btnSubject.setActionCommand("Subject");
         pnlNavbar.add(btnSubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 210, 60));
 
         btnSchoolYear.setBackground(new java.awt.Color(128, 0, 32));
@@ -252,12 +272,22 @@ public class MainScreen extends javax.swing.JFrame {
         btnSchoolYear.setForeground(new java.awt.Color(255, 255, 255));
         btnSchoolYear.setText("School Year");
         btnSchoolYear.setOpaque(true);
+        btnSchoolYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSchoolYearActionPerformed(evt);
+            }
+        });
         pnlNavbar.add(btnSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 210, 60));
 
         btnSemester.setBackground(new java.awt.Color(128, 0, 32));
         btnSemester.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnSemester.setForeground(new java.awt.Color(255, 255, 255));
         btnSemester.setText("Semester");
+        btnSemester.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSemesterActionPerformed(evt);
+            }
+        });
         pnlNavbar.add(btnSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 210, 60));
 
         btnCollege.setBackground(new java.awt.Color(128, 0, 32));
@@ -809,6 +839,97 @@ public class MainScreen extends javax.swing.JFrame {
 
         pnlFramebg.add(pnlStudGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
+        pnlSchoolYear.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblSchoolYear.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllSchoolYear.setViewportView(tblSchoolYear);
+
+        pnlSchoolYear.add(scrllSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 270, -1));
+
+        pnlSchoolYearBtns.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblDash.setText("-");
+        pnlSchoolYearBtns.add(lblDash, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 10, 20));
+
+        lblEndSY.setText("End (YYYY)");
+        pnlSchoolYearBtns.add(lblEndSY, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 70, 20));
+
+        lblStartSY2.setText("Start (YYYY)");
+        pnlSchoolYearBtns.add(lblStartSY2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 70, 20));
+
+        btnSchoolYearAdd.setText("Add");
+        pnlSchoolYearBtns.add(btnSchoolYearAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 120, -1));
+
+        btnSchoolYearUpdate.setText("Update");
+        pnlSchoolYearBtns.add(btnSchoolYearUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 120, -1));
+
+        btnSchoolYearDelete.setText("Delete");
+        pnlSchoolYearBtns.add(btnSchoolYearDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 120, -1));
+
+        txtStartSY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStartSYActionPerformed(evt);
+            }
+        });
+        pnlSchoolYearBtns.add(txtStartSY, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 80, -1));
+        pnlSchoolYearBtns.add(txtEndSY, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 80, -1));
+
+        pnlSchoolYear.add(pnlSchoolYearBtns, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 300, 430));
+
+        pnlFramebg.add(pnlSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 870, 640));
+
+        pnlSemester.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblSemester.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrllSemester.setViewportView(tblSemester);
+
+        pnlSemester.add(scrllSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 270, -1));
+
+        pnlSemesterBtns.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblSemester.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSemester.setText("Semester");
+        pnlSemesterBtns.add(lblSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 90, 20));
+
+        btnSemesterAdd.setText("Add");
+        pnlSemesterBtns.add(btnSemesterAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 90, -1));
+
+        btnSemesterUpdate.setText("Update");
+        btnSemesterUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSemesterUpdateActionPerformed(evt);
+            }
+        });
+        pnlSemesterBtns.add(btnSemesterUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 90, -1));
+
+        btnSemesterDelete.setText("Delete");
+        pnlSemesterBtns.add(btnSemesterDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 90, -1));
+        pnlSemesterBtns.add(txtSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 90, -1));
+
+        pnlSemester.add(pnlSemesterBtns, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 300, 430));
+
+        pnlFramebg.add(pnlSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 870, 640));
+
         getContentPane().add(pnlFramebg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 720));
 
         pack();
@@ -1220,6 +1341,8 @@ public class MainScreen extends javax.swing.JFrame {
         pnlViews.setVisible(true);
         pnlSubSched.setVisible(false);
         pnlStudGrades.setVisible(false);
+        pnlSchoolYear.setVisible(false);
+        pnlSemester.setVisible(false);
         refresh();
     }//GEN-LAST:event_btnViewsActionPerformed
 
@@ -1228,6 +1351,8 @@ public class MainScreen extends javax.swing.JFrame {
         pnlViews.setVisible(false);
         pnlSubSched.setVisible(true);
         pnlStudGrades.setVisible(false);
+        pnlSchoolYear.setVisible(false);
+        pnlSemester.setVisible(false);
         refresh();
     }//GEN-LAST:event_btnSubSchedActionPerformed
 
@@ -1236,6 +1361,8 @@ public class MainScreen extends javax.swing.JFrame {
         pnlViews.setVisible(false);
         pnlSubSched.setVisible(false);
         pnlStudGrades.setVisible(true);
+        pnlSchoolYear.setVisible(false);
+        pnlSemester.setVisible(false);
         refresh();
     }//GEN-LAST:event_btnStudGradesActionPerformed
 
@@ -2221,6 +2348,34 @@ public class MainScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please input a student number. " + txtsgStudentNumber.getText().trim());
     }//GEN-LAST:event_btnStudGradesSearchActionPerformed
 
+    private void btnSchoolYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSchoolYearActionPerformed
+        // TODO add your handling code here:
+        pnlViews.setVisible(false);
+        pnlSubSched.setVisible(false);
+        pnlStudGrades.setVisible(false);
+        pnlSchoolYear.setVisible(true);
+        pnlSemester.setVisible(false);
+        refresh();
+    }//GEN-LAST:event_btnSchoolYearActionPerformed
+
+    private void btnSemesterUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemesterUpdateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSemesterUpdateActionPerformed
+
+    private void btnSemesterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemesterActionPerformed
+        // TODO add your handling code here:
+        pnlViews.setVisible(false);
+        pnlSubSched.setVisible(false);
+        pnlStudGrades.setVisible(false);
+        pnlSchoolYear.setVisible(false);
+        pnlSemester.setVisible(true);
+        refresh();
+    }//GEN-LAST:event_btnSemesterActionPerformed
+
+    private void txtStartSYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartSYActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStartSYActionPerformed
+
     private String getValueOrDefault(Object value) {
         return value == null ? "" : value.toString();
     }
@@ -2266,7 +2421,13 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton btnCourse;
     private javax.swing.JButton btnEmployee;
     private javax.swing.JButton btnSchoolYear;
+    private javax.swing.JButton btnSchoolYearAdd;
+    private javax.swing.JButton btnSchoolYearDelete;
+    private javax.swing.JButton btnSchoolYearUpdate;
     private javax.swing.JButton btnSemester;
+    private javax.swing.JButton btnSemesterAdd;
+    private javax.swing.JButton btnSemesterDelete;
+    private javax.swing.JButton btnSemesterUpdate;
     private javax.swing.JButton btnStudGrades;
     private javax.swing.JButton btnStudGradesAdd;
     private javax.swing.JButton btnStudGradesDelete;
@@ -2297,13 +2458,17 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbssSemesterFilter;
     private javax.swing.JComboBox<String> cmbssSubjectCode;
     private javax.swing.JComboBox<String> cmbssType;
+    private javax.swing.JLabel lblDash;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblEmployeeCount;
     private javax.swing.JLabel lblEmployeeIcon;
+    private javax.swing.JLabel lblEndSY;
     private javax.swing.JLabel lblFacultyName;
     private javax.swing.JLabel lblHeaderTitle;
     private java.awt.Label lblMenu1;
     private java.awt.Label lblOthers;
+    private javax.swing.JLabel lblSemester;
+    private javax.swing.JLabel lblStartSY2;
     private javax.swing.JLabel lblStudentCount;
     private javax.swing.JLabel lblStudentIcon;
     private javax.swing.JLabel lblTime;
@@ -2340,6 +2505,10 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPanel pnlFramebg;
     private javax.swing.JPanel pnlHeaderbg;
     private javax.swing.JPanel pnlNavbar;
+    private javax.swing.JPanel pnlSchoolYear;
+    private javax.swing.JPanel pnlSchoolYearBtns;
+    private javax.swing.JPanel pnlSemester;
+    private javax.swing.JPanel pnlSemesterBtns;
     private javax.swing.JPanel pnlStudGrades;
     private javax.swing.JPanel pnlStudGradesBtns;
     private javax.swing.JPanel pnlStudGradesSearch;
@@ -2351,15 +2520,22 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPanel pnlSubSchedView;
     private javax.swing.JPanel pnlViews;
     private javax.swing.JPanel pnlViewsHeader;
+    private javax.swing.JScrollPane scrllSchoolYear;
+    private javax.swing.JScrollPane scrllSemester;
     private javax.swing.JScrollPane scrllStudGrades;
     private javax.swing.JScrollPane scrllStudGradesView;
     private javax.swing.JScrollPane scrllSubSched;
     private javax.swing.JScrollPane scrllSubSchedView;
     private javax.swing.JTabbedPane tabbViewsNav;
+    private javax.swing.JTable tblSchoolYear;
+    private javax.swing.JTable tblSemester;
     private javax.swing.JTable tblStudGrades;
     private javax.swing.JTable tblStudGradesView;
     private javax.swing.JTable tblSubSched;
     private javax.swing.JTable tblSubSchedView;
+    private javax.swing.JTextField txtEndSY;
+    private javax.swing.JTextField txtSemester;
+    private javax.swing.JTextField txtStartSY;
     private javax.swing.JTextField txtsgStudentNoFilter;
     private javax.swing.JTextField txtsgStudentNumber;
     private javax.swing.JTextField txtssBlockNo;
