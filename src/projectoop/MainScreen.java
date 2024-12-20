@@ -24,6 +24,8 @@ public class MainScreen extends javax.swing.JFrame {
     
     String syear; 
     String sem;
+    String college;
+    String course;
     
     private Timer timer = null;
     
@@ -188,10 +190,116 @@ public class MainScreen extends javax.swing.JFrame {
         btnSemesterDelete = new javax.swing.JButton();
         txtSemester = new javax.swing.JTextField();
         pnlCollege = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCollege = new javax.swing.JTable();
+        lblCollegeCode = new javax.swing.JLabel();
+        txtCollegeCode = new javax.swing.JTextField();
+        lblColDesc = new javax.swing.JLabel();
+        txtColDesc = new javax.swing.JTextField();
+        txtDateOpened = new javax.swing.JTextField();
+        lblDateOpened = new javax.swing.JLabel();
+        lblDateClosed = new javax.swing.JLabel();
+        txtDateClosed = new javax.swing.JTextField();
+        cmbStatus = new javax.swing.JComboBox<>();
+        lblStatus = new javax.swing.JLabel();
+        btnAddCollege = new javax.swing.JButton();
+        btnUpdateCollege = new javax.swing.JButton();
+        btnDeleteCollege = new javax.swing.JButton();
         pnlCourse = new javax.swing.JPanel();
+        scrllCourse = new javax.swing.JScrollPane();
+        tblCourse = new javax.swing.JTable();
+        lblCourseCode = new javax.swing.JLabel();
+        txtCourseCode = new javax.swing.JTextField();
+        lblCollege = new javax.swing.JLabel();
+        cmbCollege = new javax.swing.JComboBox<>();
+        lblCourseDesc = new javax.swing.JLabel();
+        txtDateOpened1 = new javax.swing.JTextField();
+        lblDateOpened1 = new javax.swing.JLabel();
+        lblDateClosed1 = new javax.swing.JLabel();
+        txtDateClosed1 = new javax.swing.JTextField();
+        cmbStatus1 = new javax.swing.JComboBox<>();
+        lblStatus1 = new javax.swing.JLabel();
+        txtCourseDesc = new javax.swing.JTextField();
+        btnAddCourse = new javax.swing.JButton();
+        btnUpdateCourse = new javax.swing.JButton();
+        btnDeleteCourse = new javax.swing.JButton();
         pnlStudent = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblStudent = new javax.swing.JTable();
+        lblStudentNo = new javax.swing.JLabel();
+        txtStudentNo = new javax.swing.JTextField();
+        lblCourse = new javax.swing.JLabel();
+        cmbCourse = new javax.swing.JComboBox<>();
+        lblLastName = new javax.swing.JLabel();
+        txtLastName = new javax.swing.JTextField();
+        lblFirstName = new javax.swing.JLabel();
+        txtFirstName = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        lblGender = new javax.swing.JLabel();
+        cmbGender = new javax.swing.JComboBox<>();
+        txtMobileNo = new javax.swing.JTextField();
+        lblMobileNo = new javax.swing.JLabel();
+        lblAddress = new javax.swing.JLabel();
+        txtAddress = new javax.swing.JTextField();
+        txtBirthDate = new javax.swing.JTextField();
+        lblBirthDate = new javax.swing.JLabel();
+        txtDateStart = new javax.swing.JTextField();
+        lblDateStart = new javax.swing.JLabel();
+        lblDateGraduated = new javax.swing.JLabel();
+        txtDateGraduated = new javax.swing.JTextField();
+        lblStatus2 = new javax.swing.JLabel();
+        cmbStatus2 = new javax.swing.JComboBox<>();
+        btnAddStudent = new javax.swing.JButton();
+        btnUpdateStudent = new javax.swing.JButton();
+        btnDeleteStudent = new javax.swing.JButton();
         pnlEmployee = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblEmployee = new javax.swing.JTable();
+        txtEmployeeID = new javax.swing.JTextField();
+        lblEmployeeID = new javax.swing.JLabel();
+        lblLastNameEmp = new javax.swing.JLabel();
+        txtLastNameEmp = new javax.swing.JTextField();
+        lblFirstNameEmp = new javax.swing.JLabel();
+        txtFirstNameEmp = new javax.swing.JTextField();
+        lblEmailEmp = new javax.swing.JLabel();
+        txtEmailEmp = new javax.swing.JTextField();
+        cmbGenderEmp = new javax.swing.JComboBox<>();
+        lblGenderEmp = new javax.swing.JLabel();
+        lblMobileNoEmp = new javax.swing.JLabel();
+        txtMobileNoEmp = new javax.swing.JTextField();
+        lblAddressEmp = new javax.swing.JLabel();
+        txtAddressEmp = new javax.swing.JTextField();
+        lblBirthDateEmp = new javax.swing.JLabel();
+        txtBirthDateEmp = new javax.swing.JTextField();
+        lblDateStartEmp = new javax.swing.JLabel();
+        txtDateStartEmp = new javax.swing.JTextField();
+        lblStatus3 = new javax.swing.JLabel();
+        cmbStatus3 = new javax.swing.JComboBox<>();
+        lblDateGraduatedEmp = new javax.swing.JLabel();
+        txtDateGraduatedEmp = new javax.swing.JTextField();
         pnlSubject = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblSubject = new javax.swing.JTable();
+        lblCourseCodeSub = new javax.swing.JLabel();
+        txtCourseCodeSub = new javax.swing.JTextField();
+        lblCollegeSub = new javax.swing.JLabel();
+        cmbCollegeSub = new javax.swing.JComboBox<>();
+        lblSubjDesc = new javax.swing.JLabel();
+        txtSubjDesc = new javax.swing.JTextField();
+        lblUnits = new javax.swing.JLabel();
+        txtUnits = new javax.swing.JTextField();
+        lblCurriculumn = new javax.swing.JLabel();
+        txtCurriculumn = new javax.swing.JTextField();
+        lblDateOpenedSub = new javax.swing.JLabel();
+        txtDateOpenedSub = new javax.swing.JTextField();
+        lblDateClosedSub = new javax.swing.JLabel();
+        txtDateClosedSub = new javax.swing.JTextField();
+        lblStatusSub = new javax.swing.JLabel();
+        cmbStatusSub = new javax.swing.JComboBox<>();
+        btnAddSub = new javax.swing.JButton();
+        btnUpdateSub = new javax.swing.JButton();
+        btnDeleteSub = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Information System");
@@ -1008,19 +1116,385 @@ public class MainScreen extends javax.swing.JFrame {
 
         pnlCollege.setPreferredSize(new java.awt.Dimension(870, 640));
         pnlCollege.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblCollege.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblCollege.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblCollege.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCollegeMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblCollege);
+
+        pnlCollege.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, -1, -1));
+
+        lblCollegeCode.setText("College Code :");
+        pnlCollege.add(lblCollegeCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        pnlCollege.add(txtCollegeCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 130, -1));
+
+        lblColDesc.setText("Description : ");
+        pnlCollege.add(lblColDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+        pnlCollege.add(txtColDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 210, -1));
+        pnlCollege.add(txtDateOpened, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 90, -1));
+
+        lblDateOpened.setText("Date Opened (MM-DD-YYYY)  :  ");
+        pnlCollege.add(lblDateOpened, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
+
+        lblDateClosed.setText("Date Closed (MM-DD-YYYY)  :  ");
+        pnlCollege.add(lblDateClosed, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, 20));
+        pnlCollege.add(txtDateClosed, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 90, 20));
+
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "I" }));
+        pnlCollege.add(cmbStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, -1, -1));
+
+        lblStatus.setText("Status : ");
+        pnlCollege.add(lblStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
+
+        btnAddCollege.setText("Add");
+        btnAddCollege.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCollegeActionPerformed(evt);
+            }
+        });
+        pnlCollege.add(btnAddCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+
+        btnUpdateCollege.setText("Update");
+        btnUpdateCollege.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateCollegeActionPerformed(evt);
+            }
+        });
+        pnlCollege.add(btnUpdateCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, -1, -1));
+
+        btnDeleteCollege.setText("Delete");
+        btnDeleteCollege.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCollegeActionPerformed(evt);
+            }
+        });
+        pnlCollege.add(btnDeleteCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, -1));
+
         pnlFramebg.add(pnlCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
         pnlCollege.getAccessibleContext().setAccessibleName("");
 
         pnlCourse.setPreferredSize(new java.awt.Dimension(870, 640));
+        pnlCourse.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblCourse.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tblCourse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCourseMouseClicked(evt);
+            }
+        });
+        scrllCourse.setViewportView(tblCourse);
+
+        pnlCourse.add(scrllCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
+
+        lblCourseCode.setText("Course Code :");
+        pnlCourse.add(lblCourseCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        pnlCourse.add(txtCourseCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 120, 80, -1));
+
+        lblCollege.setText("College :");
+        pnlCourse.add(lblCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
+
+        pnlCourse.add(cmbCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 80, -1));
+
+        lblCourseDesc.setText("Description : ");
+        pnlCourse.add(lblCourseDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        pnlCourse.add(txtDateOpened1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 90, -1));
+
+        lblDateOpened1.setText("Date Opened (MM-DD-YYYY)  :  ");
+        pnlCourse.add(lblDateOpened1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+
+        lblDateClosed1.setText("Date Closed (MM-DD-YYYY)  :  ");
+        pnlCourse.add(lblDateClosed1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, 20));
+        pnlCourse.add(txtDateClosed1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 90, 20));
+
+        cmbStatus1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "I" }));
+        pnlCourse.add(cmbStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, -1, -1));
+
+        lblStatus1.setText("Status : ");
+        pnlCourse.add(lblStatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, -1, -1));
+        pnlCourse.add(txtCourseDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 210, -1));
+
+        btnAddCourse.setText("Add");
+        btnAddCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddCourseActionPerformed(evt);
+            }
+        });
+        pnlCourse.add(btnAddCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+
+        btnUpdateCourse.setText("Update");
+        btnUpdateCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateCourseActionPerformed(evt);
+            }
+        });
+        pnlCourse.add(btnUpdateCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, -1, -1));
+
+        btnDeleteCourse.setText("Delete");
+        btnDeleteCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteCourseActionPerformed(evt);
+            }
+        });
+        pnlCourse.add(btnDeleteCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, -1));
+
         pnlFramebg.add(pnlCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         pnlStudent.setPreferredSize(new java.awt.Dimension(870, 640));
+        pnlStudent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblStudent.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblStudent);
+
+        pnlStudent.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
+
+        lblStudentNo.setText("Student No : ");
+        pnlStudent.add(lblStudentNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        pnlStudent.add(txtStudentNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 90, -1));
+
+        lblCourse.setText("Course : ");
+        pnlStudent.add(lblCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+
+        pnlStudent.add(cmbCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 100, -1));
+
+        lblLastName.setText("Last Name : ");
+        pnlStudent.add(lblLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+
+        txtLastName.setToolTipText("");
+        pnlStudent.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 110, -1));
+
+        lblFirstName.setText("First Name : ");
+        pnlStudent.add(lblFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
+
+        txtFirstName.setToolTipText("");
+        pnlStudent.add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 110, -1));
+
+        lblEmail.setText("Email : ");
+        pnlStudent.add(lblEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+
+        txtEmail.setToolTipText("");
+        pnlStudent.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 110, -1));
+
+        lblGender.setText("Gender : ");
+        pnlStudent.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, -1));
+
+        pnlStudent.add(cmbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 100, -1));
+
+        txtMobileNo.setToolTipText("");
+        pnlStudent.add(txtMobileNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 110, -1));
+
+        lblMobileNo.setText("Mobile No :");
+        pnlStudent.add(lblMobileNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+
+        lblAddress.setText("Address : ");
+        pnlStudent.add(lblAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, -1, -1));
+
+        txtAddress.setToolTipText("");
+        pnlStudent.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 110, -1));
+        pnlStudent.add(txtBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 90, -1));
+
+        lblBirthDate.setText("Birthdate (MM-DD-YYYY)  :  ");
+        pnlStudent.add(lblBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
+        pnlStudent.add(txtDateStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 90, -1));
+
+        lblDateStart.setText("Date Started (MM-DD-YYYY)  :  ");
+        lblDateStart.setToolTipText("");
+        pnlStudent.add(lblDateStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
+
+        lblDateGraduated.setText("Date Graduated (MM-DD-YYYY)  :  ");
+        pnlStudent.add(lblDateGraduated, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, 20));
+        pnlStudent.add(txtDateGraduated, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 90, 20));
+
+        lblStatus2.setText("Status : ");
+        pnlStudent.add(lblStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 450, -1, -1));
+
+        cmbStatus2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "I" }));
+        pnlStudent.add(cmbStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, -1, -1));
+
+        btnAddStudent.setText("Add");
+        pnlStudent.add(btnAddStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, -1, -1));
+
+        btnUpdateStudent.setText("Update");
+        pnlStudent.add(btnUpdateStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 500, -1, -1));
+
+        btnDeleteStudent.setText("Delete");
+        pnlStudent.add(btnDeleteStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, -1, -1));
+
         pnlFramebg.add(pnlStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         pnlEmployee.setPreferredSize(new java.awt.Dimension(870, 640));
+        pnlEmployee.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tblEmployee);
+
+        pnlEmployee.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
+        pnlEmployee.add(txtEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 100, -1));
+
+        lblEmployeeID.setText("Employee ID : ");
+        pnlEmployee.add(lblEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+
+        lblLastNameEmp.setText("Last Name : ");
+        pnlEmployee.add(lblLastNameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+
+        txtLastNameEmp.setToolTipText("");
+        pnlEmployee.add(txtLastNameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 110, -1));
+
+        lblFirstNameEmp.setText("First Name : ");
+        pnlEmployee.add(lblFirstNameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
+
+        txtFirstNameEmp.setToolTipText("");
+        pnlEmployee.add(txtFirstNameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 110, -1));
+
+        lblEmailEmp.setText("Email : ");
+        pnlEmployee.add(lblEmailEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+
+        txtEmailEmp.setToolTipText("");
+        pnlEmployee.add(txtEmailEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 110, -1));
+
+        pnlEmployee.add(cmbGenderEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 100, -1));
+
+        lblGenderEmp.setText("Gender : ");
+        pnlEmployee.add(lblGenderEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, -1, -1));
+
+        lblMobileNoEmp.setText("Mobile No :");
+        pnlEmployee.add(lblMobileNoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
+
+        txtMobileNoEmp.setToolTipText("");
+        pnlEmployee.add(txtMobileNoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 110, -1));
+
+        lblAddressEmp.setText("Address : ");
+        pnlEmployee.add(lblAddressEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
+
+        txtAddressEmp.setToolTipText("");
+        pnlEmployee.add(txtAddressEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 110, -1));
+
+        lblBirthDateEmp.setText("Birthdate (MM-DD-YYYY)  :  ");
+        pnlEmployee.add(lblBirthDateEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
+        pnlEmployee.add(txtBirthDateEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 90, -1));
+
+        lblDateStartEmp.setText("Date Started (MM-DD-YYYY)  :  ");
+        lblDateStartEmp.setToolTipText("");
+        pnlEmployee.add(lblDateStartEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+        pnlEmployee.add(txtDateStartEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 90, -1));
+
+        lblStatus3.setText("Status : ");
+        pnlEmployee.add(lblStatus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, -1, -1));
+
+        cmbStatus3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "I" }));
+        pnlEmployee.add(cmbStatus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, -1, -1));
+
+        lblDateGraduatedEmp.setText("Date Graduated (MM-DD-YYYY)  :  ");
+        pnlEmployee.add(lblDateGraduatedEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, 20));
+        pnlEmployee.add(txtDateGraduatedEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 90, 20));
+
         pnlFramebg.add(pnlEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         pnlSubject.setPreferredSize(new java.awt.Dimension(870, 640));
+        pnlSubject.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tblSubject.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(tblSubject);
+
+        pnlSubject.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
+
+        lblCourseCodeSub.setText("Course Code :");
+        pnlSubject.add(lblCourseCodeSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        pnlSubject.add(txtCourseCodeSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 120, 90, -1));
+
+        lblCollegeSub.setText("College :");
+        pnlSubject.add(lblCollegeSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
+
+        pnlSubject.add(cmbCollegeSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 120, 100, -1));
+
+        lblSubjDesc.setText("Description : ");
+        pnlSubject.add(lblSubjDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+        pnlSubject.add(txtSubjDesc, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 210, -1));
+
+        lblUnits.setText("Units : ");
+        pnlSubject.add(lblUnits, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
+        pnlSubject.add(txtUnits, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 70, -1));
+
+        lblCurriculumn.setText("Curriculumn : ");
+        pnlSubject.add(lblCurriculumn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+        pnlSubject.add(txtCurriculumn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 210, -1));
+
+        lblDateOpenedSub.setText("Date Opened (MM-DD-YYYY)  :  ");
+        pnlSubject.add(lblDateOpenedSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        pnlSubject.add(txtDateOpenedSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 90, -1));
+
+        lblDateClosedSub.setText("Date Closed (MM-DD-YYYY)  :  ");
+        pnlSubject.add(lblDateClosedSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, 20));
+        pnlSubject.add(txtDateClosedSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 90, 20));
+
+        lblStatusSub.setText("Status : ");
+        pnlSubject.add(lblStatusSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, -1, -1));
+
+        cmbStatusSub.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "I" }));
+        pnlSubject.add(cmbStatusSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, -1, -1));
+
+        btnAddSub.setText("Add");
+        pnlSubject.add(btnAddSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+
+        btnUpdateSub.setText("Update");
+        pnlSubject.add(btnUpdateSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, -1, -1));
+
+        btnDeleteSub.setText("Delete");
+        pnlSubject.add(btnDeleteSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, -1));
+
         pnlFramebg.add(pnlSubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         getContentPane().add(pnlFramebg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 720));
@@ -1337,7 +1811,30 @@ public class MainScreen extends javax.swing.JFrame {
             rs = ps.executeQuery();
             tblSemester.setModel(DbUtils.resultSetToTableModel(rs));
 
-            // 
+            // college
+            ps = conn.prepareStatement("SELECT * FROM plm.college");
+            rs = ps.executeQuery();
+            tblCollege.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            // course
+            ps = conn.prepareStatement("SELECT * FROM plm.course");
+            rs = ps.executeQuery();
+            tblCourse.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            // student
+            ps = conn.prepareStatement("SELECT * FROM plm.student");
+            rs = ps.executeQuery();
+            tblStudent.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            // employee 
+            ps = conn.prepareStatement("SELECT * FROM plm.employee");
+            rs = ps.executeQuery();
+            tblEmployee.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            // subject 
+            ps = conn.prepareStatement("SELECT * FROM plm.subject");
+            rs = ps.executeQuery();
+            tblSubject.setModel(DbUtils.resultSetToTableModel(rs));
             
         } catch (Exception e){
             System.out.println(e);
@@ -1392,9 +1889,10 @@ public class MainScreen extends javax.swing.JFrame {
             ps = conn.prepareStatement("SELECT college_code FROM college");
             rs = ps.executeQuery();
             cmbssCollegeFilter.addItem(" -- ");
-            while (rs.next())
+            while (rs.next()){
                 cmbssCollegeFilter.addItem(rs.getString("college_code"));
-            
+                cmbCollege.addItem(rs.getString("college_code"));
+            }
             cmbssBlockNoFilter.removeAllItems();
             ps = conn.prepareStatement("SELECT block_no FROM subject_schedule");
             rs = ps.executeQuery();
@@ -2700,6 +3198,184 @@ public class MainScreen extends javax.swing.JFrame {
         refresh();
     }//GEN-LAST:event_btnSubjectActionPerformed
 
+    private void tblCollegeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCollegeMouseClicked
+        int row = tblCollege.getSelectedRow();
+        txtCollegeCode.setText(getValueOrDefault(tblCollege.getValueAt(row, 0)));
+        txtColDesc.setText(getValueOrDefault(tblCollege.getValueAt(row, 1)));
+        txtDateOpened.setText(getValueOrDefault(tblCollege.getValueAt(row, 2)));
+        txtDateClosed.setText(getValueOrDefault(tblCollege.getValueAt(row, 3)));
+        cmbStatus.setSelectedItem(getValueOrDefault(tblCollege.getValueAt(row, 4)));
+        this.college = tblCollege.getValueAt(row, 0).toString();
+    }//GEN-LAST:event_tblCollegeMouseClicked
+
+    private void btnAddCollegeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCollegeActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to ADD record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("INSERT INTO college(college_code, description, date_opened, date_closed, status) VALUES (?, ?, ?, ?, ?)");
+                ps.setObject(1, txtCollegeCode.getText().trim());
+                ps.setObject(2, txtColDesc.getText().trim());
+                if (txtDateOpened.getText().trim().isBlank()){
+                    ps.setObject(3, txtDateOpened.getText().trim());
+                } else if (txtDateOpened.getText().trim().matches("\\d{2}-\\d{2}-\\d{4}")){                
+                    ps.setObject(3, txtDateOpened.getText().trim());
+                }
+                if (txtDateClosed.getText().trim().isBlank()){
+                    ps.setObject(4, txtDateClosed.getText().trim());
+                } else if (txtDateClosed.getText().trim().matches("\\d{2}-\\d{2}-\\d{4}")){                
+                    ps.setObject(4, txtDateClosed.getText().trim());
+                }
+                ps.setObject(5, cmbStatus.getSelectedItem());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Record successfully added.");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Add was aborted.");
+        }
+    }//GEN-LAST:event_btnAddCollegeActionPerformed
+
+    private void btnUpdateCollegeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCollegeActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to UPDATE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("UPDATE college SET "
+                        + "college_code = ?, "
+                        + "description = ?, "
+                        + "date_opened = ?, "
+                        + "date_closed = ?, "
+                        + "status = ? "
+                        + "WHERE "
+                        + "college_code = ?");
+                ps.setObject(1, txtCollegeCode.getText().trim());
+                ps.setObject(2, txtColDesc.getText().trim());
+                ps.setObject(3, txtDateOpened.getText().trim());
+                ps.setObject(4, txtDateClosed.getText().trim());
+                ps.setObject(5, cmbStatus.getSelectedItem());
+                ps.setObject(6, college);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Record updated successfully.");
+            } catch (SQLDataException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "UPDATE was aborted.");
+        }
+    }//GEN-LAST:event_btnUpdateCollegeActionPerformed
+
+    private void btnDeleteCollegeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCollegeActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to DELETE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("DELETE FROM college WHERE college_code = ?");
+                ps.setObject(1, txtCollegeCode.getText().trim());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Record deleted successfully.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Deletion was aborted.");
+        }
+    }//GEN-LAST:event_btnDeleteCollegeActionPerformed
+
+    private void tblCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCourseMouseClicked
+        int row = tblCourse.getSelectedRow();
+        txtCourseCode.setText(getValueOrDefault(tblCourse.getValueAt(row, 0)));
+        txtCourseDesc.setText(getValueOrDefault(tblCourse.getValueAt(row, 1)));
+        cmbCollege.setSelectedItem(getValueOrDefault(tblCourse.getValueAt(row, 2)));
+        txtDateOpened1.setText(getValueOrDefault(tblCourse.getValueAt(row, 3)));
+        txtDateClosed1.setText(getValueOrDefault(tblCourse.getValueAt(row, 4)));
+        cmbStatus1.setSelectedItem(getValueOrDefault(tblCourse.getValueAt(row, 5)));
+        this.course = tblCourse.getValueAt(row, 0).toString();
+    }//GEN-LAST:event_tblCourseMouseClicked
+
+    private void btnAddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCourseActionPerformed
+        // TODO add your handling code here:
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to ADD record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("INSERT INTO course(course_code, description, college_code, date_opened, date_closed, status) "
+                        + "VALUES (?, ?, ?, ?, ?, ?)");
+                ps.setObject(1, txtCourseCode.getText().trim());
+                ps.setObject(2, txtCourseDesc.getText().trim());
+                ps.setObject(3, cmbCollege.getSelectedItem());
+                if (txtDateOpened1.getText().trim().isBlank()){
+                    ps.setObject(4, txtDateOpened1.getText().trim());
+                } else if (txtDateOpened1.getText().trim().matches("\\d{2}-\\d{2}-\\d{4}")){                
+                    ps.setObject(4, txtDateOpened1.getText().trim());
+                }
+                if (txtDateClosed1.getText().trim().isBlank()){
+                    ps.setObject(5, txtDateClosed1.getText().trim());
+                } else if (txtDateClosed1.getText().trim().matches("\\d{2}-\\d{2}-\\d{4}")){                
+                    ps.setObject(5, txtDateClosed1.getText().trim());
+                }
+                ps.setObject(6, cmbStatus1.getSelectedItem());
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record added successfully.");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Add was aborted.");
+        }
+    }//GEN-LAST:event_btnAddCourseActionPerformed
+
+    private void btnUpdateCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateCourseActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to UPDATE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("UPDATE course SET "
+                        + "course_code = ?, "
+                        + "description = ?, "
+                        + "college_code = ?, "
+                        + "date_opened = ?, "
+                        + "date_closed = ?, "
+                        + "status = ? "
+                        + "WHERE "
+                        + "course_code = ?");
+                ps.setObject(1, txtCourseCode.getText().trim());
+                ps.setObject(2, txtCourseDesc.getText().trim());
+                ps.setObject(3, cmbCollege.getSelectedItem());
+                ps.setObject(4, txtDateOpened1.getText().trim());
+                ps.setObject(5, txtDateClosed1.getText().trim());
+                ps.setObject(6, cmbStatus1.getSelectedItem());
+                ps.setObject(7, course);
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record updated successfully.");
+            } catch (SQLDataException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "UPDATE was aborted.");
+        }
+    }//GEN-LAST:event_btnUpdateCourseActionPerformed
+
+    private void btnDeleteCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCourseActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to DELETE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("DELETE FROM course WHERE course_code = ?");
+                ps.setObject(1, txtCourseCode.getText().trim());
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record deleted successfully.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Deletion was aborted.");
+        }
+    }//GEN-LAST:event_btnDeleteCourseActionPerformed
+
     private String getValueOrDefault(Object value) {
         return value == null ? "" : value.toString();
     }
@@ -2741,8 +3417,16 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddCollege;
+    private javax.swing.JButton btnAddCourse;
+    private javax.swing.JButton btnAddStudent;
+    private javax.swing.JButton btnAddSub;
     private javax.swing.JButton btnCollege;
     private javax.swing.JButton btnCourse;
+    private javax.swing.JButton btnDeleteCollege;
+    private javax.swing.JButton btnDeleteCourse;
+    private javax.swing.JButton btnDeleteStudent;
+    private javax.swing.JButton btnDeleteSub;
     private javax.swing.JButton btnEmployee;
     private javax.swing.JButton btnSchoolYear;
     private javax.swing.JButton btnSchoolYearAdd;
@@ -2766,7 +3450,21 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton btnSubSchedUpdate;
     private javax.swing.JButton btnSubject;
     private javax.swing.JButton btnSubjectScheduleFilter;
+    private javax.swing.JButton btnUpdateCollege;
+    private javax.swing.JButton btnUpdateCourse;
+    private javax.swing.JButton btnUpdateStudent;
+    private javax.swing.JButton btnUpdateSub;
     private javax.swing.JButton btnViews;
+    private javax.swing.JComboBox<String> cmbCollege;
+    private javax.swing.JComboBox<String> cmbCollegeSub;
+    private javax.swing.JComboBox<String> cmbCourse;
+    private javax.swing.JComboBox<String> cmbGender;
+    private javax.swing.JComboBox<String> cmbGenderEmp;
+    private javax.swing.JComboBox<String> cmbStatus;
+    private javax.swing.JComboBox<String> cmbStatus1;
+    private javax.swing.JComboBox<String> cmbStatus2;
+    private javax.swing.JComboBox<String> cmbStatus3;
+    private javax.swing.JComboBox<String> cmbStatusSub;
     private javax.swing.JComboBox<String> cmbsgBlockNoFilter;
     private javax.swing.JComboBox<String> cmbsgSchoolYearFilter;
     private javax.swing.JComboBox<String> cmbsgSemesterFilter;
@@ -2782,22 +3480,68 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbssSemesterFilter;
     private javax.swing.JComboBox<String> cmbssSubjectCode;
     private javax.swing.JComboBox<String> cmbssType;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblAddressEmp;
+    private javax.swing.JLabel lblBirthDate;
+    private javax.swing.JLabel lblBirthDateEmp;
+    private javax.swing.JLabel lblColDesc;
+    private javax.swing.JLabel lblCollege;
+    private javax.swing.JLabel lblCollegeCode;
+    private javax.swing.JLabel lblCollegeSub;
+    private javax.swing.JLabel lblCourse;
+    private javax.swing.JLabel lblCourseCode;
+    private javax.swing.JLabel lblCourseCodeSub;
+    private javax.swing.JLabel lblCourseDesc;
+    private javax.swing.JLabel lblCurriculumn;
     private javax.swing.JLabel lblDash;
     private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblDateClosed;
+    private javax.swing.JLabel lblDateClosed1;
+    private javax.swing.JLabel lblDateClosedSub;
+    private javax.swing.JLabel lblDateGraduated;
+    private javax.swing.JLabel lblDateGraduatedEmp;
+    private javax.swing.JLabel lblDateOpened;
+    private javax.swing.JLabel lblDateOpened1;
+    private javax.swing.JLabel lblDateOpenedSub;
+    private javax.swing.JLabel lblDateStart;
+    private javax.swing.JLabel lblDateStartEmp;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblEmailEmp;
     private javax.swing.JLabel lblEmployeeCount;
+    private javax.swing.JLabel lblEmployeeID;
     private javax.swing.JLabel lblEmployeeIcon;
     private javax.swing.JLabel lblEndSY;
     private javax.swing.JLabel lblFacultyName;
+    private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblFirstNameEmp;
+    private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblGenderEmp;
     private javax.swing.JLabel lblHeaderTitle;
+    private javax.swing.JLabel lblLastName;
+    private javax.swing.JLabel lblLastNameEmp;
     private javax.swing.JLabel lblMenu;
+    private javax.swing.JLabel lblMobileNo;
+    private javax.swing.JLabel lblMobileNoEmp;
     private javax.swing.JLabel lblOthers;
     private javax.swing.JLabel lblSemester;
     private javax.swing.JLabel lblStartSY2;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblStatus1;
+    private javax.swing.JLabel lblStatus2;
+    private javax.swing.JLabel lblStatus3;
+    private javax.swing.JLabel lblStatusSub;
     private javax.swing.JLabel lblStudentCount;
     private javax.swing.JLabel lblStudentIcon;
+    private javax.swing.JLabel lblStudentNo;
+    private javax.swing.JLabel lblSubjDesc;
     private javax.swing.JLabel lblTime;
     private javax.swing.JLabel lblTitleEmployeeCount;
     private javax.swing.JLabel lblTitleStudentCount;
+    private javax.swing.JLabel lblUnits;
     private javax.swing.JLabel lblsgBlockNoFilter;
     private javax.swing.JLabel lblsgFilterTitle;
     private javax.swing.JLabel lblsgSchoolYearFilter;
@@ -2849,6 +3593,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPanel pnlSubject;
     private javax.swing.JPanel pnlViews;
     private javax.swing.JPanel pnlViewsHeader;
+    private javax.swing.JScrollPane scrllCourse;
     private javax.swing.JScrollPane scrllSchoolYear;
     private javax.swing.JScrollPane scrllSemester;
     private javax.swing.JScrollPane scrllStudGrades;
@@ -2856,15 +3601,52 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrllSubSched;
     private javax.swing.JScrollPane scrllSubSchedView;
     private javax.swing.JTabbedPane tabbViewsNav;
+    private javax.swing.JTable tblCollege;
+    private javax.swing.JTable tblCourse;
+    private javax.swing.JTable tblEmployee;
     private javax.swing.JTable tblSchoolYear;
     private javax.swing.JTable tblSemester;
     private javax.swing.JTable tblStudGrades;
     private javax.swing.JTable tblStudGradesView;
+    private javax.swing.JTable tblStudent;
     private javax.swing.JTable tblSubSched;
     private javax.swing.JTable tblSubSchedView;
+    private javax.swing.JTable tblSubject;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtAddressEmp;
+    private javax.swing.JTextField txtBirthDate;
+    private javax.swing.JTextField txtBirthDateEmp;
+    private javax.swing.JTextField txtColDesc;
+    private javax.swing.JTextField txtCollegeCode;
+    private javax.swing.JTextField txtCourseCode;
+    private javax.swing.JTextField txtCourseCodeSub;
+    private javax.swing.JTextField txtCourseDesc;
+    private javax.swing.JTextField txtCurriculumn;
+    private javax.swing.JTextField txtDateClosed;
+    private javax.swing.JTextField txtDateClosed1;
+    private javax.swing.JTextField txtDateClosedSub;
+    private javax.swing.JTextField txtDateGraduated;
+    private javax.swing.JTextField txtDateGraduatedEmp;
+    private javax.swing.JTextField txtDateOpened;
+    private javax.swing.JTextField txtDateOpened1;
+    private javax.swing.JTextField txtDateOpenedSub;
+    private javax.swing.JTextField txtDateStart;
+    private javax.swing.JTextField txtDateStartEmp;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEmailEmp;
+    private javax.swing.JTextField txtEmployeeID;
     private javax.swing.JTextField txtEndSY;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtFirstNameEmp;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtLastNameEmp;
+    private javax.swing.JTextField txtMobileNo;
+    private javax.swing.JTextField txtMobileNoEmp;
     private javax.swing.JTextField txtSemester;
     private javax.swing.JTextField txtStartSY;
+    private javax.swing.JTextField txtStudentNo;
+    private javax.swing.JTextField txtSubjDesc;
+    private javax.swing.JTextField txtUnits;
     private javax.swing.JTextField txtsgStudentNoFilter;
     private javax.swing.JTextField txtsgStudentNumber;
     private javax.swing.JTextField txtssBlockNo;

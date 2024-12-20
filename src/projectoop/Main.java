@@ -16,8 +16,8 @@ public class Main {
         MainScreen jfMS = new MainScreen();
         Test t = new Test();
         
-        String a = "1d3";
-//        System.out.println(a.matches("\\d+"));
+        String a = "13-12-1212";
+//        System.out.println(a.matches("\\d{2}-\\d{2}-\\d{4}"));
         
 //        t.setVisible(true);
         jfMS.setVisible(true);

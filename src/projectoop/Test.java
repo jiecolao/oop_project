@@ -34,6 +34,9 @@ public class Test extends javax.swing.JFrame {
         btnRemoveRow = new javax.swing.JButton();
         btnAddGrades = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        A = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1080, 720));
@@ -118,6 +121,30 @@ public class Test extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 20, -1, -1));
+
+        A.setText("A");
+        A.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AActionPerformed(evt);
+            }
+        });
+        getContentPane().add(A, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, -1, -1));
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
+
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -269,6 +296,61 @@ public class Test extends javax.swing.JFrame {
         System.out.println(T1.getRowCount());
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AActionPerformed
+        // ADD
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to ADD record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("");
+                
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record added successfully.");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Add was aborted.");
+        }
+    }//GEN-LAST:event_AActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // UPDATE
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to UPDATE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("");
+                
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record updated successfully.");
+            } catch (SQLDataException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "UPDATE was aborted.");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // DELETE
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to DELETE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("");
+                
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record deleted successfully.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Deletion was aborted.");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     public void display(){
         try {
             conn = ConnectDB.Connect();
@@ -372,6 +454,7 @@ public class Test extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton A;
     private javax.swing.JTable T1;
     private javax.swing.JTable T2;
     private javax.swing.JButton btnAddGrades;
@@ -380,6 +463,8 @@ public class Test extends javax.swing.JFrame {
     private javax.swing.JButton btnRemoveRow;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
