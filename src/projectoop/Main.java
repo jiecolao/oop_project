@@ -16,9 +16,8 @@ public class Main {
         MainScreen jfMS = new MainScreen();
         Test t = new Test();
         
-        Grades a = new Grades();
-        // ArrayList<String> b = a.getSemester_opt();
-        // b.forEach(item -> System.out.println(item));
+        String a = "1d3";
+//        System.out.println(a.matches("\\d+"));
         
 //        t.setVisible(true);
         jfMS.setVisible(true);

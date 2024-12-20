@@ -22,6 +22,9 @@ public class MainScreen extends javax.swing.JFrame {
     SubjectSchedule SubjectSchedule;
     Grades Grades;
     
+    String syear; 
+    String sem;
+    
     private Timer timer = null;
     
     public MainScreen() {
@@ -38,6 +41,13 @@ public class MainScreen extends javax.swing.JFrame {
             pnlViews.setVisible(true);
             pnlSubSched.setVisible(false);
             pnlStudGrades.setVisible(false);
+            pnlSchoolYear.setVisible(false);
+            pnlSemester.setVisible(false);
+            pnlCollege.setVisible(false);
+            pnlCourse.setVisible(false);
+            pnlStudent.setVisible(false);
+            pnlEmployee.setVisible(false);
+            pnlSubject.setVisible(false);
             
             ImageIcon imgStudent = new ImageIcon(getClass().getResource("/resources/StudentIcon.png"));
           int newWidth = imgStudent.getIconWidth() * 2; // Scale up by 2x
@@ -61,8 +71,6 @@ public class MainScreen extends javax.swing.JFrame {
         btnViews = new javax.swing.JButton();
         btnSubSched = new javax.swing.JButton();
         btnStudGrades = new javax.swing.JButton();
-        lblOthers = new java.awt.Label();
-        lblMenu1 = new java.awt.Label();
         btnSubject = new javax.swing.JButton();
         btnSchoolYear = new javax.swing.JButton();
         btnSemester = new javax.swing.JButton();
@@ -70,6 +78,8 @@ public class MainScreen extends javax.swing.JFrame {
         btnCourse = new javax.swing.JButton();
         btnStudent = new javax.swing.JButton();
         btnEmployee = new javax.swing.JButton();
+        lblMenu = new javax.swing.JLabel();
+        lblOthers = new javax.swing.JLabel();
         pnlViews = new javax.swing.JPanel();
         pnlViewsHeader = new javax.swing.JPanel();
         pnlBgStudentCount = new javax.swing.JPanel();
@@ -177,6 +187,11 @@ public class MainScreen extends javax.swing.JFrame {
         btnSemesterUpdate = new javax.swing.JButton();
         btnSemesterDelete = new javax.swing.JButton();
         txtSemester = new javax.swing.JTextField();
+        pnlCollege = new javax.swing.JPanel();
+        pnlCourse = new javax.swing.JPanel();
+        pnlStudent = new javax.swing.JPanel();
+        pnlEmployee = new javax.swing.JPanel();
+        pnlSubject = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Information System");
@@ -251,20 +266,15 @@ public class MainScreen extends javax.swing.JFrame {
         });
         pnlNavbar.add(btnStudGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 210, 60));
 
-        lblOthers.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 12)); // NOI18N
-        lblOthers.setForeground(new java.awt.Color(255, 255, 255));
-        lblOthers.setText("OTHERS");
-        pnlNavbar.add(lblOthers, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
-
-        lblMenu1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 12)); // NOI18N
-        lblMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        lblMenu1.setText("MENU");
-        pnlNavbar.add(lblMenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
-
         btnSubject.setBackground(new java.awt.Color(128, 0, 32));
         btnSubject.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnSubject.setForeground(new java.awt.Color(255, 255, 255));
         btnSubject.setText("Subject");
+        btnSubject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubjectActionPerformed(evt);
+            }
+        });
         pnlNavbar.add(btnSubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 210, 60));
 
         btnSchoolYear.setBackground(new java.awt.Color(128, 0, 32));
@@ -294,25 +304,54 @@ public class MainScreen extends javax.swing.JFrame {
         btnCollege.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnCollege.setForeground(new java.awt.Color(255, 255, 255));
         btnCollege.setText("College");
+        btnCollege.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCollegeActionPerformed(evt);
+            }
+        });
         pnlNavbar.add(btnCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 210, 60));
 
         btnCourse.setBackground(new java.awt.Color(128, 0, 32));
         btnCourse.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnCourse.setForeground(new java.awt.Color(255, 255, 255));
         btnCourse.setText("Course");
+        btnCourse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCourseActionPerformed(evt);
+            }
+        });
         pnlNavbar.add(btnCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 210, 60));
 
         btnStudent.setBackground(new java.awt.Color(128, 0, 32));
         btnStudent.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnStudent.setForeground(new java.awt.Color(255, 255, 255));
         btnStudent.setText("Student");
+        btnStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudentActionPerformed(evt);
+            }
+        });
         pnlNavbar.add(btnStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 210, 60));
 
         btnEmployee.setBackground(new java.awt.Color(128, 0, 32));
         btnEmployee.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         btnEmployee.setForeground(new java.awt.Color(255, 255, 255));
         btnEmployee.setText("Employee");
+        btnEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmployeeActionPerformed(evt);
+            }
+        });
         pnlNavbar.add(btnEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 210, 60));
+
+        lblMenu.setForeground(new java.awt.Color(255, 255, 255));
+        lblMenu.setText("MENU");
+        pnlNavbar.add(lblMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        lblOthers.setForeground(new java.awt.Color(255, 255, 255));
+        lblOthers.setText("OTHERS");
+        lblOthers.setToolTipText("");
+        pnlNavbar.add(lblOthers, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         pnlFramebg.add(pnlNavbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 720));
 
@@ -852,6 +891,12 @@ public class MainScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblSchoolYear.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblSchoolYear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSchoolYearMouseClicked(evt);
+            }
+        });
         scrllSchoolYear.setViewportView(tblSchoolYear);
 
         pnlSchoolYear.add(scrllSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 270, -1));
@@ -868,12 +913,27 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSchoolYearBtns.add(lblStartSY2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 70, 20));
 
         btnSchoolYearAdd.setText("Add");
+        btnSchoolYearAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSchoolYearAddActionPerformed(evt);
+            }
+        });
         pnlSchoolYearBtns.add(btnSchoolYearAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 120, -1));
 
         btnSchoolYearUpdate.setText("Update");
+        btnSchoolYearUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSchoolYearUpdateActionPerformed(evt);
+            }
+        });
         pnlSchoolYearBtns.add(btnSchoolYearUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 120, -1));
 
         btnSchoolYearDelete.setText("Delete");
+        btnSchoolYearDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSchoolYearDeleteActionPerformed(evt);
+            }
+        });
         pnlSchoolYearBtns.add(btnSchoolYearDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 120, -1));
 
         txtStartSY.addActionListener(new java.awt.event.ActionListener() {
@@ -888,6 +948,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         pnlFramebg.add(pnlSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 870, 640));
 
+        pnlSemester.setPreferredSize(new java.awt.Dimension(870, 640));
         pnlSemester.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tblSemester.setModel(new javax.swing.table.DefaultTableModel(
@@ -901,6 +962,11 @@ public class MainScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblSemester.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSemesterMouseClicked(evt);
+            }
+        });
         scrllSemester.setViewportView(tblSemester);
 
         pnlSemester.add(scrllSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 270, -1));
@@ -912,6 +978,11 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSemesterBtns.add(lblSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 90, 20));
 
         btnSemesterAdd.setText("Add");
+        btnSemesterAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSemesterAddActionPerformed(evt);
+            }
+        });
         pnlSemesterBtns.add(btnSemesterAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 90, -1));
 
         btnSemesterUpdate.setText("Update");
@@ -923,12 +994,34 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSemesterBtns.add(btnSemesterUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 90, -1));
 
         btnSemesterDelete.setText("Delete");
+        btnSemesterDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSemesterDeleteActionPerformed(evt);
+            }
+        });
         pnlSemesterBtns.add(btnSemesterDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 90, -1));
         pnlSemesterBtns.add(txtSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 90, -1));
 
         pnlSemester.add(pnlSemesterBtns, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 300, 430));
 
-        pnlFramebg.add(pnlSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 870, 640));
+        pnlFramebg.add(pnlSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+
+        pnlCollege.setPreferredSize(new java.awt.Dimension(870, 640));
+        pnlCollege.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlFramebg.add(pnlCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+        pnlCollege.getAccessibleContext().setAccessibleName("");
+
+        pnlCourse.setPreferredSize(new java.awt.Dimension(870, 640));
+        pnlFramebg.add(pnlCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+
+        pnlStudent.setPreferredSize(new java.awt.Dimension(870, 640));
+        pnlFramebg.add(pnlStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+
+        pnlEmployee.setPreferredSize(new java.awt.Dimension(870, 640));
+        pnlFramebg.add(pnlEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
+
+        pnlSubject.setPreferredSize(new java.awt.Dimension(870, 640));
+        pnlFramebg.add(pnlSubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         getContentPane().add(pnlFramebg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 720));
 
@@ -1234,6 +1327,18 @@ public class MainScreen extends javax.swing.JFrame {
             rs = ps.executeQuery();
             tblStudGrades.setModel(DbUtils.resultSetToTableModel(rs));
             
+            // schoolyear 
+            ps = conn.prepareStatement("SELECT * FROM plm.schoolyear");
+            rs = ps.executeQuery();
+            tblSchoolYear.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            // semester
+            ps = conn.prepareStatement("SELECT * FROM plm.semester");
+            rs = ps.executeQuery();
+            tblSemester.setModel(DbUtils.resultSetToTableModel(rs));
+
+            // 
+            
         } catch (Exception e){
             System.out.println(e);
         }
@@ -1343,6 +1448,11 @@ public class MainScreen extends javax.swing.JFrame {
         pnlStudGrades.setVisible(false);
         pnlSchoolYear.setVisible(false);
         pnlSemester.setVisible(false);
+        pnlCollege.setVisible(false);
+        pnlCourse.setVisible(false);
+        pnlStudent.setVisible(false);
+        pnlEmployee.setVisible(false);
+        pnlSubject.setVisible(false);
         refresh();
     }//GEN-LAST:event_btnViewsActionPerformed
 
@@ -1353,6 +1463,11 @@ public class MainScreen extends javax.swing.JFrame {
         pnlStudGrades.setVisible(false);
         pnlSchoolYear.setVisible(false);
         pnlSemester.setVisible(false);
+        pnlCollege.setVisible(false);
+        pnlCourse.setVisible(false);
+        pnlStudent.setVisible(false);
+        pnlEmployee.setVisible(false);
+        pnlSubject.setVisible(false);
         refresh();
     }//GEN-LAST:event_btnSubSchedActionPerformed
 
@@ -1363,6 +1478,11 @@ public class MainScreen extends javax.swing.JFrame {
         pnlStudGrades.setVisible(true);
         pnlSchoolYear.setVisible(false);
         pnlSemester.setVisible(false);
+        pnlCollege.setVisible(false);
+        pnlCourse.setVisible(false);
+        pnlStudent.setVisible(false);
+        pnlEmployee.setVisible(false);
+        pnlSubject.setVisible(false);
         refresh();
     }//GEN-LAST:event_btnStudGradesActionPerformed
 
@@ -2355,12 +2475,13 @@ public class MainScreen extends javax.swing.JFrame {
         pnlStudGrades.setVisible(false);
         pnlSchoolYear.setVisible(true);
         pnlSemester.setVisible(false);
+        pnlCollege.setVisible(false);
+        pnlCourse.setVisible(false);
+        pnlStudent.setVisible(false);
+        pnlEmployee.setVisible(false);
+        pnlSubject.setVisible(false);
         refresh();
     }//GEN-LAST:event_btnSchoolYearActionPerformed
-
-    private void btnSemesterUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemesterUpdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSemesterUpdateActionPerformed
 
     private void btnSemesterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemesterActionPerformed
         // TODO add your handling code here:
@@ -2369,12 +2490,215 @@ public class MainScreen extends javax.swing.JFrame {
         pnlStudGrades.setVisible(false);
         pnlSchoolYear.setVisible(false);
         pnlSemester.setVisible(true);
+        pnlCollege.setVisible(false);
+        pnlCourse.setVisible(false);
+        pnlStudent.setVisible(false);
+        pnlEmployee.setVisible(false);
+        pnlSubject.setVisible(false);
         refresh();
     }//GEN-LAST:event_btnSemesterActionPerformed
 
     private void txtStartSYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartSYActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtStartSYActionPerformed
+
+    private void btnSchoolYearAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSchoolYearAddActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to ADD school year?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){            
+            try {
+                ps = conn.prepareStatement("INSERT INTO schoolyear VALUES (?)");
+                if (txtStartSY.getText().trim().matches("\\d+") && txtEndSY.getText().trim().matches("\\d+") && 
+                        txtStartSY.getText().trim().length() >= 4 && txtEndSY.getText().trim().length() >= 4){
+                    ps.setObject(1, txtStartSY.getText().trim()+ "-" + txtEndSY.getText().trim());
+                    ps.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "School Year added successfully.");
+                } else 
+                    JOptionPane.showMessageDialog(null, "Please enter a valid year!");
+            } catch (SQLIntegrityConstraintViolationException e) {
+                JOptionPane.showMessageDialog(null, "School year already exists!");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else 
+            JOptionPane.showMessageDialog(null, "Add was aborted.");
+    }//GEN-LAST:event_btnSchoolYearAddActionPerformed
+
+    private void btnSchoolYearDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSchoolYearDeleteActionPerformed
+        Object obj = tblSchoolYear.getValueAt(tblSchoolYear.getSelectedRow(), tblSchoolYear.getSelectedColumn());
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to DELETE " + obj + "?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){            
+            try {
+                ps = conn.prepareStatement("DELETE FROM plm.schoolyear WHERE syear = ?");
+                ps.setObject(1, obj);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "School year deletion successful");
+            } catch (SQLIntegrityConstraintViolationException e){
+                JOptionPane.showMessageDialog(null, obj + " cannot be deleted as it contains records!");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Deletion was aborted.");
+        }
+    }//GEN-LAST:event_btnSchoolYearDeleteActionPerformed
+
+    private void btnSchoolYearUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSchoolYearUpdateActionPerformed
+        // not optimized
+        Object obj = tblSchoolYear.getValueAt(tblSchoolYear.getSelectedRow(), tblSchoolYear.getSelectedColumn());
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to UPDATE " + obj + "?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){   
+            try {
+                ps = conn.prepareStatement("UPDATE schoolyear SET syear = ? WHERE syear = ?");
+                
+                if (obj.toString().matches("\\d{4}-\\d{4}")){
+                     ps.setObject(1, obj);
+                     ps.setObject(2, syear);
+                     ps.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "School Year updated successfully.");
+                } else 
+                    JOptionPane.showMessageDialog(null, "Please enter a valid year!");
+            } catch (SQLIntegrityConstraintViolationException e) {
+                JOptionPane.showMessageDialog(null, "School year already exists!");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else 
+            JOptionPane.showMessageDialog(null, "Update was aborted.");
+    }//GEN-LAST:event_btnSchoolYearUpdateActionPerformed
+
+    private void tblSchoolYearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSchoolYearMouseClicked
+        this.syear = tblSchoolYear.getValueAt(tblSchoolYear.getSelectedRow(), tblSchoolYear.getSelectedColumn()).toString();
+    }//GEN-LAST:event_tblSchoolYearMouseClicked
+
+    private void btnSemesterAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemesterAddActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to ADD semester?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){  
+            try {
+                ps = conn.prepareStatement("INSERT INTO semester VALUES (?)");
+                ps.setObject(1, txtSemester.getText().trim());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Semester added successfully");
+            } catch (SQLIntegrityConstraintViolationException e) {
+                JOptionPane.showMessageDialog(null, "Semester already exists!");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else 
+            JOptionPane.showMessageDialog(null, "Add was aborted.");
+    }//GEN-LAST:event_btnSemesterAddActionPerformed
+
+    private void btnSemesterUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemesterUpdateActionPerformed
+        Object obj = tblSemester.getValueAt(tblSemester.getSelectedRow(), tblSemester.getSelectedColumn());
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to UPDATE " + obj + "?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){   
+            try {
+                ps = conn.prepareStatement("UPDATE semester SET semester = ? WHERE semester = ?");
+                ps.setObject(1, obj);
+                ps.setObject(2, sem);
+                System.out.println(sem);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Semester updated successfully.");
+            } catch (SQLIntegrityConstraintViolationException e) {
+                JOptionPane.showMessageDialog(null, "Semester already exists!");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else 
+            JOptionPane.showMessageDialog(null, "Update was aborted."); 
+    }//GEN-LAST:event_btnSemesterUpdateActionPerformed
+
+    private void tblSemesterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSemesterMouseClicked
+        this.sem = tblSemester.getValueAt(tblSemester.getSelectedRow(), tblSemester.getSelectedColumn()).toString();
+    }//GEN-LAST:event_tblSemesterMouseClicked
+
+    private void btnSemesterDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSemesterDeleteActionPerformed
+        Object obj = tblSemester.getValueAt(tblSemester.getSelectedRow(), tblSemester.getSelectedColumn());
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to DELETE " + obj + "?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){            
+            try {
+                ps = conn.prepareStatement("DELETE FROM plm.semester WHERE semester = ?");
+                ps.setObject(1, obj);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Semester deleted successfully");
+            } catch (SQLIntegrityConstraintViolationException e){
+                JOptionPane.showMessageDialog(null, obj + " cannot be deleted as it contains records!");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Deletion was aborted.");
+        }
+    }//GEN-LAST:event_btnSemesterDeleteActionPerformed
+
+    private void btnCollegeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCollegeActionPerformed
+        pnlViews.setVisible(false);
+        pnlSubSched.setVisible(false);
+        pnlStudGrades.setVisible(false);
+        pnlSchoolYear.setVisible(false);
+        pnlSemester.setVisible(false);
+        pnlCollege.setVisible(true);
+        pnlCourse.setVisible(false);
+        pnlStudent.setVisible(false);
+        pnlEmployee.setVisible(false);
+        pnlSubject.setVisible(false);
+        refresh();
+    }//GEN-LAST:event_btnCollegeActionPerformed
+
+    private void btnCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCourseActionPerformed
+        pnlViews.setVisible(false);
+        pnlSubSched.setVisible(false);
+        pnlStudGrades.setVisible(false);
+        pnlSchoolYear.setVisible(false);
+        pnlSemester.setVisible(false);
+        pnlCollege.setVisible(false);
+        pnlCourse.setVisible(true);
+        pnlStudent.setVisible(false);
+        pnlEmployee.setVisible(false);
+        pnlSubject.setVisible(false);
+        refresh();
+    }//GEN-LAST:event_btnCourseActionPerformed
+
+    private void btnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentActionPerformed
+        pnlViews.setVisible(false);
+        pnlSubSched.setVisible(false);
+        pnlStudGrades.setVisible(false);
+        pnlSchoolYear.setVisible(false);
+        pnlSemester.setVisible(false);
+        pnlCollege.setVisible(false);
+        pnlCourse.setVisible(false);
+        pnlStudent.setVisible(true);
+        pnlEmployee.setVisible(false);
+        pnlSubject.setVisible(false);
+        refresh();
+    }//GEN-LAST:event_btnStudentActionPerformed
+
+    private void btnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeActionPerformed
+        pnlViews.setVisible(false);
+        pnlSubSched.setVisible(false);
+        pnlStudGrades.setVisible(false);
+        pnlSchoolYear.setVisible(false);
+        pnlSemester.setVisible(false);
+        pnlCollege.setVisible(false);
+        pnlCourse.setVisible(false);
+        pnlStudent.setVisible(false);
+        pnlEmployee.setVisible(true);
+        pnlSubject.setVisible(false);
+        refresh();
+    }//GEN-LAST:event_btnEmployeeActionPerformed
+
+    private void btnSubjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubjectActionPerformed
+        pnlViews.setVisible(false);
+        pnlSubSched.setVisible(false);
+        pnlStudGrades.setVisible(false);
+        pnlSchoolYear.setVisible(false);
+        pnlSemester.setVisible(false);
+        pnlCollege.setVisible(false);
+        pnlCourse.setVisible(false);
+        pnlStudent.setVisible(false);
+        pnlEmployee.setVisible(false);
+        pnlSubject.setVisible(true);
+        refresh();
+    }//GEN-LAST:event_btnSubjectActionPerformed
 
     private String getValueOrDefault(Object value) {
         return value == null ? "" : value.toString();
@@ -2465,8 +2789,8 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblEndSY;
     private javax.swing.JLabel lblFacultyName;
     private javax.swing.JLabel lblHeaderTitle;
-    private java.awt.Label lblMenu1;
-    private java.awt.Label lblOthers;
+    private javax.swing.JLabel lblMenu;
+    private javax.swing.JLabel lblOthers;
     private javax.swing.JLabel lblSemester;
     private javax.swing.JLabel lblStartSY2;
     private javax.swing.JLabel lblStudentCount;
@@ -2500,8 +2824,11 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblssType;
     private javax.swing.JPanel pnlBgEmployeeCount;
     private javax.swing.JPanel pnlBgStudentCount;
+    private javax.swing.JPanel pnlCollege;
     private javax.swing.JPanel pnlContEmployeeCount;
     private javax.swing.JPanel pnlContStudentCount;
+    private javax.swing.JPanel pnlCourse;
+    private javax.swing.JPanel pnlEmployee;
     private javax.swing.JPanel pnlFramebg;
     private javax.swing.JPanel pnlHeaderbg;
     private javax.swing.JPanel pnlNavbar;
@@ -2513,11 +2840,13 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPanel pnlStudGradesBtns;
     private javax.swing.JPanel pnlStudGradesSearch;
     private javax.swing.JPanel pnlStudGradesViews;
+    private javax.swing.JPanel pnlStudent;
     private javax.swing.JPanel pnlSubSched;
     private javax.swing.JPanel pnlSubSchedBtns;
     private javax.swing.JPanel pnlSubSchedInfo;
     private javax.swing.JPanel pnlSubSchedSearch;
     private javax.swing.JPanel pnlSubSchedView;
+    private javax.swing.JPanel pnlSubject;
     private javax.swing.JPanel pnlViews;
     private javax.swing.JPanel pnlViewsHeader;
     private javax.swing.JScrollPane scrllSchoolYear;
