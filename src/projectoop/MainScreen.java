@@ -138,26 +138,15 @@ public class MainScreen extends javax.swing.JFrame {
         scrllSubSched = new javax.swing.JScrollPane();
         tblSubSched = new javax.swing.JTable();
         pnlStudGrades = new javax.swing.JPanel();
-        pnlStudGradesInfo = new javax.swing.JPanel();
-        lblsgSchoolYear = new javax.swing.JLabel();
-        lblsgSemester = new javax.swing.JLabel();
-        lblsgCollegeCode = new javax.swing.JLabel();
-        lblsgStudentNumber = new javax.swing.JLabel();
-        lblsgBlockNumber = new javax.swing.JLabel();
-        lblsgGrades = new javax.swing.JLabel();
-        txtsgSchoolYear = new javax.swing.JTextField();
-        txtsgStudentNumber = new javax.swing.JTextField();
-        cmbsgSemester = new javax.swing.JComboBox<>();
-        cmbsgCollegeCode = new javax.swing.JComboBox<>();
-        cmbsgBlockNumber = new javax.swing.JComboBox<>();
-        cmbsgGrades = new javax.swing.JComboBox<>();
         scrllStudGrades = new javax.swing.JScrollPane();
         tblStudGrades = new javax.swing.JTable();
         pnlStudGradesBtns = new javax.swing.JPanel();
-        btnStudGradesClear = new javax.swing.JButton();
+        lblsgStudentNumber = new javax.swing.JLabel();
+        txtsgStudentNumber = new javax.swing.JTextField();
         btnStudGradesAdd = new javax.swing.JButton();
         btnStudGradesUpdate = new javax.swing.JButton();
         btnStudGradesDelete = new javax.swing.JButton();
+        btnStudGradesSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Information System");
@@ -705,86 +694,6 @@ public class MainScreen extends javax.swing.JFrame {
         pnlStudGrades.setPreferredSize(new java.awt.Dimension(870, 640));
         pnlStudGrades.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlStudGradesInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), " Grading Details ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
-        pnlStudGradesInfo.setForeground(new java.awt.Color(0, 0, 0));
-        pnlStudGradesInfo.setMinimumSize(new java.awt.Dimension(830, 200));
-        pnlStudGradesInfo.setOpaque(false);
-        pnlStudGradesInfo.setPreferredSize(new java.awt.Dimension(830, 200));
-        pnlStudGradesInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblsgSchoolYear.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblsgSchoolYear.setForeground(new java.awt.Color(0, 0, 0));
-        lblsgSchoolYear.setText("School Year     :");
-        lblsgSchoolYear.setMinimumSize(new java.awt.Dimension(100, 20));
-        lblsgSchoolYear.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlStudGradesInfo.add(lblsgSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 100, -1));
-
-        lblsgSemester.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblsgSemester.setForeground(new java.awt.Color(0, 0, 0));
-        lblsgSemester.setText("Semester        :");
-        lblsgSemester.setMinimumSize(new java.awt.Dimension(100, 20));
-        lblsgSemester.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlStudGradesInfo.add(lblsgSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 100, -1));
-
-        lblsgCollegeCode.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblsgCollegeCode.setForeground(new java.awt.Color(0, 0, 0));
-        lblsgCollegeCode.setText("College Code  :");
-        lblsgCollegeCode.setMinimumSize(new java.awt.Dimension(100, 20));
-        pnlStudGradesInfo.add(lblsgCollegeCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 100, 20));
-
-        lblsgStudentNumber.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblsgStudentNumber.setForeground(new java.awt.Color(0, 0, 0));
-        lblsgStudentNumber.setText("Student Number  :");
-        lblsgStudentNumber.setMinimumSize(new java.awt.Dimension(125, 20));
-        lblsgStudentNumber.setPreferredSize(new java.awt.Dimension(125, 20));
-        pnlStudGradesInfo.add(lblsgStudentNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 125, -1));
-
-        lblsgBlockNumber.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblsgBlockNumber.setForeground(new java.awt.Color(0, 0, 0));
-        lblsgBlockNumber.setText("Block Number   :");
-        lblsgBlockNumber.setMinimumSize(new java.awt.Dimension(125, 20));
-        lblsgBlockNumber.setPreferredSize(new java.awt.Dimension(125, 20));
-        pnlStudGradesInfo.add(lblsgBlockNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 125, -1));
-
-        lblsgGrades.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblsgGrades.setForeground(new java.awt.Color(0, 0, 0));
-        lblsgGrades.setText("Grades  :");
-        lblsgGrades.setMinimumSize(new java.awt.Dimension(60, 20));
-        lblsgGrades.setPreferredSize(new java.awt.Dimension(60, 20));
-        pnlStudGradesInfo.add(lblsgGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(625, 50, 60, -1));
-
-        txtsgSchoolYear.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtsgSchoolYear.setMinimumSize(new java.awt.Dimension(140, 20));
-        txtsgSchoolYear.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlStudGradesInfo.add(txtsgSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 140, 20));
-
-        txtsgStudentNumber.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtsgStudentNumber.setMinimumSize(new java.awt.Dimension(140, 20));
-        txtsgStudentNumber.setPreferredSize(new java.awt.Dimension(150, 20));
-        pnlStudGradesInfo.add(txtsgStudentNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 50, 150, 20));
-
-        cmbsgSemester.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbsgSemester.setMinimumSize(new java.awt.Dimension(140, 20));
-        cmbsgSemester.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlStudGradesInfo.add(cmbsgSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 140, 20));
-
-        cmbsgCollegeCode.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbsgCollegeCode.setMinimumSize(new java.awt.Dimension(140, 20));
-        cmbsgCollegeCode.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlStudGradesInfo.add(cmbsgCollegeCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 140, 20));
-
-        cmbsgBlockNumber.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbsgBlockNumber.setMinimumSize(new java.awt.Dimension(140, 20));
-        cmbsgBlockNumber.setPreferredSize(new java.awt.Dimension(140, 20));
-        pnlStudGradesInfo.add(cmbsgBlockNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 100, 140, 20));
-
-        cmbsgGrades.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbsgGrades.setMinimumSize(new java.awt.Dimension(100, 20));
-        cmbsgGrades.setPreferredSize(new java.awt.Dimension(100, 20));
-        pnlStudGradesInfo.add(cmbsgGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(695, 50, 100, 20));
-
-        pnlStudGrades.add(pnlStudGradesInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 830, 200));
-
         tblStudGrades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -797,7 +706,6 @@ public class MainScreen extends javax.swing.JFrame {
             }
         ));
         tblStudGrades.setMinimumSize(new java.awt.Dimension(300, 80));
-        tblStudGrades.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblStudGrades.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblStudGradesMouseClicked(evt);
@@ -805,24 +713,58 @@ public class MainScreen extends javax.swing.JFrame {
         });
         scrllStudGrades.setViewportView(tblStudGrades);
 
-        pnlStudGrades.add(scrllStudGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 830, 380));
+        pnlStudGrades.add(scrllStudGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 830, 530));
 
         pnlStudGradesBtns.setOpaque(false);
         pnlStudGradesBtns.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnStudGradesClear.setText("Clear");
-        pnlStudGradesBtns.add(btnStudGradesClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 120, 30));
+        lblsgStudentNumber.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        lblsgStudentNumber.setForeground(new java.awt.Color(0, 0, 0));
+        lblsgStudentNumber.setText("Student Number  :");
+        lblsgStudentNumber.setMinimumSize(new java.awt.Dimension(125, 20));
+        lblsgStudentNumber.setPreferredSize(new java.awt.Dimension(125, 20));
+        pnlStudGradesBtns.add(lblsgStudentNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 125, -1));
+
+        txtsgStudentNumber.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        txtsgStudentNumber.setMinimumSize(new java.awt.Dimension(140, 20));
+        txtsgStudentNumber.setPreferredSize(new java.awt.Dimension(150, 20));
+        pnlStudGradesBtns.add(txtsgStudentNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 150, 20));
 
         btnStudGradesAdd.setText("Add");
+        btnStudGradesAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnStudGradesAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudGradesAddActionPerformed(evt);
+            }
+        });
         pnlStudGradesBtns.add(btnStudGradesAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 120, 30));
 
         btnStudGradesUpdate.setText("Update");
+        btnStudGradesUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudGradesUpdateActionPerformed(evt);
+            }
+        });
         pnlStudGradesBtns.add(btnStudGradesUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 120, 30));
 
         btnStudGradesDelete.setText("Delete");
+        btnStudGradesDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudGradesDeleteActionPerformed(evt);
+            }
+        });
         pnlStudGradesBtns.add(btnStudGradesDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 120, 30));
 
-        pnlStudGrades.add(pnlStudGradesBtns, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 830, 40));
+        btnStudGradesSearch.setText("Search");
+        btnStudGradesSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnStudGradesSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudGradesSearchActionPerformed(evt);
+            }
+        });
+        pnlStudGradesBtns.add(btnStudGradesSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 70, 30));
+
+        pnlStudGrades.add(pnlStudGradesBtns, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 830, 40));
 
         pnlFramebg.add(pnlStudGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
@@ -1006,12 +948,6 @@ public class MainScreen extends javax.swing.JFrame {
             btnSubSchedClear.setBorderPainted(false);  
             btnSubSchedClear.setOpaque(true);
             
-            btnStudGradesClear.setBackground(new Color(112, 128, 144));  
-            btnStudGradesClear.setForeground(Color.WHITE);  
-            btnStudGradesClear.setFocusPainted(false);  
-            btnStudGradesClear.setBorderPainted(false);  
-            btnStudGradesClear.setOpaque(true);
-            
             // ADD
             btnSubSchedAdd.setBackground(new Color(34, 139, 34));   
             btnSubSchedAdd.setForeground(Color.WHITE);  
@@ -1111,7 +1047,6 @@ public class MainScreen extends javax.swing.JFrame {
         setCMBStudGradeViewFilter();
         
         setCMBSubSched();
-        setCMBStudGrade();
     }
     
     public void setTableDisplays(){
@@ -1324,19 +1259,6 @@ public class MainScreen extends javax.swing.JFrame {
                 cmbssFacultyID.addItem(rs.getString("employee_id"));
             
             setFacultyEmployee();
-            
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-    
-    public void setCMBStudGrade(){ 
-        try {
-            cmbsgSemester.removeAllItems();
-            ps = conn.prepareStatement("SELECT semester FROM plm.semester");
-            rs = ps.executeQuery();
-            while(rs.next())
-                cmbsgSemester.addItem(rs.getString("semester"));
             
         } catch (Exception e){
             e.printStackTrace();
@@ -2146,6 +2068,118 @@ public class MainScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Delete was aborted.");
     }//GEN-LAST:event_btnSubSchedDeleteActionPerformed
 
+    private void btnStudGradesAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudGradesAddActionPerformed
+        AddStudGrades addframe = new AddStudGrades();
+        addframe.setVisible(true);
+    }//GEN-LAST:event_btnStudGradesAddActionPerformed
+
+    private void btnStudGradesUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudGradesUpdateActionPerformed
+        // need JOPTIONPANE
+        // applies overwritten values only when mouse clicked outside table
+        // implement several error catching
+        // apply combobx for appropriate columns sa table upon selecting
+        // use 'grades' entity class
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to UPDATE selected records?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){
+            try {
+                ps = conn.prepareStatement("UPDATE plm.grades SET "
+                        + "syear = ?, "
+                        + "semester = ?, "
+                        + "student_no = ?,"
+                        + "subject_code = ?, "
+                        + "block_no = ?, "
+                        + "grade = ? "
+                        + " WHERE "
+                        + "syear = ? AND " // filter catch need
+                        + "semester = ? AND "
+                        + "student_no = ? AND "
+                        + "subject_code = ? AND "
+                        + "block_no = ?");
+
+                for (int row = 0; row < tblStudGrades.getRowCount(); ++row){
+                    for (int col = 0; col < tblStudGrades.getColumnCount(); ++col){
+                        Object obj = tblStudGrades.getValueAt(row, col);
+                        ps.setObject(col+1, obj);
+                        switch (col){
+                            case 0:
+                                ps.setObject(7, obj);
+                                break;
+                            case 1:
+                                ps.setObject(8, obj);
+                                break;
+                            case 2:
+                                ps.setObject(9, obj);
+                                break;
+                            case 3:
+                                ps.setObject(10, obj);
+                                break;
+                            case 4:
+                                ps.setObject(11, obj);
+                                break;
+                        }
+                    }
+                    ps.executeUpdate();
+                }
+                refresh();
+                JOptionPane.showMessageDialog(null, "Grades updated successfully.");
+            } catch (SQLSyntaxErrorException e) { 
+                JOptionPane.showMessageDialog(null, "Please input a valid number for grade.");
+            } catch (Exception e){
+                e.printStackTrace();  
+            }
+        } else 
+            JOptionPane.showMessageDialog(null, "Update was aborted.");
+    }//GEN-LAST:event_btnStudGradesUpdateActionPerformed
+
+    private void btnStudGradesDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudGradesDeleteActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to DELETE selected records?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){            
+            try {            
+                ps = conn.prepareStatement("DELETE FROM plm.grades WHERE "
+                        + "syear = ? AND "
+                        + "semester = ? AND "
+                        + "student_no = ? AND "
+                        + "subject_code = ? AND "
+                        + "block_no = ?");
+
+                int[] c = tblStudGrades.getSelectedRows();
+                for (int a : c){
+                    ps.setObject(1, tblStudGrades.getValueAt(a, 0));
+                    ps.setObject(2, tblStudGrades.getValueAt(a, 1));
+                    ps.setObject(3, tblStudGrades.getValueAt(a, 2));
+                    ps.setObject(4, tblStudGrades.getValueAt(a, 3));
+                    ps.setObject(5, tblStudGrades.getValueAt(a, 4));
+                    ps.executeUpdate();
+                }
+                refresh();
+                JOptionPane.showMessageDialog(null, "Records deleted successfully.");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else 
+            JOptionPane.showMessageDialog(null, "Deletion was aborted.");
+    }//GEN-LAST:event_btnStudGradesDeleteActionPerformed
+
+    private void btnStudGradesSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudGradesSearchActionPerformed
+        if (!txtsgStudentNumber.getText().trim().isBlank()){
+            try {
+                ps = conn.prepareStatement("SELECT * FROM grades WHERE student_no = ?");
+                ps.setObject(1, txtsgStudentNumber.getText().trim());
+                rs = ps.executeQuery();
+                if (rs.next()){
+                    rs = ps.executeQuery();
+                    tblStudGrades.setModel(DbUtils.resultSetToTableModel(rs));
+                } else {
+                    JOptionPane.showMessageDialog(null, "No record found for \"" + txtsgStudentNumber.getText().trim() + "\"");
+                    txtsgStudentNumber.setText("");
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else
+            JOptionPane.showMessageDialog(null, "Please input a student number. " + txtsgStudentNumber.getText().trim());
+    }//GEN-LAST:event_btnStudGradesSearchActionPerformed
+
     private String getValueOrDefault(Object value) {
         return value == null ? "" : value.toString();
     }
@@ -2189,8 +2223,8 @@ public class MainScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStudGrades;
     private javax.swing.JButton btnStudGradesAdd;
-    private javax.swing.JButton btnStudGradesClear;
     private javax.swing.JButton btnStudGradesDelete;
+    private javax.swing.JButton btnStudGradesSearch;
     private javax.swing.JButton btnStudGradesUpdate;
     private javax.swing.JButton btnStudentGradesFilter;
     private javax.swing.JButton btnSubSched;
@@ -2201,11 +2235,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton btnSubjectScheduleFilter;
     private javax.swing.JButton btnViews;
     private javax.swing.JComboBox<String> cmbsgBlockNoFilter;
-    private javax.swing.JComboBox<String> cmbsgBlockNumber;
-    private javax.swing.JComboBox<String> cmbsgCollegeCode;
-    private javax.swing.JComboBox<String> cmbsgGrades;
     private javax.swing.JComboBox<String> cmbsgSchoolYearFilter;
-    private javax.swing.JComboBox<String> cmbsgSemester;
     private javax.swing.JComboBox<String> cmbsgSemesterFilter;
     private javax.swing.JComboBox<String> cmbsgSubjectCodeFilter;
     private javax.swing.JComboBox<String> cmbssBlockNoFilter;
@@ -2230,13 +2260,8 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitleEmployeeCount;
     private javax.swing.JLabel lblTitleStudentCount;
     private javax.swing.JLabel lblsgBlockNoFilter;
-    private javax.swing.JLabel lblsgBlockNumber;
-    private javax.swing.JLabel lblsgCollegeCode;
     private javax.swing.JLabel lblsgFilterTitle;
-    private javax.swing.JLabel lblsgGrades;
-    private javax.swing.JLabel lblsgSchoolYear;
     private javax.swing.JLabel lblsgSchoolYearFilter;
-    private javax.swing.JLabel lblsgSemester;
     private javax.swing.JLabel lblsgSemesterFilter;
     private javax.swing.JLabel lblsgStudentNoFilter;
     private javax.swing.JLabel lblsgStudentNumber;
@@ -2267,7 +2292,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JPanel pnlNavbar;
     private javax.swing.JPanel pnlStudGrades;
     private javax.swing.JPanel pnlStudGradesBtns;
-    private javax.swing.JPanel pnlStudGradesInfo;
     private javax.swing.JPanel pnlStudGradesSearch;
     private javax.swing.JPanel pnlStudGradesViews;
     private javax.swing.JPanel pnlSubSched;
@@ -2286,7 +2310,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JTable tblStudGradesView;
     private javax.swing.JTable tblSubSched;
     private javax.swing.JTable tblSubSchedView;
-    private javax.swing.JTextField txtsgSchoolYear;
     private javax.swing.JTextField txtsgStudentNoFilter;
     private javax.swing.JTextField txtsgStudentNumber;
     private javax.swing.JTextField txtssBlockNo;

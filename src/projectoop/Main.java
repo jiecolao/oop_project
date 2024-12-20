@@ -20,7 +20,7 @@ public class Main {
         // ArrayList<String> b = a.getSemester_opt();
         // b.forEach(item -> System.out.println(item));
         
-        t.setVisible(true);
-//        jfMS.setVisible(true);
+//        t.setVisible(true);
+        jfMS.setVisible(true);
     }    
 }
