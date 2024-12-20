@@ -61,6 +61,15 @@ public class MainScreen extends javax.swing.JFrame {
         btnViews = new javax.swing.JButton();
         btnSubSched = new javax.swing.JButton();
         btnStudGrades = new javax.swing.JButton();
+        lblOthers = new java.awt.Label();
+        lblMenu1 = new java.awt.Label();
+        btnSubject = new javax.swing.JButton();
+        btnSchoolYear = new javax.swing.JButton();
+        btnSemester = new javax.swing.JButton();
+        btnCollege = new javax.swing.JButton();
+        btnCourse = new javax.swing.JButton();
+        btnStudent = new javax.swing.JButton();
+        btnEmployee = new javax.swing.JButton();
         pnlViews = new javax.swing.JPanel();
         pnlViewsHeader = new javax.swing.JPanel();
         pnlBgStudentCount = new javax.swing.JPanel();
@@ -168,18 +177,15 @@ public class MainScreen extends javax.swing.JFrame {
         pnlHeaderbg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHeaderTitle.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
-        lblHeaderTitle.setForeground(new java.awt.Color(0, 0, 0));
         lblHeaderTitle.setText("Information System");
         pnlHeaderbg.add(lblHeaderTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 430, 44));
 
         lblDate.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        lblDate.setForeground(new java.awt.Color(0, 0, 0));
         lblDate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDate.setText("January 01, 2000");
         pnlHeaderbg.add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(603, 20, 240, 19));
 
         lblTime.setFont(new java.awt.Font("Yu Gothic UI", 0, 18)); // NOI18N
-        lblTime.setForeground(new java.awt.Color(0, 0, 0));
         lblTime.setText("12:00:00");
         pnlHeaderbg.add(lblTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, -1, 19));
 
@@ -198,7 +204,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnViewsActionPerformed(evt);
             }
         });
-        pnlNavbar.add(btnViews, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 249, 210, 60));
+        pnlNavbar.add(btnViews, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 210, 60));
 
         btnSubSched.setBackground(new java.awt.Color(128, 0, 32));
         btnSubSched.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -210,7 +216,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnSubSchedActionPerformed(evt);
             }
         });
-        pnlNavbar.add(btnSubSched, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 309, 210, 60));
+        pnlNavbar.add(btnSubSched, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 210, 60));
 
         btnStudGrades.setBackground(new java.awt.Color(128, 0, 32));
         btnStudGrades.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
@@ -222,7 +228,61 @@ public class MainScreen extends javax.swing.JFrame {
                 btnStudGradesActionPerformed(evt);
             }
         });
-        pnlNavbar.add(btnStudGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 369, 210, 60));
+        pnlNavbar.add(btnStudGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 210, 60));
+
+        lblOthers.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 12)); // NOI18N
+        lblOthers.setForeground(new java.awt.Color(255, 255, 255));
+        lblOthers.setText("OTHERS");
+        pnlNavbar.add(lblOthers, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+
+        lblMenu1.setFont(new java.awt.Font("Yu Gothic UI Light", 0, 12)); // NOI18N
+        lblMenu1.setForeground(new java.awt.Color(255, 255, 255));
+        lblMenu1.setText("MENU");
+        pnlNavbar.add(lblMenu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, -1, -1));
+
+        btnSubject.setBackground(new java.awt.Color(128, 0, 32));
+        btnSubject.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnSubject.setForeground(new java.awt.Color(255, 255, 255));
+        btnSubject.setText("Subject");
+        btnSubject.setActionCommand("Subject");
+        pnlNavbar.add(btnSubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 660, 210, 60));
+
+        btnSchoolYear.setBackground(new java.awt.Color(128, 0, 32));
+        btnSchoolYear.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnSchoolYear.setForeground(new java.awt.Color(255, 255, 255));
+        btnSchoolYear.setText("School Year");
+        btnSchoolYear.setOpaque(true);
+        pnlNavbar.add(btnSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 210, 60));
+
+        btnSemester.setBackground(new java.awt.Color(128, 0, 32));
+        btnSemester.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnSemester.setForeground(new java.awt.Color(255, 255, 255));
+        btnSemester.setText("Semester");
+        pnlNavbar.add(btnSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 210, 60));
+
+        btnCollege.setBackground(new java.awt.Color(128, 0, 32));
+        btnCollege.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnCollege.setForeground(new java.awt.Color(255, 255, 255));
+        btnCollege.setText("College");
+        pnlNavbar.add(btnCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 210, 60));
+
+        btnCourse.setBackground(new java.awt.Color(128, 0, 32));
+        btnCourse.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnCourse.setForeground(new java.awt.Color(255, 255, 255));
+        btnCourse.setText("Course");
+        pnlNavbar.add(btnCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 210, 60));
+
+        btnStudent.setBackground(new java.awt.Color(128, 0, 32));
+        btnStudent.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnStudent.setForeground(new java.awt.Color(255, 255, 255));
+        btnStudent.setText("Student");
+        pnlNavbar.add(btnStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 210, 60));
+
+        btnEmployee.setBackground(new java.awt.Color(128, 0, 32));
+        btnEmployee.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
+        btnEmployee.setForeground(new java.awt.Color(255, 255, 255));
+        btnEmployee.setText("Employee");
+        pnlNavbar.add(btnEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 210, 60));
 
         pnlFramebg.add(pnlNavbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 720));
 
@@ -239,12 +299,10 @@ public class MainScreen extends javax.swing.JFrame {
         pnlContStudentCount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitleStudentCount.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
-        lblTitleStudentCount.setForeground(new java.awt.Color(0, 0, 0));
         lblTitleStudentCount.setText("Student Count");
         pnlContStudentCount.add(lblTitleStudentCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 190, 30));
 
         lblStudentCount.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
-        lblStudentCount.setForeground(new java.awt.Color(0, 0, 0));
         lblStudentCount.setText("1");
         pnlContStudentCount.add(lblStudentCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 190, 40));
 
@@ -264,12 +322,10 @@ public class MainScreen extends javax.swing.JFrame {
         pnlContEmployeeCount.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitleEmployeeCount.setFont(new java.awt.Font("Yu Gothic UI", 1, 16)); // NOI18N
-        lblTitleEmployeeCount.setForeground(new java.awt.Color(0, 0, 0));
         lblTitleEmployeeCount.setText("Employee Count");
         pnlContEmployeeCount.add(lblTitleEmployeeCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 190, 30));
 
         lblEmployeeCount.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
-        lblEmployeeCount.setForeground(new java.awt.Color(0, 0, 0));
         lblEmployeeCount.setText("1");
         pnlContEmployeeCount.add(lblEmployeeCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 190, 40));
 
@@ -459,96 +515,82 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSubSched.setMinimumSize(new java.awt.Dimension(870, 640));
         pnlSubSched.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlSubSchedInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), " Course Details ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
-        pnlSubSchedInfo.setForeground(new java.awt.Color(0, 0, 0));
+        pnlSubSchedInfo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), " Course Details ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Yu Gothic UI", 1, 18))); // NOI18N
         pnlSubSchedInfo.setMinimumSize(new java.awt.Dimension(830, 200));
         pnlSubSchedInfo.setOpaque(false);
         pnlSubSchedInfo.setPreferredSize(new java.awt.Dimension(830, 200));
         pnlSubSchedInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblssSchoolYear.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssSchoolYear.setForeground(new java.awt.Color(0, 0, 0));
         lblssSchoolYear.setText("School Year      :");
         lblssSchoolYear.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssSchoolYear.setPreferredSize(new java.awt.Dimension(100, 20));
         pnlSubSchedInfo.add(lblssSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 35, 105, 20));
 
         lblssSemester.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssSemester.setForeground(new java.awt.Color(0, 0, 0));
         lblssSemester.setText("Semester         :");
         lblssSemester.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssSemester.setPreferredSize(new java.awt.Dimension(100, 20));
         pnlSubSchedInfo.add(lblssSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, 105, 20));
 
         lblssCollegeCode.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssCollegeCode.setForeground(new java.awt.Color(0, 0, 0));
         lblssCollegeCode.setText("College Code   :");
         lblssCollegeCode.setMinimumSize(new java.awt.Dimension(80, 20));
         pnlSubSchedInfo.add(lblssCollegeCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 95, 105, 20));
 
         lblssBlockNo.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssBlockNo.setForeground(new java.awt.Color(0, 0, 0));
         lblssBlockNo.setText("Block No          :");
         lblssBlockNo.setMinimumSize(new java.awt.Dimension(80, 20));
         pnlSubSchedInfo.add(lblssBlockNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 125, 105, 20));
 
         lblssSubjectCode.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssSubjectCode.setForeground(new java.awt.Color(0, 0, 0));
         lblssSubjectCode.setText("Subject Code   :");
         lblssSubjectCode.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssSubjectCode.setPreferredSize(new java.awt.Dimension(100, 20));
         pnlSubSchedInfo.add(lblssSubjectCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 155, 105, 20));
 
         lblssDay.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssDay.setForeground(new java.awt.Color(0, 0, 0));
         lblssDay.setText("Day          :");
         lblssDay.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssDay.setPreferredSize(new java.awt.Dimension(100, 20));
         pnlSubSchedInfo.add(lblssDay, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 35, 70, -1));
 
         lblssTime.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssTime.setForeground(new java.awt.Color(0, 0, 0));
         lblssTime.setText("Time        :");
         lblssTime.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssTime.setPreferredSize(new java.awt.Dimension(100, 20));
         pnlSubSchedInfo.add(lblssTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 65, 70, -1));
 
         lblssType.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssType.setForeground(new java.awt.Color(0, 0, 0));
         lblssType.setText("Type        :");
         lblssType.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssType.setPreferredSize(new java.awt.Dimension(100, 20));
         pnlSubSchedInfo.add(lblssType, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 95, 70, -1));
 
         lblssRoom.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssRoom.setForeground(new java.awt.Color(0, 0, 0));
         lblssRoom.setText("Room      :");
         lblssRoom.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssRoom.setPreferredSize(new java.awt.Dimension(100, 20));
         pnlSubSchedInfo.add(lblssRoom, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 125, 70, -1));
 
         lblssSequenceNo.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssSequenceNo.setForeground(new java.awt.Color(0, 0, 0));
         lblssSequenceNo.setText("Sequence No  :");
         lblssSequenceNo.setMinimumSize(new java.awt.Dimension(80, 20));
         pnlSubSchedInfo.add(lblssSequenceNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 35, 100, -1));
 
         lblssFacultyID.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssFacultyID.setForeground(new java.awt.Color(0, 0, 0));
         lblssFacultyID.setText("Faculty ID   :");
         lblssFacultyID.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssFacultyID.setPreferredSize(new java.awt.Dimension(100, 20));
         pnlSubSchedInfo.add(lblssFacultyID, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 65, 100, -1));
 
         lblssFacultyNameTitle.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblssFacultyNameTitle.setForeground(new java.awt.Color(0, 0, 0));
         lblssFacultyNameTitle.setText("Faculty Name  :");
         lblssFacultyNameTitle.setMinimumSize(new java.awt.Dimension(80, 20));
         lblssFacultyNameTitle.setPreferredSize(new java.awt.Dimension(100, 20));
         pnlSubSchedInfo.add(lblssFacultyNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 95, 110, -1));
 
         lblFacultyName.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblFacultyName.setForeground(new java.awt.Color(0, 0, 0));
         lblFacultyName.setText("--");
         lblFacultyName.setMinimumSize(new java.awt.Dimension(80, 20));
         lblFacultyName.setPreferredSize(new java.awt.Dimension(100, 20));
@@ -719,7 +761,6 @@ public class MainScreen extends javax.swing.JFrame {
         pnlStudGradesBtns.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblsgStudentNumber.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
-        lblsgStudentNumber.setForeground(new java.awt.Color(0, 0, 0));
         lblsgStudentNumber.setText("Student Number  :");
         lblsgStudentNumber.setMinimumSize(new java.awt.Dimension(125, 20));
         lblsgStudentNumber.setPreferredSize(new java.awt.Dimension(125, 20));
@@ -2221,17 +2262,24 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCollege;
+    private javax.swing.JButton btnCourse;
+    private javax.swing.JButton btnEmployee;
+    private javax.swing.JButton btnSchoolYear;
+    private javax.swing.JButton btnSemester;
     private javax.swing.JButton btnStudGrades;
     private javax.swing.JButton btnStudGradesAdd;
     private javax.swing.JButton btnStudGradesDelete;
     private javax.swing.JButton btnStudGradesSearch;
     private javax.swing.JButton btnStudGradesUpdate;
+    private javax.swing.JButton btnStudent;
     private javax.swing.JButton btnStudentGradesFilter;
     private javax.swing.JButton btnSubSched;
     private javax.swing.JButton btnSubSchedAdd;
     private javax.swing.JButton btnSubSchedClear;
     private javax.swing.JButton btnSubSchedDelete;
     private javax.swing.JButton btnSubSchedUpdate;
+    private javax.swing.JButton btnSubject;
     private javax.swing.JButton btnSubjectScheduleFilter;
     private javax.swing.JButton btnViews;
     private javax.swing.JComboBox<String> cmbsgBlockNoFilter;
@@ -2254,6 +2302,8 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblEmployeeIcon;
     private javax.swing.JLabel lblFacultyName;
     private javax.swing.JLabel lblHeaderTitle;
+    private java.awt.Label lblMenu1;
+    private java.awt.Label lblOthers;
     private javax.swing.JLabel lblStudentCount;
     private javax.swing.JLabel lblStudentIcon;
     private javax.swing.JLabel lblTime;
