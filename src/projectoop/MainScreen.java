@@ -26,6 +26,9 @@ public class MainScreen extends javax.swing.JFrame {
     String sem;
     String college;
     String course;
+    String studentno;
+    String employeeno;
+    String subcode;
     
     private Timer timer = null;
     
@@ -278,11 +281,14 @@ public class MainScreen extends javax.swing.JFrame {
         cmbStatus3 = new javax.swing.JComboBox<>();
         lblDateGraduatedEmp = new javax.swing.JLabel();
         txtDateGraduatedEmp = new javax.swing.JTextField();
+        btnAddEmp = new javax.swing.JButton();
+        btnUpdateEmp = new javax.swing.JButton();
+        btnDeleteEmp = new javax.swing.JButton();
         pnlSubject = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblSubject = new javax.swing.JTable();
-        lblCourseCodeSub = new javax.swing.JLabel();
-        txtCourseCodeSub = new javax.swing.JTextField();
+        lblSubjectCodeSub = new javax.swing.JLabel();
+        txtSubjectCodeSub = new javax.swing.JTextField();
         lblCollegeSub = new javax.swing.JLabel();
         cmbCollegeSub = new javax.swing.JComboBox<>();
         lblSubjDesc = new javax.swing.JLabel();
@@ -1277,6 +1283,11 @@ public class MainScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblStudent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblStudentMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblStudent);
 
         pnlStudent.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, -1, -1));
@@ -1311,6 +1322,7 @@ public class MainScreen extends javax.swing.JFrame {
         lblGender.setText("Gender : ");
         pnlStudent.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, -1));
 
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
         pnlStudent.add(cmbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 100, -1));
 
         txtMobileNo.setToolTipText("");
@@ -1345,12 +1357,27 @@ public class MainScreen extends javax.swing.JFrame {
         pnlStudent.add(cmbStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, -1, -1));
 
         btnAddStudent.setText("Add");
+        btnAddStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStudentActionPerformed(evt);
+            }
+        });
         pnlStudent.add(btnAddStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, -1, -1));
 
         btnUpdateStudent.setText("Update");
+        btnUpdateStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateStudentActionPerformed(evt);
+            }
+        });
         pnlStudent.add(btnUpdateStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 500, -1, -1));
 
         btnDeleteStudent.setText("Delete");
+        btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteStudentActionPerformed(evt);
+            }
+        });
         pnlStudent.add(btnDeleteStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 500, -1, -1));
 
         pnlFramebg.add(pnlStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
@@ -1369,6 +1396,11 @@ public class MainScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEmployeeMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblEmployee);
 
         pnlEmployee.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
@@ -1395,6 +1427,7 @@ public class MainScreen extends javax.swing.JFrame {
         txtEmailEmp.setToolTipText("");
         pnlEmployee.add(txtEmailEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 110, -1));
 
+        cmbGenderEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
         pnlEmployee.add(cmbGenderEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 100, -1));
 
         lblGenderEmp.setText("Gender : ");
@@ -1431,6 +1464,30 @@ public class MainScreen extends javax.swing.JFrame {
         pnlEmployee.add(lblDateGraduatedEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, 20));
         pnlEmployee.add(txtDateGraduatedEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 90, 20));
 
+        btnAddEmp.setText("Add");
+        btnAddEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEmpActionPerformed(evt);
+            }
+        });
+        pnlEmployee.add(btnAddEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, -1, -1));
+
+        btnUpdateEmp.setText("Update");
+        btnUpdateEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateEmpActionPerformed(evt);
+            }
+        });
+        pnlEmployee.add(btnUpdateEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, -1, -1));
+
+        btnDeleteEmp.setText("Delete");
+        btnDeleteEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteEmpActionPerformed(evt);
+            }
+        });
+        pnlEmployee.add(btnDeleteEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, -1, -1));
+
         pnlFramebg.add(pnlEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         pnlSubject.setPreferredSize(new java.awt.Dimension(870, 640));
@@ -1447,13 +1504,18 @@ public class MainScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblSubject.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSubjectMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tblSubject);
 
         pnlSubject.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
-        lblCourseCodeSub.setText("Course Code :");
-        pnlSubject.add(lblCourseCodeSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
-        pnlSubject.add(txtCourseCodeSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 120, 90, -1));
+        lblSubjectCodeSub.setText("Course Code :");
+        pnlSubject.add(lblSubjectCodeSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        pnlSubject.add(txtSubjectCodeSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 120, 90, -1));
 
         lblCollegeSub.setText("College :");
         pnlSubject.add(lblCollegeSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
@@ -1487,12 +1549,27 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSubject.add(cmbStatusSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, -1, -1));
 
         btnAddSub.setText("Add");
+        btnAddSub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddSubActionPerformed(evt);
+            }
+        });
         pnlSubject.add(btnAddSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
 
         btnUpdateSub.setText("Update");
+        btnUpdateSub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateSubActionPerformed(evt);
+            }
+        });
         pnlSubject.add(btnUpdateSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, -1, -1));
 
         btnDeleteSub.setText("Delete");
+        btnDeleteSub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteSubActionPerformed(evt);
+            }
+        });
         pnlSubject.add(btnDeleteSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 420, -1, -1));
 
         pnlFramebg.add(pnlSubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
@@ -1826,6 +1903,7 @@ public class MainScreen extends javax.swing.JFrame {
             rs = ps.executeQuery();
             tblStudent.setModel(DbUtils.resultSetToTableModel(rs));
             
+            
             // employee 
             ps = conn.prepareStatement("SELECT * FROM plm.employee");
             rs = ps.executeQuery();
@@ -1892,6 +1970,7 @@ public class MainScreen extends javax.swing.JFrame {
             while (rs.next()){
                 cmbssCollegeFilter.addItem(rs.getString("college_code"));
                 cmbCollege.addItem(rs.getString("college_code"));
+                cmbCollegeSub.addItem(rs.getString("college_code"));
             }
             cmbssBlockNoFilter.removeAllItems();
             ps = conn.prepareStatement("SELECT block_no FROM subject_schedule");
@@ -1899,6 +1978,13 @@ public class MainScreen extends javax.swing.JFrame {
             cmbssBlockNoFilter.addItem(" -- ");
             while (rs.next())
                 cmbssBlockNoFilter.addItem(rs.getString("block_no"));
+            
+            // -- 
+            cmbCourse.removeAllItems();
+            ps = conn.prepareStatement("SELECT course_code FROM course");
+            rs = ps.executeQuery();
+            while (rs.next())
+                cmbCourse.addItem(rs.getString("course_code"));
             
         } catch (Exception e){
             e.printStackTrace();
@@ -3376,6 +3462,341 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteCourseActionPerformed
 
+    private void tblStudentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudentMouseClicked
+        int row = tblStudent.getSelectedRow();
+        txtStudentNo.setText(getValueOrDefault(tblStudent.getValueAt(row, 0)));
+        txtLastName.setText(getValueOrDefault(tblStudent.getValueAt(row, 1)));
+        txtFirstName.setText(getValueOrDefault(tblStudent.getValueAt(row, 2)));
+        txtEmail.setText(getValueOrDefault(tblStudent.getValueAt(row, 3)));
+        cmbGender.setSelectedItem(getValueOrDefault(tblStudent.getValueAt(row, 4)));
+        cmbCourse.setSelectedItem(getValueOrDefault(tblStudent.getValueAt(row, 5)));
+        txtMobileNo.setText(getValueOrDefault(tblStudent.getValueAt(row, 6)));
+        txtAddress.setText(getValueOrDefault(tblStudent.getValueAt(row, 7)));
+        txtBirthDate.setText(getValueOrDefault(tblStudent.getValueAt(row, 8)));
+        cmbStatus2.setSelectedItem(getValueOrDefault(tblStudent.getValueAt(row, 9)));
+        txtDateStart.setText(getValueOrDefault(tblStudent.getValueAt(row, 10)));
+        txtDateGraduated.setText(getValueOrDefault(tblStudent.getValueAt(row, 11)));
+        this.studentno = tblStudent.getValueAt(row, 0).toString();
+    }//GEN-LAST:event_tblStudentMouseClicked
+
+    private void btnAddStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudentActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to ADD record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("INSERT INTO student ("
+                        + "student_no, lastname, firstname, email, "
+                        + "gender, course_code, cp_num, address, "
+                        + "bday, status, date_started, date_graduated) "
+                        + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                ps.setObject(1, txtStudentNo.getText().trim());
+                ps.setObject(2, txtLastName.getText().trim());
+                ps.setObject(3, txtFirstName.getText().trim());
+                ps.setObject(4, txtEmail.getText().trim());
+                ps.setObject(5, cmbGender.getSelectedItem());
+                ps.setObject(6, cmbCourse.getSelectedItem());
+                ps.setObject(7, txtMobileNo.getText().trim());
+                ps.setObject(8, txtAddress.getText().trim());
+                ps.setObject(9, txtBirthDate.getText().trim());
+                ps.setObject(10, cmbStatus2.getSelectedItem());
+                if (txtDateStart.getText().trim().isBlank()){
+                    ps.setObject(11, txtDateStart.getText().trim());
+                } else if (txtDateStart.getText().trim().matches("\\d{2}-\\d{2}-\\d{4}")){                
+                    ps.setObject(11, txtDateStart.getText().trim());
+                }
+                if (txtDateGraduated.getText().trim().isBlank()){
+                    ps.setObject(12, txtDateGraduated.getText().trim());
+                } else if (txtDateGraduated.getText().trim().matches("\\d{2}-\\d{2}-\\d{4}")){                
+                    ps.setObject(12, txtDateGraduated.getText().trim());
+                }
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Record added successfully.");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Add was aborted.");
+        }
+    }//GEN-LAST:event_btnAddStudentActionPerformed
+
+    private void btnUpdateStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStudentActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to UPDATE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("UPDATE student SET "
+                        + "student_no = ?, "
+                        + "lastname = ?, "
+                        + "firstname = ?, "
+                        + "email = ?, "
+                        + "gender = ?, "
+                        + "course_code = ?, "
+                        + "cp_num = ?, "
+                        + "address = ?, "
+                        + "bday = ?, "
+                        + "status = ?, "
+                        + "date_started = ?, "
+                        + "date_graduated = ? "
+                        + "WHERE "
+                        + "student_no = ?");
+                ps.setObject(1, txtStudentNo.getText().trim());
+                ps.setObject(2, txtLastName.getText().trim());
+                ps.setObject(3, txtFirstName.getText().trim());
+                ps.setObject(4, txtEmail.getText().trim());
+                ps.setObject(5, cmbGender.getSelectedItem());
+                ps.setObject(6, cmbCourse.getSelectedItem());
+                ps.setObject(7, txtMobileNo.getText().trim());
+                ps.setObject(8, txtAddress.getText().trim());
+                ps.setObject(9, txtBirthDate.getText().trim());
+                ps.setObject(10, cmbStatus2.getSelectedItem());
+                ps.setObject(11, txtDateStart.getText().trim());
+                ps.setObject(12, txtDateGraduated.getText().trim());
+                ps.setObject(13, studentno);
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record updated successfully.");
+            } catch (SQLDataException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "UPDATE was aborted.");
+        }
+    }//GEN-LAST:event_btnUpdateStudentActionPerformed
+
+    private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to DELETE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("DELETE FROM student WHERE student_no = ?");
+                ps.setObject(1, txtStudentNo.getText().trim());
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record deleted successfully.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Deletion was aborted.");
+        }
+    }//GEN-LAST:event_btnDeleteStudentActionPerformed
+
+    private void tblEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeeMouseClicked
+        int row = tblEmployee.getSelectedRow();
+        txtEmployeeID.setText(getValueOrDefault(tblEmployee.getValueAt(row, 0)));
+        txtLastNameEmp.setText(getValueOrDefault(tblEmployee.getValueAt(row, 1)));
+        txtFirstNameEmp.setText(getValueOrDefault(tblEmployee.getValueAt(row, 2)));
+        txtEmailEmp.setText(getValueOrDefault(tblEmployee.getValueAt(row, 3)));
+        cmbGenderEmp.setSelectedItem(getValueOrDefault(tblEmployee.getValueAt(row, 4)));
+        txtMobileNoEmp.setText(getValueOrDefault(tblEmployee.getValueAt(row, 5)));
+        txtAddressEmp.setText(getValueOrDefault(tblEmployee.getValueAt(row, 6)));
+        txtBirthDateEmp.setText(getValueOrDefault(tblEmployee.getValueAt(row, 7)));
+        cmbStatus3.setSelectedItem(getValueOrDefault(tblEmployee.getValueAt(row, 8)));
+        txtDateStartEmp.setText(getValueOrDefault(tblEmployee.getValueAt(row, 9)));
+        txtDateGraduatedEmp.setText(getValueOrDefault(tblEmployee.getValueAt(row, 10)));
+        this.employeeno = tblEmployee.getValueAt(row, 0).toString();
+    }//GEN-LAST:event_tblEmployeeMouseClicked
+
+    private void btnAddEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmpActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to ADD record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("INSERT INTO employee ("
+                        + "employee_id, lastname, firstname, email, "
+                        + "gender, cp_num, address, bday, status, "
+                        + "date_started, date_resigned) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                ps.setObject(1, txtEmployeeID.getText().trim());
+                ps.setObject(2, txtLastNameEmp.getText().trim());
+                ps.setObject(3, txtFirstNameEmp.getText().trim());
+                ps.setObject(4, txtEmailEmp.getText().trim());
+                ps.setObject(5, cmbGenderEmp.getSelectedItem());
+                ps.setObject(6, txtMobileNoEmp.getText().trim());
+                ps.setObject(7, txtAddressEmp.getText().trim());
+                ps.setObject(8, txtBirthDateEmp.getText().trim());
+                ps.setObject(9, cmbStatus3.getSelectedItem());
+                if (txtDateStartEmp.getText().trim().isBlank()){
+                    ps.setObject(10, txtDateStartEmp.getText().trim());
+                } else if (txtDateStartEmp.getText().trim().matches("\\d{2}-\\d{2}-\\d{4}")){                
+                    ps.setObject(10, txtDateStartEmp.getText().trim());
+                }
+                if (txtDateGraduatedEmp.getText().trim().isBlank()){
+                    ps.setObject(11, txtDateGraduatedEmp.getText().trim());
+                } else if (txtDateGraduatedEmp.getText().trim().matches("\\d{2}-\\d{2}-\\d{4}")){                
+                    ps.setObject(11, txtDateGraduatedEmp.getText().trim());
+                }
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record added successfully.");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Add was aborted.");
+        }
+    }//GEN-LAST:event_btnAddEmpActionPerformed
+
+    private void btnUpdateEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateEmpActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to UPDATE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("UPDATE employee SET "
+                        + "employee_id = ?, "
+                        + "lastname = ?, "
+                        + "firstname = ?, "
+                        + "email = ?, "
+                        + "gender = ?, "
+                        + "cp_num = ?, "
+                        + "address = ?, "
+                        + "bday = ?, "
+                        + "status = ?, "
+                        + "date_started = ?, "
+                        + "date_resigned = ? "
+                        + "WHERE "
+                        + "employee_id = ?");
+                ps.setObject(1, txtEmployeeID.getText().trim());
+                ps.setObject(2, txtLastNameEmp.getText().trim());
+                ps.setObject(3, txtFirstNameEmp.getText().trim());
+                ps.setObject(4, txtEmailEmp.getText().trim());
+                ps.setObject(5, cmbGenderEmp.getSelectedItem());
+                ps.setObject(6, txtMobileNoEmp.getText().trim());
+                ps.setObject(7, txtAddressEmp.getText().trim());
+                ps.setObject(8, txtBirthDateEmp.getText().trim());
+                ps.setObject(9, cmbStatus3.getSelectedItem());
+                ps.setObject(10, txtDateStartEmp.getText().trim());
+                ps.setObject(11, txtDateGraduatedEmp.getText().trim());
+                ps.setObject(12, employeeno);
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record updated successfully.");
+            } catch (SQLDataException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "UPDATE was aborted.");
+        }
+    }//GEN-LAST:event_btnUpdateEmpActionPerformed
+
+    private void btnDeleteEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEmpActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to DELETE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("DELETE FROM employee WHERE employee_id = ?");
+                ps.setObject(1, txtEmployeeID.getText().trim());
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record deleted successfully.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Deletion was aborted.");
+        }
+    }//GEN-LAST:event_btnDeleteEmpActionPerformed
+
+    private void tblSubjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSubjectMouseClicked
+        int row = tblSubject.getSelectedRow();
+        txtSubjectCodeSub.setText(getValueOrDefault(tblSubject.getValueAt(row, 0)));
+        txtSubjDesc.setText(getValueOrDefault(tblSubject.getValueAt(row, 1)));
+        txtUnits.setText(getValueOrDefault(tblSubject.getValueAt(row, 2)));
+        txtCurriculumn.setText(getValueOrDefault(tblSubject.getValueAt(row, 3)));
+        cmbCollegeSub.setSelectedItem(getValueOrDefault(tblSubject.getValueAt(row, 4)));
+        cmbStatusSub.setSelectedItem(getValueOrDefault(tblSubject.getValueAt(row, 5)));
+        txtDateOpenedSub.setText(getValueOrDefault(tblSubject.getValueAt(row, 6)));
+        txtDateClosedSub.setText(getValueOrDefault(tblSubject.getValueAt(row, 7)));
+        this.subcode = tblSubject.getValueAt(row, 0).toString();
+    }//GEN-LAST:event_tblSubjectMouseClicked
+
+    private void btnAddSubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSubActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to ADD record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("INSERT INTO subject ("
+                        + "subject_code, description, units, curriculum, college_code, status, date_opened, date_closed"
+                        + ") "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                ps.setObject(1, txtSubjectCodeSub.getText().trim());
+                ps.setObject(2, txtSubjDesc.getText().trim());
+                ps.setObject(3, txtUnits.getText().trim());
+                ps.setObject(4, txtCurriculumn.getText().trim());
+                ps.setObject(5, cmbCollegeSub.getSelectedItem());
+                ps.setObject(6, cmbStatusSub.getSelectedItem());
+                if (txtDateOpenedSub.getText().trim().isBlank()){
+                    ps.setObject(7, txtDateOpenedSub.getText().trim());
+                } else if (txtDateOpenedSub.getText().trim().matches("\\d{2}-\\d{2}-\\d{4}")){                
+                    ps.setObject(7, txtDateOpenedSub.getText().trim());
+                }
+                if (txtDateClosedSub.getText().trim().isBlank()){
+                    ps.setObject(8, txtDateClosedSub.getText().trim());
+                } else if (txtDateClosedSub.getText().trim().matches("\\d{2}-\\d{2}-\\d{4}")){                
+                    ps.setObject(8, txtDateClosedSub.getText().trim());
+                }
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Record added successfully.");
+                
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Add was aborted.");
+        }
+    }//GEN-LAST:event_btnAddSubActionPerformed
+
+    private void btnUpdateSubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSubActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to UPDATE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("UPDATE subject SET "
+                        + "subject_code = ?, "
+                        + "description = ?, "
+                        + "units = ?, "
+                        + "curriculum = ?, "
+                        + "college_code = ?, "
+                        + "status = ?, "
+                        + "date_opened = ?, "
+                        + "date_closed = ? "
+                        + "WHERE "
+                        + "subject_code = ?");
+                ps.setObject(1, txtSubjectCodeSub.getText().trim());
+                ps.setObject(2, txtSubjDesc.getText().trim());
+                ps.setObject(3, txtUnits.getText().trim());
+                ps.setObject(4, txtCurriculumn.getText().trim());
+                ps.setObject(5, cmbCollegeSub.getSelectedItem());
+                ps.setObject(6, cmbStatusSub.getSelectedItem());
+                ps.setObject(7, txtDateOpenedSub.getText().trim());
+                ps.setObject(8, txtDateClosedSub.getText().trim());
+                ps.setObject(9, subcode);
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record updated successfully.");
+            } catch (SQLDataException e) {
+                JOptionPane.showMessageDialog(null, "Please follow the format.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "UPDATE was aborted.");
+        }
+    }//GEN-LAST:event_btnUpdateSubActionPerformed
+
+    private void btnDeleteSubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSubActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to DELETE record?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){ 
+            try {
+                ps = conn.prepareStatement("DELETE FROM subject WHERE subject_code = ?");
+                ps.setObject(1, txtSubjectCodeSub.getText().trim());
+                ps.executeQuery();
+                JOptionPane.showMessageDialog(null, "Record deleted successfully.");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Deletion was aborted.");
+        }
+    }//GEN-LAST:event_btnDeleteSubActionPerformed
+
     private String getValueOrDefault(Object value) {
         return value == null ? "" : value.toString();
     }
@@ -3419,12 +3840,14 @@ public class MainScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCollege;
     private javax.swing.JButton btnAddCourse;
+    private javax.swing.JButton btnAddEmp;
     private javax.swing.JButton btnAddStudent;
     private javax.swing.JButton btnAddSub;
     private javax.swing.JButton btnCollege;
     private javax.swing.JButton btnCourse;
     private javax.swing.JButton btnDeleteCollege;
     private javax.swing.JButton btnDeleteCourse;
+    private javax.swing.JButton btnDeleteEmp;
     private javax.swing.JButton btnDeleteStudent;
     private javax.swing.JButton btnDeleteSub;
     private javax.swing.JButton btnEmployee;
@@ -3452,6 +3875,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton btnSubjectScheduleFilter;
     private javax.swing.JButton btnUpdateCollege;
     private javax.swing.JButton btnUpdateCourse;
+    private javax.swing.JButton btnUpdateEmp;
     private javax.swing.JButton btnUpdateStudent;
     private javax.swing.JButton btnUpdateSub;
     private javax.swing.JButton btnViews;
@@ -3494,7 +3918,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblCollegeSub;
     private javax.swing.JLabel lblCourse;
     private javax.swing.JLabel lblCourseCode;
-    private javax.swing.JLabel lblCourseCodeSub;
     private javax.swing.JLabel lblCourseDesc;
     private javax.swing.JLabel lblCurriculumn;
     private javax.swing.JLabel lblDash;
@@ -3538,6 +3961,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblStudentIcon;
     private javax.swing.JLabel lblStudentNo;
     private javax.swing.JLabel lblSubjDesc;
+    private javax.swing.JLabel lblSubjectCodeSub;
     private javax.swing.JLabel lblTime;
     private javax.swing.JLabel lblTitleEmployeeCount;
     private javax.swing.JLabel lblTitleStudentCount;
@@ -3619,7 +4043,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JTextField txtColDesc;
     private javax.swing.JTextField txtCollegeCode;
     private javax.swing.JTextField txtCourseCode;
-    private javax.swing.JTextField txtCourseCodeSub;
     private javax.swing.JTextField txtCourseDesc;
     private javax.swing.JTextField txtCurriculumn;
     private javax.swing.JTextField txtDateClosed;
@@ -3646,6 +4069,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JTextField txtStartSY;
     private javax.swing.JTextField txtStudentNo;
     private javax.swing.JTextField txtSubjDesc;
+    private javax.swing.JTextField txtSubjectCodeSub;
     private javax.swing.JTextField txtUnits;
     private javax.swing.JTextField txtsgStudentNoFilter;
     private javax.swing.JTextField txtsgStudentNumber;
