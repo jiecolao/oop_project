@@ -1,5 +1,8 @@
 package projectoop;
 
+import entities.Grades;
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         // TODO: wag magclear ang subsched n grades kapag aalis
@@ -12,6 +15,10 @@ public class Main {
         ConnectDB clConnect = new ConnectDB();
         MainScreen jfMS = new MainScreen();
         Test t = new Test();
+        
+        Grades a = new Grades();
+        // ArrayList<String> b = a.getSemester_opt();
+        // b.forEach(item -> System.out.println(item));
         
         t.setVisible(true);
 //        jfMS.setVisible(true);

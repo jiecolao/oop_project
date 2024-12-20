@@ -1,4 +1,4 @@
-package projectoop;
+package entities;
 
 public class SubjectSchedule {
     

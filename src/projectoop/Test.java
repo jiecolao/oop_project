@@ -1,6 +1,13 @@
 package projectoop;
 
+import entities.Grades;
 import java.sql.*;
+import java.util.ArrayList;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import net.proteanit.sql.DbUtils;
 
@@ -8,6 +15,8 @@ public class Test extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    Grades grade;
+    
     public Test() {
         initComponents();
     }
@@ -19,8 +28,11 @@ public class Test extends javax.swing.JFrame {
         T1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         T2 = new javax.swing.JTable();
-        btn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1080, 720));
@@ -33,10 +45,10 @@ public class Test extends javax.swing.JFrame {
 
         T1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "SYEAR", "SEMESTER", "STUDENT_NO", "SUBJECT_CODE", "BLOCK_NO", "GRADE"
             }
         ));
         jScrollPane1.setViewportView(T1);
@@ -58,21 +70,45 @@ public class Test extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, -1, -1));
 
-        btn.setText("jButton1");
-        btn.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
-        getContentPane().add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, -1, -1));
+        getContentPane().add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 70, -1, -1));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
+        getContentPane().add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 70, -1, -1));
+
+        jButton2.setText("Add Row");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
+
+        jButton3.setText("Remove Row");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, -1, -1));
+
+        jButton4.setText("Add grades");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -81,80 +117,140 @@ public class Test extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         display();
+        initTblGrades();
     }//GEN-LAST:event_formWindowActivated
 
-    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // need JOPTIONPANE
-        try {
-            ps = conn.prepareStatement("UPDATE plm.grades SET "
-                    + "syear = ?, "
-                    + "semester = ?, "
-                    + "student_no = ?,"
-                    + "subject_code = ?, "
-                    + "block_no = ?, "
-                    + "grade = ? "
-                    + " WHERE "
-                    + "syear = ? AND "
-                    + "semester = ? AND "
-                    + "student_no = ? AND "
-                    + "subject_code = ? AND "
-                    + "block_no = ?");
-            
-            for (int row = 0; row < T2.getRowCount(); ++row){
-                for (int col = 0; col < T2.getColumnCount(); ++col){
-                    Object obj = T2.getValueAt(row, col);
-                    ps.setObject(col+1, obj);
-                    switch (col){
-                        case 0:
-                            ps.setObject(7, obj);
-                            break;
-                        case 1:
-                            ps.setObject(8, obj);
-                            break;
-                        case 2:
-                            ps.setObject(9, obj);
-                            break;
-                        case 3:
-                            ps.setObject(10, obj);
-                            break;
-                        case 4:
-                            ps.setObject(11, obj);
-                            break;
+        // applies overwritten values only when mouse clicked outside table
+        // implement several error catching
+        // apply combobx for appropriate columns sa table upon selecting
+        // use 'grades' entity class
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to UPDATE selected records?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){
+            try {
+                ps = conn.prepareStatement("UPDATE plm.grades SET "
+                        + "syear = ?, "
+                        + "semester = ?, "
+                        + "student_no = ?,"
+                        + "subject_code = ?, "
+                        + "block_no = ?, "
+                        + "grade = ? "
+                        + " WHERE "
+                        + "syear = ? AND " // filter catch need
+                        + "semester = ? AND "
+                        + "student_no = ? AND "
+                        + "subject_code = ? AND "
+                        + "block_no = ?");
+
+                for (int row = 0; row < T2.getRowCount(); ++row){
+                    for (int col = 0; col < T2.getColumnCount(); ++col){
+                        Object obj = T2.getValueAt(row, col);
+                        ps.setObject(col+1, obj);
+                        switch (col){
+                            case 0:
+                                ps.setObject(7, obj);
+                                break;
+                            case 1:
+                                ps.setObject(8, obj);
+                                break;
+                            case 2:
+                                ps.setObject(9, obj);
+                                break;
+                            case 3:
+                                ps.setObject(10, obj);
+                                break;
+                            case 4:
+                                ps.setObject(11, obj);
+                                break;
+                        }
                     }
+                    ps.executeUpdate();
+                }
+                display();
+                JOptionPane.showMessageDialog(null, "Grades updated successfully.");
+            } catch (SQLSyntaxErrorException e) { 
+                JOptionPane.showMessageDialog(null, "Please input a valid number for grade.");
+            } catch (Exception e){
+                e.printStackTrace();  
+            }
+        } else 
+            JOptionPane.showMessageDialog(null, "Update was aborted.");
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int respond = JOptionPane.showConfirmDialog(null, "Do you want to DELETE selected records?", "Confirm", JOptionPane.YES_NO_OPTION);
+        if (respond == JOptionPane.YES_OPTION){            
+            try {            
+                ps = conn.prepareStatement("DELETE FROM plm.grades WHERE "
+                        + "syear = ? AND "
+                        + "semester = ? AND "
+                        + "student_no = ? AND "
+                        + "subject_code = ? AND "
+                        + "block_no = ?");
+
+
+                int[] c = T2.getSelectedRows();
+                for (int a : c){
+                    ps.setObject(1, T2.getValueAt(a, 0));
+                    ps.setObject(2, T2.getValueAt(a, 1));
+                    ps.setObject(3, T2.getValueAt(a, 2));
+                    ps.setObject(4, T2.getValueAt(a, 3));
+                    ps.setObject(5, T2.getValueAt(a, 4));
+                    ps.executeUpdate();
+                }
+                display();
+                JOptionPane.showMessageDialog(null, "Records deleted successfully.");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else 
+            JOptionPane.showMessageDialog(null, "Deletion was aborted.");
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        // empty row catch (naka cmbx nmn)
+        // format error
+        //
+        
+        DefaultTableModel model = (DefaultTableModel) T1.getModel();
+        model.addRow(new Object[]{null, null, null, null, null}); // Adjust the array length      
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) T1.getModel();
+        model.removeRow(T1.getRowCount()-1);
+        // error: tries to remove even tho there's no row anymore java.lang.ArrayIndexOutOfBoundsException
+        // pano kung yung want ko na iremove is nasa gitna ng mga rows?
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        
+        // SQLIntegrityConstraintViolationException catches several errors... needs record integrity that will be identified by the system
+        try {
+            ps = conn.prepareStatement("INSERT INTO grades (syear, semester, student_no, subject_code, block_no, grade) "
+                    + "VALUES(?, ?, ?, ?, ?, ?)");
+            
+            for (int row = 0; row < T1.getRowCount(); ++row){
+                for (int col = 0; col < T1.getColumnCount(); ++col){
+                    Object obj = T1.getValueAt(row, col);
+                    ps.setObject(col+1, obj);
                 }
                 ps.executeUpdate();
             }
             display();
+            // deletes row from staging
+        } catch (SQLIntegrityConstraintViolationException e) {
+            JOptionPane.showMessageDialog(null, "Please fill in the remaining blanks or remove them. "
+                    + "Make sure the record does not exist yet. The student number should be valid.");
+        } catch (SQLSyntaxErrorException e) { 
+            JOptionPane.showMessageDialog(null, "Please input a valid number for grade.");
         } catch (Exception e){
             e.printStackTrace();
         }
-    }//GEN-LAST:event_btnActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // need JOPTIONPANE
-        try {            
-            ps = conn.prepareStatement("DELETE FROM plm.grades WHERE "
-                    + "syear = ? AND "
-                    + "semester = ? AND "
-                    + "student_no = ? AND "
-                    + "subject_code = ? AND "
-                    + "block_no = ?");
-            
-            int[] c = T2.getSelectedRows();
-            for (int a : c){
-                ps.setObject(1, T2.getValueAt(a, 0));
-                ps.setObject(2, T2.getValueAt(a, 1));
-                ps.setObject(3, T2.getValueAt(a, 2));
-                ps.setObject(4, T2.getValueAt(a, 3));
-                ps.setObject(5, T2.getValueAt(a, 4));
-                ps.executeUpdate();
-            }
-            display();
-            System.out.println("Records Deleted Succesfully");
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public void display(){
         try {
@@ -167,6 +263,63 @@ public class Test extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
+    }
+    
+    public void initTblGrades(){ // needs optimization
+        ArrayList<String> sy = new ArrayList<>();
+        ArrayList<String> sem = new ArrayList<>();
+        ArrayList<String> subcode = new ArrayList<>();
+        ArrayList<String> blockno = new ArrayList<>();
+        JComboBox<String> syCMB = new JComboBox<>();
+        JComboBox<String> semCMB = new JComboBox<>();
+        JComboBox<String> subcodeCMB = new JComboBox<>();
+        JComboBox<String> blocknoCMB = new JComboBox<>();        
+        
+        try {
+            ps = conn.prepareStatement("SELECT syear FROM plm.schoolyear");
+            rs = ps.executeQuery();
+            while(rs.next())
+                sy.add(rs.getString("syear"));
+            for (String val : sy){
+                syCMB.addItem(val);
+            }
+            TableColumn syColumn = T1.getColumnModel().getColumn(0);
+            syColumn.setCellEditor(new DefaultCellEditor(syCMB));
+            
+            ps = conn.prepareStatement("SELECT semester FROM plm.semester");
+            rs = ps.executeQuery();
+            while(rs.next())
+                sem.add(rs.getString("semester"));
+            for (String val : sem){
+                semCMB.addItem(val);
+            }
+            TableColumn semColumn = T1.getColumnModel().getColumn(1);
+            semColumn.setCellEditor(new DefaultCellEditor(semCMB));
+
+            ps = conn.prepareStatement("SELECT subject_code FROM plm.subject");
+            rs = ps.executeQuery();
+            while(rs.next())
+                subcode.add(rs.getString("subject_code"));
+            for (String val : subcode){
+                subcodeCMB.addItem(val);
+            }
+            TableColumn subcodeColumn = T1.getColumnModel().getColumn(3);
+            subcodeColumn.setCellEditor(new DefaultCellEditor(subcodeCMB));
+
+            ps = conn.prepareStatement("SELECT block_no FROM plm.subject_schedule");
+            rs = ps.executeQuery();
+            while(rs.next())
+                blockno.add(rs.getString("block_no"));
+            for (String val : blockno){
+                blocknoCMB.addItem(val);
+            }
+            TableColumn blocknoColumn = T1.getColumnModel().getColumn(4);
+            blocknoColumn.setCellEditor(new DefaultCellEditor(blocknoCMB));
+            
+            
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
     
     public static void main(String args[]) {
@@ -204,8 +357,11 @@ public class Test extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable T1;
     private javax.swing.JTable T2;
-    private javax.swing.JButton btn;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

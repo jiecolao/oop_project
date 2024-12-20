@@ -1,5 +1,7 @@
 package projectoop;
 
+import entities.SubjectSchedule;
+import entities.Grades;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
@@ -17,9 +19,10 @@ public class MainScreen extends javax.swing.JFrame {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
-    private Timer timer = null;
     SubjectSchedule SubjectSchedule;
     Grades Grades;
+    
+    private Timer timer = null;
     
     public MainScreen() {
         initComponents();
