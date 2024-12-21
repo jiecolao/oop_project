@@ -1,6 +1,8 @@
 package projectoop;
 
 import entities.Grades;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +10,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
 import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +26,40 @@ public class AddStudGrades extends javax.swing.JFrame {
     
     public AddStudGrades() {
         initComponents();
+        
+        ArrayList<JButton> buttonsSR = new ArrayList<>();
+            buttonsSR.add(btnSearch);
+            buttonsSR.add(btnRefresh);
+   
+        for (JButton buttonSR : buttonsSR) {
+            buttonSR.setBackground(new Color(112, 128, 144));
+            buttonSR.setForeground(Color.WHITE);  
+            buttonSR.setFocusPainted(false);  
+            buttonSR.setBorderPainted(false);  
+            buttonSR.setOpaque(true);
+            buttonSR.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        }
+        
+            btnAddRow.setBackground(new Color(34, 139, 34));
+            btnAddRow.setForeground(Color.WHITE);  
+            btnAddRow.setFocusPainted(false);
+            btnAddRow.setBorderPainted(false);  
+            btnAddRow.setOpaque(true);
+            btnAddRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            
+            btnAddGrades.setBackground(new Color(112, 128, 144));
+            btnAddGrades.setForeground(Color.WHITE);  
+            btnAddGrades.setFocusPainted(false);
+            btnAddGrades.setBorderPainted(false);  
+            btnAddGrades.setOpaque(true);
+            btnAddGrades.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            
+            btnRemoveRow.setBackground(new Color(112, 128, 144));
+            btnRemoveRow.setForeground(Color.WHITE);  
+            btnRemoveRow.setFocusPainted(false);
+            btnRemoveRow.setBorderPainted(false);  
+            btnRemoveRow.setOpaque(true);
+            btnRemoveRow.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -30,17 +67,20 @@ public class AddStudGrades extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDraft = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblResult = new javax.swing.JTable();
-        lblsgDraft = new javax.swing.JLabel();
-        lblsgResult = new javax.swing.JLabel();
+        btnRemoveRow = new javax.swing.JButton();
+        btnAddRow = new javax.swing.JButton();
+        btnAddGrades = new javax.swing.JButton();
+        pnlBackGround = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         lblsgSearch = new javax.swing.JLabel();
         txtsgStudentNo = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
-        btnRemoveRow = new javax.swing.JButton();
-        btnAddRow = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblResult = new javax.swing.JTable();
         btnRefresh = new javax.swing.JButton();
-        btnAddGrades = new javax.swing.JButton();
+        lblsgResult = new javax.swing.JLabel();
+        lblsgDraft = new javax.swing.JLabel();
         lblsgArrow = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -52,6 +92,7 @@ public class AddStudGrades extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblDraft.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         tblDraft.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null}
@@ -60,10 +101,66 @@ public class AddStudGrades extends javax.swing.JFrame {
                 "SYEAR", "SEMESTER", "STUDENT_NO", "SUBJECT_CODE", "BLOCK_NO", "GRADE"
             }
         ));
+        tblDraft.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblDraft.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tblDraft);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 460));
 
+        btnRemoveRow.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        btnRemoveRow.setText("Remove Row");
+        btnRemoveRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveRowActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRemoveRow, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 100, -1));
+
+        btnAddRow.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        btnAddRow.setText("Add Row");
+        btnAddRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddRowActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAddRow, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 120, -1));
+
+        btnAddGrades.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        btnAddGrades.setText("ADD");
+        btnAddGrades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddGradesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAddGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 90, -1));
+
+        pnlBackGround.setBackground(new java.awt.Color(128, 0, 32));
+        pnlBackGround.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblsgSearch.setFont(new java.awt.Font("Yu Gothic UI", 1, 12)); // NOI18N
+        lblsgSearch.setText("Search Student No     :");
+        jPanel2.add(lblsgSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, 20));
+
+        txtsgStudentNo.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        jPanel2.add(txtsgStudentNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 240, 20));
+
+        btnSearch.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 90, 20));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1020, 50));
+
+        tblResult.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         tblResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -75,67 +172,42 @@ public class AddStudGrades extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblResult.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblResult.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tblResult);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, -1, 460));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, -1, 460));
 
-        lblsgDraft.setText("DRAFT:");
-        getContentPane().add(lblsgDraft, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-
-        lblsgResult.setText("RESULT:");
-        getContentPane().add(lblsgResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 60, -1));
-
-        lblsgSearch.setText("Search Student No:");
-        getContentPane().add(lblsgSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, -1));
-        getContentPane().add(txtsgStudentNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 110, -1));
-
-        btnSearch.setText("Search");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
-
-        btnRemoveRow.setText("Remove row");
-        btnRemoveRow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveRowActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnRemoveRow, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 100, -1));
-
-        btnAddRow.setText("ADD ROW");
-        btnAddRow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddRowActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAddRow, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 120, -1));
-
+        btnRefresh.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         btnRefresh.setText("Refresh");
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefreshActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 80, -1, -1));
+        jPanel1.add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 70, -1, -1));
 
-        btnAddGrades.setText("ADD");
-        btnAddGrades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddGradesActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnAddGrades, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 60, -1));
+        lblsgResult.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        lblsgResult.setText("RESULT:");
+        jPanel1.add(lblsgResult, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 70, 90, -1));
 
+        lblsgDraft.setFont(new java.awt.Font("Yu Gothic UI", 1, 18)); // NOI18N
+        lblsgDraft.setText("DRAFT:");
+        jPanel1.add(lblsgDraft, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+
+        lblsgArrow.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         lblsgArrow.setText(">>>");
-        getContentPane().add(lblsgArrow, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 30, -1));
+        jPanel1.add(lblsgArrow, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 270, 30, -1));
+
+        pnlBackGround.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 1040, 570));
+
+        getContentPane().add(pnlBackGround, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1060, 600));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnRemoveRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveRowActionPerformed
         try {
             DefaultTableModel model = (DefaultTableModel) tblDraft.getModel();
@@ -326,12 +398,15 @@ public class AddStudGrades extends javax.swing.JFrame {
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnRemoveRow;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblsgArrow;
     private javax.swing.JLabel lblsgDraft;
     private javax.swing.JLabel lblsgResult;
     private javax.swing.JLabel lblsgSearch;
+    private javax.swing.JPanel pnlBackGround;
     private javax.swing.JTable tblDraft;
     private javax.swing.JTable tblResult;
     private javax.swing.JTextField txtsgStudentNo;
