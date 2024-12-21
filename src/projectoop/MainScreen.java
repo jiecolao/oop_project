@@ -164,25 +164,25 @@ public class MainScreen extends javax.swing.JFrame {
         btnStudGradesDelete = new javax.swing.JButton();
         btnStudGradesSearch = new javax.swing.JButton();
         pnlSchoolYear = new javax.swing.JPanel();
-        lblSchoolYearTitle = new javax.swing.JLabel();
+        lblTitle1 = new javax.swing.JLabel();
         scrllSchoolYear = new javax.swing.JScrollPane();
         tblSchoolYear = new javax.swing.JTable();
         pnlSchoolYearBtns = new javax.swing.JPanel();
         lblDash = new javax.swing.JLabel();
         lblEndSY = new javax.swing.JLabel();
         lblStartSY2 = new javax.swing.JLabel();
+        txtStartSY = new javax.swing.JTextField();
+        txtEndSY = new javax.swing.JTextField();
         btnSchoolYearAdd = new javax.swing.JButton();
         btnSchoolYearUpdate = new javax.swing.JButton();
         btnSchoolYearDelete = new javax.swing.JButton();
-        txtStartSY = new javax.swing.JTextField();
-        txtEndSY = new javax.swing.JTextField();
         pnlSemester = new javax.swing.JPanel();
-        lblSchoolYearTitle1 = new javax.swing.JLabel();
+        lblTitle2 = new javax.swing.JLabel();
         scrllSemester = new javax.swing.JScrollPane();
         tblSemester = new javax.swing.JTable();
         pnlSemesterBtns = new javax.swing.JPanel();
-        txtSemester = new javax.swing.JTextField();
         lblSemester = new javax.swing.JLabel();
+        txtSemester = new javax.swing.JTextField();
         btnSemesterAdd = new javax.swing.JButton();
         btnSemesterUpdate = new javax.swing.JButton();
         btnSemesterDelete = new javax.swing.JButton();
@@ -204,7 +204,7 @@ public class MainScreen extends javax.swing.JFrame {
         btnDeleteCollege = new javax.swing.JButton();
         lblmmddyyyy1 = new javax.swing.JLabel();
         lblmmddyyyy2 = new javax.swing.JLabel();
-        lblCollegeTItle = new javax.swing.JLabel();
+        lblTitle3 = new javax.swing.JLabel();
         pnlCourse = new javax.swing.JPanel();
         scrllCourse = new javax.swing.JScrollPane();
         tblCourse = new javax.swing.JTable();
@@ -225,69 +225,70 @@ public class MainScreen extends javax.swing.JFrame {
         btnDeleteCourse = new javax.swing.JButton();
         lblmmddyyyy3 = new javax.swing.JLabel();
         lblmmddyyyy4 = new javax.swing.JLabel();
-        lblSchoolYearTitle2 = new javax.swing.JLabel();
+        lblTitle4 = new javax.swing.JLabel();
         pnlStudent = new javax.swing.JPanel();
         scrllStudent = new javax.swing.JScrollPane();
         tblStudent = new javax.swing.JTable();
         lblStudentNo = new javax.swing.JLabel();
         lblCourse = new javax.swing.JLabel();
-        txtStudentNo = new javax.swing.JTextField();
-        cmbCourse = new javax.swing.JComboBox<>();
-        btnAddStudent = new javax.swing.JButton();
-        btnUpdateStudent = new javax.swing.JButton();
-        btnDeleteStudent = new javax.swing.JButton();
-        txtDateGraduated = new javax.swing.JTextField();
-        lblDateGraduated = new javax.swing.JLabel();
-        lblDateStart = new javax.swing.JLabel();
-        txtDateStart = new javax.swing.JTextField();
-        cmbStatus2 = new javax.swing.JComboBox<>();
-        lblStatus2 = new javax.swing.JLabel();
-        txtLastName = new javax.swing.JTextField();
-        txtFirstName = new javax.swing.JTextField();
         lblLastName1 = new javax.swing.JLabel();
         lblFirstName1 = new javax.swing.JLabel();
         lblGender = new javax.swing.JLabel();
-        cmbGender = new javax.swing.JComboBox<>();
         lblMobileNo1 = new javax.swing.JLabel();
-        txtMobileNo = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
         lblEmail1 = new javax.swing.JLabel();
         lblAddress1 = new javax.swing.JLabel();
-        txtAddress = new javax.swing.JTextField();
         lblBirthDate1 = new javax.swing.JLabel();
+        lblDateGraduated = new javax.swing.JLabel();
+        lblDateStart = new javax.swing.JLabel();
+        lblStatus2 = new javax.swing.JLabel();
+        txtStudentNo = new javax.swing.JTextField();
+        cmbCourse = new javax.swing.JComboBox<>();
+        txtDateGraduated = new javax.swing.JTextField();
+        txtDateStart = new javax.swing.JTextField();
+        cmbStatus2 = new javax.swing.JComboBox<>();
+        txtLastName = new javax.swing.JTextField();
+        txtFirstName = new javax.swing.JTextField();
+        cmbGender = new javax.swing.JComboBox<>();
+        txtMobileNo = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
         txtBirthDate = new javax.swing.JTextField();
+        btnAddStudent = new javax.swing.JButton();
+        btnUpdateStudent = new javax.swing.JButton();
+        btnDeleteStudent = new javax.swing.JButton();
         lblmmddyyyy7 = new javax.swing.JLabel();
         lblmmddyyyy10 = new javax.swing.JLabel();
         lblmmddyyyy11 = new javax.swing.JLabel();
+        lblTitle5 = new javax.swing.JLabel();
         pnlEmployee = new javax.swing.JPanel();
         scrllEmployee = new javax.swing.JScrollPane();
         tblEmployee = new javax.swing.JTable();
-        txtEmployeeID = new javax.swing.JTextField();
         lblEmployeeID = new javax.swing.JLabel();
         lblLastNameEmp = new javax.swing.JLabel();
-        txtLastNameEmp = new javax.swing.JTextField();
         lblFirstNameEmp = new javax.swing.JLabel();
-        txtFirstNameEmp = new javax.swing.JTextField();
         lblEmailEmp = new javax.swing.JLabel();
-        txtEmailEmp = new javax.swing.JTextField();
-        cmbGenderEmp = new javax.swing.JComboBox<>();
-        lblGenderEmp = new javax.swing.JLabel();
         lblMobileNoEmp = new javax.swing.JLabel();
-        txtMobileNoEmp = new javax.swing.JTextField();
+        lblGenderEmp = new javax.swing.JLabel();
         lblAddressEmp = new javax.swing.JLabel();
-        txtAddressEmp = new javax.swing.JTextField();
         lblBirthDateEmp = new javax.swing.JLabel();
-        txtBirthDateEmp = new javax.swing.JTextField();
         lblDateStartEmp = new javax.swing.JLabel();
-        txtDateStartEmp = new javax.swing.JTextField();
-        lblStatus3 = new javax.swing.JLabel();
-        cmbStatus3 = new javax.swing.JComboBox<>();
         lblDateGraduatedEmp = new javax.swing.JLabel();
+        lblStatus3 = new javax.swing.JLabel();
+        txtEmployeeID = new javax.swing.JTextField();
+        txtLastNameEmp = new javax.swing.JTextField();
+        txtFirstNameEmp = new javax.swing.JTextField();
+        txtEmailEmp = new javax.swing.JTextField();
+        txtMobileNoEmp = new javax.swing.JTextField();
+        txtAddressEmp = new javax.swing.JTextField();
+        txtBirthDateEmp = new javax.swing.JTextField();
+        txtDateStartEmp = new javax.swing.JTextField();
         txtDateGraduatedEmp = new javax.swing.JTextField();
+        cmbGenderEmp = new javax.swing.JComboBox<>();
+        cmbStatus3 = new javax.swing.JComboBox<>();
         btnAddEmp = new javax.swing.JButton();
         btnUpdateEmp = new javax.swing.JButton();
         btnDeleteEmp = new javax.swing.JButton();
-        lblSchoolYearTitle4 = new javax.swing.JLabel();
+        lblTitle6 = new javax.swing.JLabel();
         pnlSubject = new javax.swing.JPanel();
         scrllSubject = new javax.swing.JScrollPane();
         tblSubject = new javax.swing.JTable();
@@ -312,6 +313,7 @@ public class MainScreen extends javax.swing.JFrame {
         btnDeleteSub = new javax.swing.JButton();
         lblmmddyyyy12 = new javax.swing.JLabel();
         lblmmddyyyy13 = new javax.swing.JLabel();
+        lblTitle7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Information System");
@@ -1009,9 +1011,9 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSchoolYear.setPreferredSize(new java.awt.Dimension(870, 640));
         pnlSchoolYear.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblSchoolYearTitle.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        lblSchoolYearTitle.setText("School Year");
-        pnlSchoolYear.add(lblSchoolYearTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 230, 44));
+        lblTitle1.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        lblTitle1.setText("SCHOOL YEAR");
+        pnlSchoolYear.add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 230, 44));
 
         scrllSchoolYear.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
 
@@ -1035,7 +1037,7 @@ public class MainScreen extends javax.swing.JFrame {
         });
         scrllSchoolYear.setViewportView(tblSchoolYear);
 
-        pnlSchoolYear.add(scrllSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 430, -1));
+        pnlSchoolYear.add(scrllSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 430, 500));
 
         pnlSchoolYearBtns.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1052,6 +1054,14 @@ public class MainScreen extends javax.swing.JFrame {
         lblStartSY2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblStartSY2.setText("Start (YYYY)");
         pnlSchoolYearBtns.add(lblStartSY2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 70, 20));
+
+        txtStartSY.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        txtStartSY.setPreferredSize(new java.awt.Dimension(64, 20));
+        pnlSchoolYearBtns.add(txtStartSY, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, 20));
+
+        txtEndSY.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        txtEndSY.setPreferredSize(new java.awt.Dimension(64, 20));
+        pnlSchoolYearBtns.add(txtEndSY, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 120, 20));
 
         btnSchoolYearAdd.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         btnSchoolYearAdd.setText("Add");
@@ -1080,14 +1090,6 @@ public class MainScreen extends javax.swing.JFrame {
         });
         pnlSchoolYearBtns.add(btnSchoolYearDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(114, 190, 120, 30));
 
-        txtStartSY.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtStartSY.setPreferredSize(new java.awt.Dimension(64, 20));
-        pnlSchoolYearBtns.add(txtStartSY, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, 20));
-
-        txtEndSY.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtEndSY.setPreferredSize(new java.awt.Dimension(64, 20));
-        pnlSchoolYearBtns.add(txtEndSY, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 120, 20));
-
         pnlSchoolYear.add(pnlSchoolYearBtns, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 340, 430));
 
         pnlFramebg.add(pnlSchoolYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 870, 640));
@@ -1095,9 +1097,9 @@ public class MainScreen extends javax.swing.JFrame {
         pnlSemester.setPreferredSize(new java.awt.Dimension(870, 640));
         pnlSemester.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblSchoolYearTitle1.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        lblSchoolYearTitle1.setText("Semester");
-        pnlSemester.add(lblSchoolYearTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 230, 44));
+        lblTitle2.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        lblTitle2.setText("SEMESTER");
+        pnlSemester.add(lblTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 230, 44));
 
         tblSemester.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         tblSemester.setModel(new javax.swing.table.DefaultTableModel(
@@ -1118,9 +1120,14 @@ public class MainScreen extends javax.swing.JFrame {
         });
         scrllSemester.setViewportView(tblSemester);
 
-        pnlSemester.add(scrllSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 430, -1));
+        pnlSemester.add(scrllSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 430, 500));
 
         pnlSemesterBtns.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblSemester.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
+        lblSemester.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSemester.setText("Semester");
+        pnlSemesterBtns.add(lblSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 90, 20));
 
         txtSemester.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         txtSemester.addActionListener(new java.awt.event.ActionListener() {
@@ -1129,11 +1136,6 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
         pnlSemesterBtns.add(txtSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 150, 20));
-
-        lblSemester.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
-        lblSemester.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSemester.setText("Semester");
-        pnlSemesterBtns.add(lblSemester, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 90, 20));
 
         btnSemesterAdd.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         btnSemesterAdd.setText("Add");
@@ -1233,7 +1235,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnAddCollegeActionPerformed(evt);
             }
         });
-        pnlCollege.add(btnAddCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 100, 30));
+        pnlCollege.add(btnAddCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 100, 30));
 
         btnUpdateCollege.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         btnUpdateCollege.setText("Update");
@@ -1242,7 +1244,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnUpdateCollegeActionPerformed(evt);
             }
         });
-        pnlCollege.add(btnUpdateCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 380, 100, 30));
+        pnlCollege.add(btnUpdateCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 480, 100, 30));
 
         btnDeleteCollege.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         btnDeleteCollege.setText("Delete");
@@ -1251,7 +1253,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnDeleteCollegeActionPerformed(evt);
             }
         });
-        pnlCollege.add(btnDeleteCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 100, 30));
+        pnlCollege.add(btnDeleteCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 480, 100, 30));
 
         lblmmddyyyy1.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
         lblmmddyyyy1.setText("MM - DD - YYYY");
@@ -1261,9 +1263,9 @@ public class MainScreen extends javax.swing.JFrame {
         lblmmddyyyy2.setText("MM - DD - YYYY");
         pnlCollege.add(lblmmddyyyy2, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 230, -1, -1));
 
-        lblCollegeTItle.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        lblCollegeTItle.setText("College");
-        pnlCollege.add(lblCollegeTItle, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 230, 44));
+        lblTitle3.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        lblTitle3.setText("SCHOOL YEAR");
+        pnlCollege.add(lblTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 230, 44));
 
         pnlFramebg.add(pnlCollege, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
         pnlCollege.getAccessibleContext().setAccessibleName("");
@@ -1289,7 +1291,7 @@ public class MainScreen extends javax.swing.JFrame {
         });
         scrllCourse.setViewportView(tblCourse);
 
-        pnlCourse.add(scrllCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 430, -1));
+        pnlCourse.add(scrllCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 430, 500));
 
         lblCourseCode.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         lblCourseCode.setText("Course Code :");
@@ -1341,7 +1343,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnAddCourseActionPerformed(evt);
             }
         });
-        pnlCourse.add(btnAddCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 100, 30));
+        pnlCourse.add(btnAddCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, 100, 30));
 
         btnUpdateCourse.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         btnUpdateCourse.setText("Update");
@@ -1350,7 +1352,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnUpdateCourseActionPerformed(evt);
             }
         });
-        pnlCourse.add(btnUpdateCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 380, 100, 30));
+        pnlCourse.add(btnUpdateCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 550, 100, 30));
 
         btnDeleteCourse.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         btnDeleteCourse.setText("Delete");
@@ -1359,7 +1361,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnDeleteCourseActionPerformed(evt);
             }
         });
-        pnlCourse.add(btnDeleteCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, 100, 30));
+        pnlCourse.add(btnDeleteCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 550, 100, 30));
 
         lblmmddyyyy3.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
         lblmmddyyyy3.setText("MM - DD - YYYY");
@@ -1369,9 +1371,9 @@ public class MainScreen extends javax.swing.JFrame {
         lblmmddyyyy4.setText("MM - DD - YYYY");
         pnlCourse.add(lblmmddyyyy4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
 
-        lblSchoolYearTitle2.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        lblSchoolYearTitle2.setText("Course");
-        pnlCourse.add(lblSchoolYearTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 230, 44));
+        lblTitle4.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        lblTitle4.setText("COURSE");
+        pnlCourse.add(lblTitle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 230, 44));
 
         pnlFramebg.add(pnlCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
@@ -1406,11 +1408,89 @@ public class MainScreen extends javax.swing.JFrame {
         lblCourse.setText("Course : ");
         pnlStudent.add(lblCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 100, 20));
 
+        lblLastName1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        lblLastName1.setText("Last Name ");
+        pnlStudent.add(lblLastName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, 20));
+
+        lblFirstName1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        lblFirstName1.setText("First Name");
+        pnlStudent.add(lblFirstName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, 20));
+
+        lblGender.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        lblGender.setText("Gender : ");
+        pnlStudent.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, 20));
+
+        lblMobileNo1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        lblMobileNo1.setText("Mobile No :");
+        pnlStudent.add(lblMobileNo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 235, -1, 20));
+
+        lblEmail1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        lblEmail1.setText("Email : ");
+        pnlStudent.add(lblEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, 20));
+
+        lblAddress1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        lblAddress1.setText("Address : ");
+        pnlStudent.add(lblAddress1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 305, -1, 20));
+
+        lblBirthDate1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        lblBirthDate1.setText("Birthdate:  ");
+        pnlStudent.add(lblBirthDate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, 20));
+
+        lblDateGraduated.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        lblDateGraduated.setText("Date Graduated:  ");
+        pnlStudent.add(lblDateGraduated, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 435, -1, 20));
+
+        lblDateStart.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        lblDateStart.setText("Date Started:  ");
+        lblDateStart.setToolTipText("");
+        pnlStudent.add(lblDateStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, 20));
+
+        lblStatus2.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        lblStatus2.setText("Status : ");
+        pnlStudent.add(lblStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, 20));
+
         txtStudentNo.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         pnlStudent.add(txtStudentNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 220, 20));
 
         cmbCourse.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         pnlStudent.add(cmbCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 220, 20));
+
+        txtDateGraduated.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        pnlStudent.add(txtDateGraduated, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 435, 210, 20));
+
+        txtDateStart.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        pnlStudent.add(txtDateStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 210, 20));
+
+        cmbStatus2.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        cmbStatus2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "I" }));
+        pnlStudent.add(cmbStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, 90, 20));
+
+        txtLastName.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        txtLastName.setToolTipText("");
+        pnlStudent.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 120, 20));
+
+        txtFirstName.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        txtFirstName.setToolTipText("");
+        pnlStudent.add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 190, 20));
+
+        cmbGender.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        pnlStudent.add(cmbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 100, 20));
+
+        txtMobileNo.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        txtMobileNo.setToolTipText("");
+        pnlStudent.add(txtMobileNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 235, 210, 20));
+
+        txtEmail.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        txtEmail.setToolTipText("");
+        pnlStudent.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 210, 20));
+
+        txtAddress.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        txtAddress.setToolTipText("");
+        pnlStudent.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 305, 210, 20));
+
+        txtBirthDate.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
+        pnlStudent.add(txtBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 210, 20));
 
         btnAddStudent.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         btnAddStudent.setText("Add");
@@ -1439,84 +1519,6 @@ public class MainScreen extends javax.swing.JFrame {
         });
         pnlStudent.add(btnDeleteStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 550, 100, 30));
 
-        txtDateGraduated.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        pnlStudent.add(txtDateGraduated, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 435, 210, 20));
-
-        lblDateGraduated.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblDateGraduated.setText("Date Graduated:  ");
-        pnlStudent.add(lblDateGraduated, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 435, -1, 20));
-
-        lblDateStart.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblDateStart.setText("Date Started:  ");
-        lblDateStart.setToolTipText("");
-        pnlStudent.add(lblDateStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, 20));
-
-        txtDateStart.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        pnlStudent.add(txtDateStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 210, 20));
-
-        cmbStatus2.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbStatus2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "I" }));
-        pnlStudent.add(cmbStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 490, 90, 20));
-
-        lblStatus2.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblStatus2.setText("Status : ");
-        pnlStudent.add(lblStatus2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, 20));
-
-        txtLastName.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtLastName.setToolTipText("");
-        pnlStudent.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 120, 20));
-
-        txtFirstName.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtFirstName.setToolTipText("");
-        pnlStudent.add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 190, 20));
-
-        lblLastName1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblLastName1.setText("Last Name ");
-        pnlStudent.add(lblLastName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, 20));
-
-        lblFirstName1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblFirstName1.setText("First Name");
-        pnlStudent.add(lblFirstName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, 20));
-
-        lblGender.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblGender.setText("Gender : ");
-        pnlStudent.add(lblGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, 20));
-
-        cmbGender.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
-        pnlStudent.add(cmbGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 100, 20));
-
-        lblMobileNo1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblMobileNo1.setText("Mobile No :");
-        pnlStudent.add(lblMobileNo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 235, -1, 20));
-
-        txtMobileNo.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtMobileNo.setToolTipText("");
-        pnlStudent.add(txtMobileNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 235, 210, 20));
-
-        txtEmail.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtEmail.setToolTipText("");
-        pnlStudent.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 210, 20));
-
-        lblEmail1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblEmail1.setText("Email : ");
-        pnlStudent.add(lblEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, 20));
-
-        lblAddress1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblAddress1.setText("Address : ");
-        pnlStudent.add(lblAddress1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 305, -1, 20));
-
-        txtAddress.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        txtAddress.setToolTipText("");
-        pnlStudent.add(txtAddress, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 305, 210, 20));
-
-        lblBirthDate1.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        lblBirthDate1.setText("Birthdate:  ");
-        pnlStudent.add(lblBirthDate1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, 20));
-
-        txtBirthDate.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
-        pnlStudent.add(txtBirthDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 210, 20));
-
         lblmmddyyyy7.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
         lblmmddyyyy7.setText("MM - DD - YYYY");
         pnlStudent.add(lblmmddyyyy7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, -1, -1));
@@ -1528,6 +1530,10 @@ public class MainScreen extends javax.swing.JFrame {
         lblmmddyyyy11.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
         lblmmddyyyy11.setText("MM - DD - YYYY");
         pnlStudent.add(lblmmddyyyy11, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, -1, -1));
+
+        lblTitle5.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        lblTitle5.setText("STUDENT INFORMATION");
+        pnlStudent.add(lblTitle5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 350, 44));
 
         pnlFramebg.add(pnlStudent, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
@@ -1552,8 +1558,7 @@ public class MainScreen extends javax.swing.JFrame {
         });
         scrllEmployee.setViewportView(tblEmployee);
 
-        pnlEmployee.add(scrllEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 430, -1));
-        pnlEmployee.add(txtEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 100, -1));
+        pnlEmployee.add(scrllEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 430, 500));
 
         lblEmployeeID.setText("Employee ID : ");
         pnlEmployee.add(lblEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
@@ -1561,57 +1566,58 @@ public class MainScreen extends javax.swing.JFrame {
         lblLastNameEmp.setText("Last Name : ");
         pnlEmployee.add(lblLastNameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
-        txtLastNameEmp.setToolTipText("");
-        pnlEmployee.add(txtLastNameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 110, -1));
-
         lblFirstNameEmp.setText("First Name : ");
         pnlEmployee.add(lblFirstNameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
-
-        txtFirstNameEmp.setToolTipText("");
-        pnlEmployee.add(txtFirstNameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 110, -1));
 
         lblEmailEmp.setText("Email : ");
         pnlEmployee.add(lblEmailEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
 
-        txtEmailEmp.setToolTipText("");
-        pnlEmployee.add(txtEmailEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 110, -1));
-
-        cmbGenderEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
-        pnlEmployee.add(cmbGenderEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 100, -1));
+        lblMobileNoEmp.setText("Mobile No :");
+        pnlEmployee.add(lblMobileNoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
 
         lblGenderEmp.setText("Gender : ");
         pnlEmployee.add(lblGenderEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, -1, -1));
 
-        lblMobileNoEmp.setText("Mobile No :");
-        pnlEmployee.add(lblMobileNoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
-
-        txtMobileNoEmp.setToolTipText("");
-        pnlEmployee.add(txtMobileNoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 110, -1));
-
         lblAddressEmp.setText("Address : ");
         pnlEmployee.add(lblAddressEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, -1, -1));
 
-        txtAddressEmp.setToolTipText("");
-        pnlEmployee.add(txtAddressEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 110, -1));
-
         lblBirthDateEmp.setText("Birthdate (MM-DD-YYYY)  :  ");
         pnlEmployee.add(lblBirthDateEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, -1, -1));
-        pnlEmployee.add(txtBirthDateEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 90, -1));
 
         lblDateStartEmp.setText("Date Started (MM-DD-YYYY)  :  ");
         lblDateStartEmp.setToolTipText("");
         pnlEmployee.add(lblDateStartEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
-        pnlEmployee.add(txtDateStartEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 90, -1));
-
-        lblStatus3.setText("Status : ");
-        pnlEmployee.add(lblStatus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, -1, -1));
-
-        cmbStatus3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "I" }));
-        pnlEmployee.add(cmbStatus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 90, 20));
 
         lblDateGraduatedEmp.setText("Date Graduated (MM-DD-YYYY)  :  ");
         pnlEmployee.add(lblDateGraduatedEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, 20));
+
+        lblStatus3.setText("Status : ");
+        pnlEmployee.add(lblStatus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, -1, -1));
+        pnlEmployee.add(txtEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 100, -1));
+
+        txtLastNameEmp.setToolTipText("");
+        pnlEmployee.add(txtLastNameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 110, -1));
+
+        txtFirstNameEmp.setToolTipText("");
+        pnlEmployee.add(txtFirstNameEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 110, -1));
+
+        txtEmailEmp.setToolTipText("");
+        pnlEmployee.add(txtEmailEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 110, -1));
+
+        txtMobileNoEmp.setToolTipText("");
+        pnlEmployee.add(txtMobileNoEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 110, -1));
+
+        txtAddressEmp.setToolTipText("");
+        pnlEmployee.add(txtAddressEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 110, -1));
+        pnlEmployee.add(txtBirthDateEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 90, -1));
+        pnlEmployee.add(txtDateStartEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 90, -1));
         pnlEmployee.add(txtDateGraduatedEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 90, 20));
+
+        cmbGenderEmp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        pnlEmployee.add(cmbGenderEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 240, 100, -1));
+
+        cmbStatus3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "I" }));
+        pnlEmployee.add(cmbStatus3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 90, 20));
 
         btnAddEmp.setText("Add");
         btnAddEmp.addActionListener(new java.awt.event.ActionListener() {
@@ -1619,7 +1625,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnAddEmpActionPerformed(evt);
             }
         });
-        pnlEmployee.add(btnAddEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 100, 30));
+        pnlEmployee.add(btnAddEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, 100, 30));
 
         btnUpdateEmp.setText("Update");
         btnUpdateEmp.addActionListener(new java.awt.event.ActionListener() {
@@ -1627,7 +1633,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnUpdateEmpActionPerformed(evt);
             }
         });
-        pnlEmployee.add(btnUpdateEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 510, 100, 30));
+        pnlEmployee.add(btnUpdateEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 550, 100, 30));
 
         btnDeleteEmp.setText("Delete");
         btnDeleteEmp.addActionListener(new java.awt.event.ActionListener() {
@@ -1635,11 +1641,11 @@ public class MainScreen extends javax.swing.JFrame {
                 btnDeleteEmpActionPerformed(evt);
             }
         });
-        pnlEmployee.add(btnDeleteEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 100, 30));
+        pnlEmployee.add(btnDeleteEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 550, 100, 30));
 
-        lblSchoolYearTitle4.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
-        lblSchoolYearTitle4.setText("Employee");
-        pnlEmployee.add(lblSchoolYearTitle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 230, 44));
+        lblTitle6.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        lblTitle6.setText("EMPLOYEE INFORMATION");
+        pnlEmployee.add(lblTitle6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 350, 44));
 
         pnlFramebg.add(pnlEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
@@ -1664,7 +1670,7 @@ public class MainScreen extends javax.swing.JFrame {
         });
         scrllSubject.setViewportView(tblSubject);
 
-        pnlSubject.add(scrllSubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 430, -1));
+        pnlSubject.add(scrllSubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 430, 500));
 
         lblSubjectCodeSub.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         lblSubjectCodeSub.setText("Course Code :");
@@ -1730,7 +1736,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnAddSubActionPerformed(evt);
             }
         });
-        pnlSubject.add(btnAddSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 100, 30));
+        pnlSubject.add(btnAddSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, 100, 30));
 
         btnUpdateSub.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         btnUpdateSub.setText("Update");
@@ -1739,7 +1745,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnUpdateSubActionPerformed(evt);
             }
         });
-        pnlSubject.add(btnUpdateSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 470, 100, 30));
+        pnlSubject.add(btnUpdateSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 550, 100, 30));
 
         btnDeleteSub.setFont(new java.awt.Font("Yu Gothic UI", 0, 12)); // NOI18N
         btnDeleteSub.setText("Delete");
@@ -1748,7 +1754,7 @@ public class MainScreen extends javax.swing.JFrame {
                 btnDeleteSubActionPerformed(evt);
             }
         });
-        pnlSubject.add(btnDeleteSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 470, 100, 30));
+        pnlSubject.add(btnDeleteSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 550, 100, 30));
 
         lblmmddyyyy12.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
         lblmmddyyyy12.setText("MM - DD - YYYY");
@@ -1757,6 +1763,10 @@ public class MainScreen extends javax.swing.JFrame {
         lblmmddyyyy13.setFont(new java.awt.Font("Yu Gothic UI", 0, 10)); // NOI18N
         lblmmddyyyy13.setText("MM - DD - YYYY");
         pnlSubject.add(lblmmddyyyy13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, -1, -1));
+
+        lblTitle7.setFont(new java.awt.Font("Yu Gothic UI", 1, 24)); // NOI18N
+        lblTitle7.setText("SUBJECT INFORMATION");
+        pnlSubject.add(lblTitle7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 35, 350, 44));
 
         pnlFramebg.add(pnlSubject, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
@@ -4311,7 +4321,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblCollege;
     private javax.swing.JLabel lblCollegeCode;
     private javax.swing.JLabel lblCollegeSub;
-    private javax.swing.JLabel lblCollegeTItle;
     private javax.swing.JLabel lblCourse;
     private javax.swing.JLabel lblCourseCode;
     private javax.swing.JLabel lblCourseDesc;
@@ -4346,10 +4355,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblMobileNo1;
     private javax.swing.JLabel lblMobileNoEmp;
     private javax.swing.JLabel lblOthers;
-    private javax.swing.JLabel lblSchoolYearTitle;
-    private javax.swing.JLabel lblSchoolYearTitle1;
-    private javax.swing.JLabel lblSchoolYearTitle2;
-    private javax.swing.JLabel lblSchoolYearTitle4;
     private javax.swing.JLabel lblSemester;
     private javax.swing.JLabel lblStartSY2;
     private javax.swing.JLabel lblStatus;
@@ -4363,6 +4368,13 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblSubjDesc;
     private javax.swing.JLabel lblSubjectCodeSub;
     private javax.swing.JLabel lblTime;
+    private javax.swing.JLabel lblTitle1;
+    private javax.swing.JLabel lblTitle2;
+    private javax.swing.JLabel lblTitle3;
+    private javax.swing.JLabel lblTitle4;
+    private javax.swing.JLabel lblTitle5;
+    private javax.swing.JLabel lblTitle6;
+    private javax.swing.JLabel lblTitle7;
     private javax.swing.JLabel lblTitleEmployeeCount;
     private javax.swing.JLabel lblTitleStudentCount;
     private javax.swing.JLabel lblUnits;
